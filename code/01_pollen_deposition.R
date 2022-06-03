@@ -9,6 +9,7 @@ library(glmmTMB)
 library(tidyverse)
 library(DHARMa)
 library(emmeans)
+library(car)
 
 # Set color-blind palette
 cb <- c("#000000", # black
@@ -20,4 +21,41 @@ cb <- c("#000000", # black
         "#D55E00", # red
         "#CC79A7") # pink
 
+# Load datasets 
+# Vetch
+vetch18 <- read.csv("data/2018_vetch_deposition.csv", 
+                    header = TRUE)
+vetch18 <- vetch18[,-1]
+vetch19 <- read.csv("data/2019_vetch_deposition.csv", 
+                    header = TRUE)
+vetch19 <- vetch19[,-1]
 
+# Galium 
+galium18 <- read.csv("data/2018_galium_deposition.csv", 
+                     header = TRUE)
+galium18 <- galium18[,-1]
+galium19 <- read.csv("data/2019_galium_deposition.csv", 
+                     header = TRUE)
+galium19 <- galium19[,-1]
+
+# Wild Basil
+basil18 <- read.csv("data/2018_basil_deposition.csv", 
+                    header = TRUE)
+basil18 <- basil18[,-1]
+
+
+#### Vetch 2018 ####
+# Quick Viz
+boxplot((self/(self + other)) ~ treatment, 
+        data = vetch18, 
+        main = "Vetch", 
+        ylab = "Proportion of Conspecific Pollen", 
+        ylim = range(0:1))
+
+##### Models with beta distribution ####
+## Transform 1's in to .999
+for(i in 1:nrow(vetch18)){
+  if(vetch18$proportion_self[i] == 1){
+    vetch18$proportion_self[i] <- 0.999
+  }
+}
