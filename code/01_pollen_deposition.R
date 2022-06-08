@@ -10,6 +10,7 @@ library(tidyverse)
 library(DHARMa)
 library(emmeans)
 library(car)
+library(lmtest)
 
 # Set color-blind palette
 cb <- c("#000000", # black
@@ -53,9 +54,61 @@ boxplot((self/(self + other)) ~ treatment,
         ylim = range(0:1))
 
 ##### Models with beta distribution ####
-## Transform 1's in to .999
+# Keep only complete.cases
+vetch18 <- vetch18[complete.cases(vetch18), ]
+
+# Transform 1's in to .999
 for(i in 1:nrow(vetch18)){
   if(vetch18$proportion_self[i] == 1){
     vetch18$proportion_self[i] <- 0.999
   }
 }
+
+# Global model vetch
+vet_mod <- glmmTMB(proportion_self ~ treatment * site,
+                   data = vetch18,
+                   family = beta_family(),
+                   na.action = na.exclude, 
+                   contrasts = list(treatment = "contr.sum",
+                                    site = "contr.sum"))
+
+summary(vet_mod)
+simulateResiduals(vet_mod, plot = T)
+Anova(vet_mod)
+lrtest(vet_mod, update(vet_mod, .~. -treatment:site))
+
+emmip(vet_mod, treatment ~ site, type = "response")
+
+#### Vetch 2019 ####
+# Quick Viz
+boxplot((self/(self + other)) ~ treatment, 
+        data = vetch19, 
+        main = "Vetch", 
+        ylab = "Proportion of Conspecific Pollen", 
+        ylim = range(0:1))
+
+##### Models with beta distribution ####
+# Keep only complete.cases
+vetch18 <- vetch18[complete.cases(vetch18), ]
+
+# Transform 1's in to .999
+for(i in 1:nrow(vetch18)){
+  if(vetch18$proportion_self[i] == 1){
+    vetch18$proportion_self[i] <- 0.999
+  }
+}
+
+# Global model vetch
+vet_mod <- glmmTMB(proportion_self ~ treatment * site,
+                   data = vetch18,
+                   family = beta_family(),
+                   na.action = na.exclude, 
+                   contrasts = list(treatment = "contr.sum",
+                                    site = "contr.sum"))
+
+summary(vet_mod)
+simulateResiduals(vet_mod, plot = T)
+Anova(vet_mod)
+lrtest(vet_mod, update(vet_mod, .~. -treatment:site))
+
+emmip(vet_mod, treatment ~ site, type = "response")
