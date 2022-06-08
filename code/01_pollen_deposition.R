@@ -26,23 +26,21 @@ cb <- c("#000000", # black
 # Vetch
 vetch18 <- read.csv("data/2018_vetch_deposition.csv", 
                     header = TRUE)
-vetch18 <- vetch18[,-1]
+
 vetch19 <- read.csv("data/2019_vetch_deposition.csv", 
                     header = TRUE)
-vetch19 <- vetch19[,-1]
 
 # Galium 
 galium18 <- read.csv("data/2018_galium_deposition.csv", 
                      header = TRUE)
-galium18 <- galium18[,-1]
+
 galium19 <- read.csv("data/2019_galium_deposition.csv", 
                      header = TRUE)
-galium19 <- galium19[,-1]
+
 
 # Wild Basil
 basil18 <- read.csv("data/2018_basil_deposition.csv", 
                     header = TRUE)
-basil18 <- basil18[,-1]
 
 
 #### Vetch 2018 ####
