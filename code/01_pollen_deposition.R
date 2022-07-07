@@ -11,6 +11,7 @@ library(DHARMa)
 library(emmeans)
 library(car)
 library(lmtest)
+library(lme4)
 
 # Set color-blind palette
 cb <- c("#000000", # black
@@ -30,6 +31,9 @@ vetch18 <- read.csv("data/2018_vetch_deposition.csv",
 vetch19 <- read.csv("data/2019_vetch_deposition.csv", 
                     header = TRUE)
 
+vetch21 <- read.csv("data/2021_vetch_deposition.csv", 
+                    header = TRUE)
+
 # Galium 
 galium18 <- read.csv("data/2018_galium_deposition.csv", 
                      header = TRUE)
@@ -44,54 +48,171 @@ basil18 <- read.csv("data/2018_basil_deposition.csv",
 
 ## QUICK VIZ ####
 # Vetch 2018
-boxplot((conspecific/(conspecific + other)) ~ treatment:site, 
-        data = vetch18, 
-        main = "Vetch 2018", 
-        ylab = "Proportion of Conspecific Pollen", 
-        ylim = range(0:1))
+ggplot(data = vetch18, 
+       aes(y = proportion_cons,
+           x = site, 
+           color = treatment)) + 
+  geom_boxplot() + 
+  theme_classic() 
+# NOTE: Deposition for the damage treatment, in the lower site, looks quite
+# lower. Not sure the effect is there for the higher site. 
+
+ggplot(data = vetch18, 
+       aes(x = proportion_cons)) +
+  geom_histogram(data = subset(vetch18, 
+                              subset = vetch18$treatment == "control"), 
+                 fill = cb[4], # green
+                 alpha = 0.5) + 
+  geom_histogram(data = subset(vetch18, 
+                               subset = vetch18$treatment == "damage"), 
+                 fill = cb[7], # red
+                 alpha = 0.5) + 
+  theme_classic()
+# NOTE: Overall, it looks like there are quite a few more stigmas with only 
+# vetch pollen in the control plots. That's quite expected. 
 
 # Vetch 2019
-boxplot((conspecific/(conspecific + other)) ~ treatment:site, 
-        data = vetch19, 
-        main = "Vetch 2019", 
-        ylab = "Proportion of Conspecific Pollen", 
-        ylim = range(0:1))
+# boxplot
+ggplot(data = vetch19, 
+       aes(y = proportion_cons,
+           x = site, 
+           color = treatment)) + 
+  geom_boxplot() + 
+  theme_classic()
+# NOTE: It looks like stigmas from damage plots received a lower proportion of 
+# conspecific pollen in ALL SITES. Nice. 
+
+# histogram
+ggplot(data = vetch19, 
+       aes(x = proportion_cons)) +
+  geom_histogram(data = subset(vetch19, 
+                               subset = vetch19$treatment == "control"), 
+                 fill = cb[4], 
+                 alpha = 0.5) + 
+  geom_histogram(data = subset(vetch19, 
+                               subset = vetch19$treatment == "damage"), 
+                 fill = cb[7], 
+                 alpha = 0.5) + 
+  theme_classic()
+# NOTE: This histogram also shows that stigmas in damage plots received lower 
+# proportions of conspecific pollen. Much higher propability of 1's in the 
+# control plots. 
+
+# Vetch 2021
+# Boxplot
+ggplot(data = vetch21,
+       aes(y = proportion_cons, 
+           x = site, 
+           color = treatment)) + 
+  geom_boxplot() + 
+  theme_classic()
+# NOTE: This is unclear, there does seem to be a bit of a trend here as well,
+# with lower conspecific deposition in the damage plots. However, I need to 
+# add the rest of the data here. 
+
+# Histogram
+ggplot(data = vetch21, 
+       aes(x = proportion_cons)) +
+  geom_histogram(data = subset(vetch21, 
+                               subset = vetch21$treatment == "control"), 
+                 fill = cb[4], 
+                 alpha = 0.5) + 
+  geom_histogram(data = subset(vetch21, 
+                               subset = vetch21$treatment == "damage"), 
+                 fill = cb[7], 
+                 alpha = 0.5) + 
+  theme_classic()
+# NOTE: This is much more unclear, possible effects a not clear at all.  
 
 # Galium 2018
-boxplot((conspecific/(conspecific + other)) ~ treatment:site, 
-        data = galium18, 
-        main = "Galium 2018", 
-        ylab = "Proportion of Conspecific Pollen", 
-        ylim = range(0:1))
+# Boxplot
+ggplot(data = galium18,
+       aes(y = proportion_cons, 
+           x = site, 
+           color = treatment)) + 
+  geom_boxplot() + 
+  theme_classic() + 
+  ggtitle("2018 Galium Deposition")
+# NOTE: There does see to be an effect at the lower site, with lower proportion 
+# of conspecific pollen in teh damage plot. This pattern is not present in the 
+# higher plot. 
+
+# Histogram
+ggplot(data = galium18, 
+       aes(x = proportion_cons)) +
+  geom_histogram(data = subset(galium18, 
+                               subset = galium18$treatment == "control"), 
+                 fill = cb[4], 
+                 alpha = 0.5) + 
+  geom_histogram(data = subset(galium18, 
+                               subset = galium18$treatment == "damage"), 
+                 fill = cb[7], 
+                 alpha = 0.5) + 
+  theme_classic()
+# NOTE: Far more values close to one for the control stigmas. 
 
 # Galium 2019
-boxplot((conspecific/(conspecific + other)) ~ treatment:site, 
-        data = galium19, 
-        main = "Galium 2019", 
-        ylab = "Proportion of Conspecific Pollen", 
-        ylim = range(0:1))
+# Boxplot
+ggplot(data = galium19,
+       aes(y = proportion_cons, 
+           x = site, 
+           color = treatment)) + 
+  geom_boxplot() + 
+  theme_classic() + 
+  ggtitle("2019 Galium Deposition")
+# NOTE: This is a much more mixed batch of results. In gf1 and gf4, damage plots
+# seem to have lower conspecific deposition. In gf2, control has lower 
+# conspecific deposition, and in gf3 deposition seems to be about the same in 
+# the control and damage plot. 
+
+# Histogram 
+ggplot(data = galium19, 
+       aes(x = proportion_cons)) +
+  geom_histogram(data = subset(galium19, 
+                               subset = galium19$treatment == "control"), 
+                 fill = cb[4], 
+                 alpha = 0.5) + 
+  geom_histogram(data = subset(galium19, 
+                               subset = galium19$treatment == "damage"), 
+                 fill = cb[7], 
+                 alpha = 0.5) + 
+  theme_classic()
+# NOTE: Distributions look very, very similar. No clear effect. 
+
+# Galium 2021
+# NEED TO ENTER DATA
 
 # Basil 2018
-boxplot((conspecific/(conspecific + other)) ~ treatment, 
-        data = basil18,
-        main = "Basil 2018", 
-        ylab = "Proportion of Conspecific Pollen", 
-        ylim = range(0:1))
+ggplot(data = basil18,
+       aes(y = proportion_cons, 
+           x = site, 
+           color = treatment)) + 
+  geom_boxplot() + 
+  theme_classic() + 
+  ggtitle("2018 Basil Deposition")
+# NOTE: Definitely a difference, with a lower proportion of conspecific
+# deposition in the damage plot. 
 
-## MODELS W/ BINOMIAL DISTRIBUTION ####
-vet18_mod_bino <- glmmTMB(conspecific ~ treatment * site + (1|date),
-                          data = vetch18,
-                          family =  binomial(),
-                          na.action = na.exclude, 
-                          weights = (conspecific + other),
-                          contrasts = list(treatment = "contr.sum",
-                                           site = "contr.sum"))
-summary(vet18_mod_bino)
+# Histogram
+ggplot(data = basil18, 
+       aes(x = proportion_cons)) +
+  geom_histogram(data = subset(basil18, 
+                               subset = basil18$treatment == "control"), 
+                 fill = cb[4], 
+                 alpha = 0.5) + 
+  geom_histogram(data = subset(basil18, 
+                               subset = basil18$treatment == "damage"), 
+                 fill = cb[7], 
+                 alpha = 0.5) + 
+  theme_classic()
+# NOTE: Clear difference, no 1's in the damage plots. Really great result. 
+
 
 ## MODELS W/ BETA DISTRIBUTION ####
 #### Vetch ####
 # Keep only complete.cases
 vetch18 <- vetch18[complete.cases(vetch18), ]
+vetch21 <- vetch21[complete.cases(vetch18), ]
 
 # Transform 1's in to .999
 # for 2018
@@ -105,6 +226,12 @@ for(i in 1:nrow(vetch18)){
 for(i in 1:nrow(vetch19)){
   if(vetch19$proportion_cons[i] == 1){
     vetch19$proportion_cons[i] <- 0.999
+  }
+}
+
+for(i in 1:nrow(vetch21)){
+  if(vetch21$proportion_cons[i] == 1){
+    vetch21$proportion_cons[i] <- 0.999
   }
 }
 
@@ -275,3 +402,39 @@ bas18_mod <- glmmTMB(proportion_cons ~ treatment * subsample + (1|date),
 summary(bas18_mod)
 simulateResiduals(bas18_mod, 
                   plot = T)
+
+## MODELS W/ ONE-INFLATED BETA DISTRIBUTION ####
+## Vetch ####
+vet18_oimodA <- glmmTMB(proportion_cons ~ treatment * site + (1|date),
+                       data = subset(vetch18, 
+                                     0 < proportion_cons & proportion_cons < 1),
+                       family = beta_family(),
+                       na.action = na.exclude, 
+                       contrasts = list(treatment = "contr.sum",
+                                        site = "contr.sum"))
+vet18_oimodB <- glmmTMB((proportion_cons == 1) ~ treatment * site + (1|date),
+                        data = vetch18,
+                        family = binomial(),
+                        na.action = na.exclude, 
+                        contrasts = list(treatment = "contr.sum",
+                                         site = "contr.sum"))
+
+# Diagnostics
+summary(vet18_oimodA)
+summary(vet18_oimodB)
+simulateResiduals(vet18_oimodA, # Good
+                  plot = T)
+simulateResiduals(vet18_oimodB, # Good
+                  plot = T, as.factor = T)
+
+
+vet18_oimodA <- glmmTMB(proportion_cons ~ treatment * site + (1|date),
+                        data = subset(vetch18, 
+                                      0 < proportion_cons & proportion_cons < 1),
+                        family = binomial(),
+                        na.action = na.exclude, 
+                        contrasts = list(treatment = "contr.sum",
+                                         site = "contr.sum"))
+
+
+
