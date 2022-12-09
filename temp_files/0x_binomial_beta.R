@@ -30,8 +30,34 @@ cb <- c("#000000", # black
 vetch18_full <- read.csv("data/2018_vetch_deposition.csv", 
                          header = TRUE)
 
-vetch18 <- vetch18_full[complete.cases(vetch18_full), ]
-vetch18 <- vetch18 %>% filter(proportion_cons < 1)
+vetch18_full <- vetch18_full[complete.cases(vetch18_full), ]
+
+# vetch18 w/o 1 values
+vetch18 <- vetch18_full %>% filter(proportion_cons < 1)
+
+# vetch18 w/ 1 -> 0.999
+vetch18_mod <- vetch18_full
+
+for(i in 1:nrow(vetch18_mod)){
+  if(vetch18_mod$proportion_cons[i] == 1){ # change 1's to 0.999
+    vetch18_mod$proportion_cons[i] <- 0.999
+  }
+}
+
+
+# histogram for full data
+ggplot(data = vetch18_full, 
+       aes(x = proportion_cons)) +
+  geom_histogram(data = subset(vetch18_full, 
+                               subset = vetch18_full$treatment == "control"), 
+                 fill = cb[4], # green
+                 alpha = 0.5) + 
+  geom_histogram(data = subset(vetch18_full, 
+                               subset = vetch18_full$treatment == "damage"), 
+                 fill = cb[7], # red
+                 alpha = 0.5) + 
+  theme_classic()
+
 
 # histogram
 ggplot(data = vetch18, 
@@ -48,18 +74,31 @@ ggplot(data = vetch18,
 # NOTE: Overall, it looks like there are quite a few more stigmas with only 
 # vetch pollen in the control plots. That's quite expected. 
 
+
+# histogram w/ modified data
+ggplot(data = vetch18_mod, 
+       aes(x = proportion_cons)) +
+  geom_histogram(data = subset(vetch18_mod, 
+                               subset = vetch18_mod$treatment == "control"), 
+                 fill = cb[4], # green
+                 alpha = 0.5) + 
+  geom_histogram(data = subset(vetch18_mod, 
+                               subset = vetch18_mod$treatment == "damage"), 
+                 fill = cb[7], # red
+                 alpha = 0.5) + 
+  theme_classic()
+
+#### Models ####
 # double column specification
 bino_mod <- glmmTMB(cbind(conspecific, other) ~ treatment * site,
-                    data = subset(vetch18, 
-                                  proportion_cons < 1),
+                    data = subset(vetch18_full),
                     family = binomial("logit"))
 summary(bino_mod)
 simulateResiduals(bino_mod, plot = T)
 
 
-# lme4 specificaiton  
 bino_mod2 <- glm(cbind(conspecific, other) ~ treatment * site,
-                 data = subset(vetch18, 
+                 data = subset(vetch18_full, 
                                proportion_cons < 1),
                  family = binomial("logit"))
 summary(bino_mod2)
@@ -75,8 +114,4 @@ simulateResiduals(beta_mod, plot = T)
 
 
 
-for(i in 1:nrow(vetch18)){
-  if(vetch18$proportion_cons[i] == 1){
-    vetch18$proportion_cons[i] <- 0.999
-  }
-}
+

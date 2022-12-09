@@ -1,0 +1,749 @@
+"bid","site","treatment","date","time","plant_species","poll_species","poll_genus","poll_simple","pollinia","corbs","milk_in","vetch","milk_out","galium"
+"A10","gf1","control",2019-06-27,"11:00:00","galium","Syrphus","Syrphus","Diptera",0,0,NA,NA,NA,NA
+"A100","gf1","damage",2019-07-03,"09:29:00","galium","Syrphus","Syrphus","Diptera",0,0,267,0,469,0.15
+"A111","gf1","control",2019-07-03,"10:27:00","galium","Syrphus","Syrphus","Diptera",0,0,169,7,302,0.2
+"A112","gf1","control",2019-07-03,"10:27:00","galium","Syrphus","Syrphus","Diptera",0,0,169,7,302,0.2
+"A113","gf1","control",2019-07-03,"10:27:00","galium","Syrphus","Syrphus","Diptera",4,0,169,7,302,0.2
+"A114","gf1","control",2019-07-03,"10:27:00","galium","Syrphus","Syrphus","Diptera",0,0,169,7,302,0.2
+"A12","gf1","control",2019-06-27,"11:00:00","galium","Syrphus","Syrphus","Diptera",0,0,NA,NA,NA,NA
+"A129","gf1","damage",2019-07-03,"13:12:00","galium","Syrphus","Syrphus","Diptera",0,0,267,0,469,0.15
+"A130","gf1","damage",2019-07-03,"13:12:00","galium","Syrphus","Syrphus","Diptera",0,0,267,0,469,0.15
+"A131","gf1","damage",2019-07-03,"13:12:00","galium","Agapostemon","Agapostemon","Other Bee",0,0,267,0,469,0.15
+"A144","gf1","control",2019-07-03,"14:31:00","galium","Syrphus","Syrphus","Diptera",0,0,169,7,302,0.2
+"A145","gf1","control",2019-07-03,"14:31:00","galium","Syrphus","Syrphus","Diptera",0,0,169,7,302,0.2
+"A15","gf1","damage",2019-06-27,"12:30:00","galium","Syrphus","Syrphus","Diptera",0,0,NA,NA,NA,NA
+"A162","gf2","damage",2019-07-05,"09:36:00","galium","Syrphus","Syrphus","Diptera",0,0,177,9,310,0.05
+"A163","gf2","damage",2019-07-05,"09:36:00","galium","Syrphus","Syrphus","Diptera",NA,NA,177,9,310,0.05
+"A171","gf2","control",2019-07-05,"10:30:00","galium","Syrphus","Syrphus","Diptera",NA,NA,144,14,321,0.05
+"A18","gf1","damage",2019-06-27,"12:30:00","galium","Syrphus","Syrphus","Diptera",0,0,NA,NA,NA,NA
+"A2","gf1","control",2019-06-27,"10:20:00","galium","Syrphus","Syrphus","Diptera",NA,NA,NA,NA,NA,NA
+"A20","gf1","damage",2019-06-27,"13:47:00","galium","Diptera","Diptera","Diptera",0,0,NA,NA,NA,NA
+"A21","gf1","damage",2019-06-27,"13:47:00","galium","Syrphus","Syrphus","Diptera",0,0,NA,NA,NA,NA
+"A24","gf1","damage",2019-06-27,"13:47:00","galium","Syrphus","Syrphus","Diptera",0,0,NA,NA,NA,NA
+"A25","gf1","damage",2019-06-27,"13:47:00","galium","Syrphus","Syrphus","Diptera",0,0,NA,NA,NA,NA
+"A26","gf2","control",2019-06-28,"13:44:00","galium","Syrphus","Syrphus","Diptera",0,0,33,16,60,0.1
+"A27","gf2","control",2019-06-28,"13:44:00","galium","Syrphus","Syrphus","Diptera",0,0,33,16,60,0.1
+"A28","gf2","control",2019-06-28,"13:44:00","galium","Syrphus","Syrphus","Diptera",5,0,33,16,60,0.1
+"A34","gf2","damage",2019-06-28,"14:29:00","galium","Syrphus","Syrphus","Diptera",0,0,8,13,39,0.3
+"A35","gf2","damage",2019-06-28,"14:29:00","galium","Syrphus","Syrphus","Diptera",0,0,8,13,39,0.3
+"A36","gf3","control",2019-07-01,"09:18:00","galium","Syrphus","Syrphus","Diptera",0,0,236,25,314,0.4
+"A37","gf3","control",2019-07-01,"09:18:00","galium","Syrphus","Syrphus","Diptera",0,0,236,25,314,0.4
+"A4","gf1","control",2019-06-27,"10:20:00","galium","Syrphus","Syrphus","Diptera",NA,NA,NA,NA,NA,NA
+"A44","gf3","damage",2019-07-01,"10:15:00","galium","Syrphus","Syrphus","Diptera",0,0,57,17,272,0.2
+"A45","gf3","damage",2019-07-01,"10:15:00","galium","Syrphus","Syrphus","Diptera",0,0,57,17,272,0.2
+"A46","gf3","damage",2019-07-01,"10:15:00","galium","Syrphus","Syrphus","Diptera",0,0,57,17,272,0.2
+"A47","gf3","damage",2019-07-01,"10:15:00","galium","Syrphus","Syrphus","Diptera",0,0,57,17,272,0.2
+"A48","gf3","control",2019-07-01,"10:58:00","galium","Syrphus","Syrphus","Diptera",6,0,236,25,314,0.4
+"A49","gf3","control",2019-07-01,"10:58:00","galium","Diptera","Diptera","Diptera",0,0,236,25,314,0.4
+"A59","gf3","damage",2019-07-01,"12:19:00","galium","Syrphus","Syrphus","Diptera",0,0,57,17,272,0.2
+"A6","gf1","control",2019-06-27,"10:20:00","galium","Syrphus","Syrphus","Diptera",0,0,NA,NA,NA,NA
+"A60","gf3","damage",2019-07-01,"12:19:00","galium","Syrphus","Syrphus","Diptera",0,0,57,17,272,0.2
+"A61","gf3","damage",2019-07-01,"12:19:00","galium","Syrphus","Syrphus","Diptera",0,0,57,17,272,0.2
+"A62","gf3","damage",2019-07-01,"12:19:00","galium","Syrphus","Syrphus","Diptera",0,0,57,17,272,0.2
+"A7","gf1","control",2019-06-27,"10:20:00","galium","Diptera","Diptera","Diptera",0,0,NA,NA,NA,NA
+"A72","gf3","control",2019-07-01,"14:00:00","galium","Apis mellifera","Apis","Apis",16,0,236,25,314,0.4
+"A73","gf3","control",2019-07-01,"14:00:00","galium","Syrphus","Syrphus","Diptera",5,0,236,25,314,0.4
+"A74","gf3","control",2019-07-01,"14:00:00","galium","Syrphus","Syrphus","Diptera",0,0,236,25,314,0.4
+"A75","gf3","control",2019-07-01,"14:00:00","galium","Syrphus","Syrphus","Diptera",6,0,236,25,314,0.4
+"A76","gf3","control",2019-07-01,"14:00:00","galium","Other Insect","Other Insect","Other Insect",0,0,236,25,314,0.4
+"A77","gf4","damage",2019-07-02,"09:50:00","galium","Syrphus","Syrphus","Diptera",0,0,133,8,110,0.1
+"A78","gf4","damage",2019-07-02,"09:50:00","galium","Syrphus","Syrphus","Diptera",0,0,133,8,110,0.1
+"A85","gf4","control",2019-07-02,"10:38:00","galium","Diptera","Diptera","Diptera",0,0,96,55,287,0.15
+"A86","gf4","control",2019-07-02,"10:38:00","galium","Syrphus","Syrphus","Diptera",6,0,96,55,287,0.15
+"A87","gf4","control",2019-07-02,"10:38:00","galium","Syrphus","Syrphus","Diptera",0,0,96,55,287,0.15
+"A88","gf4","control",2019-07-02,"10:38:00","galium","Syrphus","Syrphus","Diptera",5,0,96,55,287,0.15
+"A97","gf1","damage",2019-07-03,"09:29:00","galium","Syrphus","Syrphus","Diptera",0,0,267,0,469,0.15
+"A98","gf1","damage",2019-07-03,"09:29:00","galium","Syrphus","Syrphus","Diptera",0,0,267,0,469,0.15
+"A99","gf1","damage",2019-07-03,"09:29:00","galium","Syrphus","Syrphus","Diptera",0,0,267,0,469,0.15
+"B1","gf1","control",2019-06-27,"10:20:00","galium","Syrphus","Syrphus","Diptera",0,0,NA,NA,NA,NA
+"B10","gf1","damage",2019-06-27,"12:30:00","galium","Syrphus","Syrphus","Diptera",NA,NA,NA,NA,NA,NA
+"B104","gf1","damage",2019-07-03,"14:30:00","galium","Syrphus","Syrphus","Diptera",0,0,267,0,469,0.15
+"B105","gf1","damage",2019-07-03,"14:30:00","galium","Syrphus","Syrphus","Diptera",0,0,267,0,469,0.15
+"B106","gf1","control",2019-07-05,"10:40:00","galium","Apis mellifera","Apis","Apis",0,0,144,14,321,0.05
+"B107","gf1","control",2019-07-05,"10:40:00","galium","Apis mellifera","Apis","Apis",2,0,144,14,321,0.05
+"B108","gf1","control",2019-07-05,"10:40:00","galium","Other Insect","Other Insect","Other Insect",0,0,144,14,321,0.05
+"B109","gf1","control",2019-07-05,"10:40:00","galium","Xylocopa virginica","Xylocopa","Other Bee",0,0,144,14,321,0.05
+"B110","gf1","control",2019-07-05,"10:40:00","galium","Apis mellifera","Apis","Apis",1,0,144,14,321,0.05
+"B111","gf1","control",2019-07-05,"10:40:00","galium","Apis mellifera","Apis","Apis",1,0,144,14,321,0.05
+"B112","gf1","control",2019-07-05,"10:40:00","galium","Xylocopa virginica","Xylocopa","Other Bee",0,0,144,14,321,0.05
+"B113","gf1","control",2019-07-05,"10:40:00","galium","Syrphus","Syrphus","Diptera",0,0,144,14,321,0.05
+"B114","gf1","control",2019-07-05,"10:40:00","galium","Syrphus","Syrphus","Diptera",0,0,144,14,321,0.05
+"B115","gf1","control",2019-07-05,"10:40:00","galium","Apis mellifera","Apis","Apis",2,0,144,14,321,0.05
+"B116","gf1","damage",2019-07-05,"10:40:00","galium","Xylocopa virginica","Xylocopa","Other Bee",0,0,177,9,310,0.05
+"B117-1","gf1","damage",2019-07-05,"10:40:00","galium","Apis mellifera","Apis","Apis",1,0,177,9,310,0.05
+"B117-2","gf1","damage",2019-07-05,"10:40:00","galium","Syrphus","Syrphus","Diptera",0,0,177,9,310,0.05
+"B118","gf1","damage",2019-07-05,"10:40:00","galium","Apis mellifera","Apis","Apis",5,0,177,9,310,0.05
+"B119","gf1","damage",2019-07-05,"10:40:00","galium","Apis mellifera","Apis","Apis",3,0,177,9,310,0.05
+"B120","gf1","damage",2019-07-05,"10:40:00","galium","Apis mellifera","Apis","Apis",0,0,177,9,310,0.05
+"B121","gf1","damage",2019-07-05,"10:40:00","galium","Syrphus","Syrphus","Diptera",0,0,177,9,310,0.05
+"B122","gf1","damage",2019-07-05,"10:40:00","galium","Syrphus","Syrphus","Diptera",0,0,177,9,310,0.05
+"B13","gf1","damage",2019-06-27,"12:30:00","galium","Syrphus","Syrphus","Diptera",0,0,NA,NA,NA,NA
+"B16","gf1","damage",2019-06-27,"13:47:00","galium","Syrphus","Syrphus","Diptera",0,0,NA,NA,NA,NA
+"B17","gf1","damage",2019-06-27,"13:47:00","galium","Apis mellifera","Apis","Apis",5,0,NA,NA,NA,NA
+"B19","gf2","control",2019-06-28,"11:45:00","galium","Syrphus","Syrphus","Diptera",0,0,33,16,60,0.1
+"B20","gf2","control",2019-06-28,"11:45:00","galium","Syrphus","Syrphus","Diptera",0,0,33,16,60,0.1
+"B21","gf2","control",2019-06-28,"11:45:00","galium","Syrphus","Syrphus","Diptera",0,0,33,16,60,0.1
+"B22","gf2","control",2019-06-28,"11:45:00","galium","Syrphus","Syrphus","Diptera",5,0,33,16,60,0.1
+"B25","gf2","damage",2019-06-28,"12:29:00","galium","Diptera","Diptera","Diptera",0,0,8,13,39,0.3
+"B27","gf2","control",2019-06-28,"13:44:00","galium","Syrphus","Syrphus","Diptera",0,0,33,16,60,0.1
+"B28","gf2","control",2019-06-28,"13:44:00","galium","Syrphus","Syrphus","Diptera",0,0,33,16,60,0.1
+"B31","gf3","damage",2019-07-01,"09:15:00","galium","Bombus vagans","Bombus","Bombus",0,0,57,17,272,0.2
+"B32","gf3","damage",2019-07-01,"09:15:00","galium","Syrphus","Syrphus","Diptera",0,0,57,17,272,0.2
+"B36","gf3","control",2019-07-01,"10:10:00","galium","Syrphus","Syrphus","Diptera",0,0,236,25,314,0.4
+"B37","gf3","control",2019-07-01,"10:10:00","galium","Syrphus","Syrphus","Diptera",0,0,236,25,314,0.4
+"B4","gf1","control",2019-06-27,"10:20:00","galium","Syrphus","Syrphus","Diptera",0,0,NA,NA,NA,NA
+"B42","gf3","damage",2019-07-01,"11:00:00","galium","Syrphus","Syrphus","Diptera",0,0,57,17,272,0.2
+"B43","gf3","damage",2019-07-01,"11:00:00","galium","Syrphus","Syrphus","Diptera",NA,NA,57,17,272,0.2
+"B44","gf3","damage",2019-07-01,"11:00:00","galium","Syrphus","Syrphus","Diptera",0,0,57,17,272,0.2
+"B48","gf3","control",2019-07-01,"12:20:00","galium","Syrphus","Syrphus","Diptera",5,0,236,25,314,0.4
+"B5","gf1","control",2019-06-27,"10:20:00","galium","Syrphus","Syrphus","Diptera",0,0,NA,NA,NA,NA
+"B56","gf4","control",2019-07-02,"09:45:00","galium","Syrphus","Syrphus","Diptera",0,0,96,55,287,0.15
+"B57","gf4","control",2019-07-02,"09:45:00","galium","Syrphus","Syrphus","Diptera",NA,NA,96,55,287,0.15
+"B69","gf1","control",2019-07-03,"09:15:00","galium","Syrphus","Syrphus","Diptera",0,0,169,7,302,0.2
+"B7","gf1","control",2019-06-27,"11:00:00","galium","Other Insect","Other Insect","Other Insect",0,0,NA,NA,NA,NA
+"B76","gf1","damage",2019-07-03,"10:30:00","galium","Syrphus","Syrphus","Diptera",0,0,267,0,469,0.15
+"B77","gf1","damage",2019-07-03,"10:30:00","galium","Syrphus","Syrphus","Diptera",0,0,267,0,469,0.15
+"B78","gf1","damage",2019-07-03,"10:30:00","galium","Syrphus","Syrphus","Diptera",0,0,267,0,469,0.15
+"B79","gf1","damage",2019-07-03,"10:30:00","galium","Syrphus","Syrphus","Diptera",0,0,267,0,469,0.15
+"B80","gf1","damage",2019-07-03,"10:30:00","galium","Syrphus","Syrphus","Diptera",0,0,267,0,469,0.15
+"B90","gf1","control",2019-07-03,"13:10:00","galium","Syrphus","Syrphus","Diptera",0,0,169,7,302,0.2
+"C1","gf1","damage",2019-06-27,"10:30:00","galium","Other Insect","Other Insect","Other Insect",0,0,NA,NA,NA,NA
+"C16","gf1","control",2019-06-27,"13:07:00","galium","Syrphus","Syrphus","Diptera",0,0,NA,NA,NA,NA
+"C17","gf1","control",2019-06-27,"13:07:00","galium","Other Insect","Other Insect","Other Insect",0,0,NA,NA,NA,NA
+"C18","gf1","control",2019-06-27,"13:07:00","galium","Syrphus","Syrphus","Diptera",0,0,NA,NA,NA,NA
+"C19","gf1","control",2019-06-27,"13:07:00","galium","Syrphus","Syrphus","Diptera",0,0,NA,NA,NA,NA
+"C2","gf1","damage",2019-06-27,"10:30:00","galium","Other Insect","Other Insect","Other Insect",0,0,NA,NA,NA,NA
+"C20","gf1","control",2019-06-27,"13:07:00","galium","Syrphus","Syrphus","Diptera",0,0,NA,NA,NA,NA
+"C21","gf1","control",2019-06-27,"13:07:00","galium","Other Insect","Other Insect","Other Insect",0,0,NA,NA,NA,NA
+"C23","gf3","control",2019-07-01,"09:18:00","galium","Syrphus","Syrphus","Diptera",1,0,236,25,314,0.4
+"C24","gf3","control",2019-07-01,"09:18:00","galium","Syrphus","Syrphus","Diptera",0,0,236,25,314,0.4
+"C25","gf3","control",2019-07-01,"09:18:00","galium","Syrphus","Syrphus","Diptera",0,0,236,25,314,0.4
+"C27","gf3","damage",2019-07-01,"10:15:00","galium","Syrphus","Syrphus","Diptera",0,0,57,17,272,0.2
+"C28","gf3","damage",2019-07-01,"10:15:00","galium","Syrphus","Syrphus","Diptera",0,0,57,17,272,0.2
+"C3","gf1","damage",2019-06-27,"10:30:00","galium","Other Insect","Other Insect","Other Insect",0,0,NA,NA,NA,NA
+"C30","gf3","control",2019-07-01,"10:58:00","galium","Syrphus","Syrphus","Diptera",5,0,236,25,314,0.4
+"C34","gf3","damage",2019-07-01,"12:19:00","galium","Syrphus","Syrphus","Diptera",0,0,57,17,272,0.2
+"C38","gf3","control",2019-07-01,"14:00:00","galium","Syrphus","Syrphus","Diptera",6,0,236,25,314,0.4
+"C39","gf3","control",2019-07-01,"14:00:00","galium","Syrphus","Syrphus","Diptera",0,0,236,25,314,0.4
+"C51","gf4","damage",2019-07-02,"09:50:00","galium","Other Insect","Other Insect","Other Insect",0,0,133,8,110,0.1
+"C52","gf4","damage",2019-07-02,"09:50:00","galium","Syrphus","Syrphus","Diptera",NA,NA,133,8,110,0.1
+"C58","gf4","control",2019-07-02,"10:38:00","galium","Syrphus","Syrphus","Diptera",0,0,96,55,287,0.15
+"C59","gf4","control",2019-07-02,"10:38:00","galium","Syrphus","Syrphus","Diptera",0,0,96,55,287,0.15
+"C61","gf1","damage",2019-07-03,"09:29:00","galium","Syrphus","Syrphus","Diptera",0,0,267,0,469,0.15
+"C71","gf1","damage",2019-07-03,"13:12:00","galium","Syrphus","Syrphus","Diptera",0,0,267,0,469,0.15
+"C72","gf1","damage",2019-07-03,"13:12:00","galium","Syrphus","Syrphus","Diptera",0,0,267,0,469,0.15
+"C73","gf1","damage",2019-07-03,"13:12:00","galium","Syrphus","Syrphus","Diptera",0,0,267,0,469,0.15
+"C80","gf1","control",2019-07-03,"14:31:00","galium","Syrphus","Syrphus","Diptera",0,0,169,7,302,0.2
+"C90","gf2","control",2019-07-05,"10:30:00","galium","Syrphus","Syrphus","Diptera",4,0,144,14,321,0.05
+"D10","gf1","damage",2019-06-27,"11:00:00","galium","Diptera","Diptera","Diptera",0,0,NA,NA,NA,NA
+"D104","gf4","control",2019-07-02,"09:45:00","galium","Syrphus","Syrphus","Diptera",0,0,96,55,287,0.15
+"D105","gf4","control",2019-07-02,"09:45:00","galium","Syrphus","Syrphus","Diptera",0,0,96,55,287,0.15
+"D106","gf4","control",2019-07-02,"09:45:00","galium","Syrphus","Syrphus","Diptera",0,0,96,55,287,0.15
+"D107","gf4","control",2019-07-02,"09:45:00","galium","Syrphus","Syrphus","Diptera",6,0,96,55,287,0.15
+"D108","gf4","control",2019-07-02,"09:45:00","galium","Syrphus","Syrphus","Diptera",0,0,96,55,287,0.15
+"D11","gf1","damage",2019-06-27,"11:00:00","galium","Other Insect","Other Insect","Other Insect",0,0,NA,NA,NA,NA
+"D116","gf4","damage",2019-07-02,"10:45:00","galium","Syrphus","Syrphus","Diptera",1,0,133,8,110,0.1
+"D117","gf4","damage",2019-07-02,"10:45:00","galium","Syrphus","Syrphus","Diptera",0,0,133,8,110,0.1
+"D118","gf4","damage",2019-07-02,"10:45:00","galium","Syrphus","Syrphus","Diptera",0,0,133,8,110,0.1
+"D119","gf1","control",2019-07-03,"09:15:00","galium","Syrphus","Syrphus","Diptera",0,0,169,7,302,0.2
+"D12","gf1","damage",2019-06-27,"11:00:00","galium","Other Insect","Other Insect","Other Insect",0,0,NA,NA,NA,NA
+"D120","gf1","control",2019-07-03,"09:15:00","galium","Syrphus","Syrphus","Diptera",0,0,169,7,302,0.2
+"D121","gf1","control",2019-07-03,"09:15:00","galium","Syrphus","Syrphus","Diptera",0,0,169,7,302,0.2
+"D122","gf1","control",2019-07-03,"09:15:00","galium","Syrphus","Syrphus","Diptera",0,0,169,7,302,0.2
+"D13","gf1","damage",2019-06-27,"11:00:00","galium","Other Insect","Other Insect","Other Insect",0,0,NA,NA,NA,NA
+"D135","gf1","damage",2019-07-03,"10:30:00","galium","Syrphus","Syrphus","Diptera",0,0,267,0,469,0.15
+"D136","gf1","damage",2019-07-03,"10:30:00","galium","Syrphus","Syrphus","Diptera",0,0,267,0,469,0.15
+"D137","gf1","damage",2019-07-03,"10:30:00","galium","Syrphus","Syrphus","Diptera",0,0,267,0,469,0.15
+"D138","gf1","damage",2019-07-03,"10:30:00","galium","Other Insect","Other Insect","Other Insect",0,0,267,0,469,0.15
+"D14","gf1","damage",2019-06-27,"11:00:00","galium","Syrphus","Syrphus","Diptera",NA,NA,NA,NA,NA,NA
+"D15","gf1","control",2019-06-27,"12:25:00","galium","Syrphus","Syrphus","Diptera",0,0,NA,NA,NA,NA
+"D151","gf1","control",2019-07-03,"13:10:00","galium","Syrphus","Syrphus","Diptera",0,0,169,7,302,0.2
+"D152","gf1","control",2019-07-03,"13:10:00","galium","Syrphus","Syrphus","Diptera",0,0,169,7,302,0.2
+"D153","gf1","control",2019-07-03,"13:10:00","galium","Syrphus","Syrphus","Diptera",1,0,169,7,302,0.2
+"D154","gf1","control",2019-07-03,"13:10:00","galium","Syrphus","Syrphus","Diptera",0,0,169,7,302,0.2
+"D155","gf1","control",2019-07-03,"13:10:00","galium","Syrphus","Syrphus","Diptera",0,0,169,7,302,0.2
+"D156","gf1","control",2019-07-03,"13:10:00","galium","Syrphus","Syrphus","Diptera",0,0,169,7,302,0.2
+"D16","gf1","control",2019-06-27,"12:25:00","galium","Syrphus","Syrphus","Diptera",0,0,NA,NA,NA,NA
+"D17","gf1","control",2019-06-27,"12:25:00","galium","Syrphus","Syrphus","Diptera",0,0,NA,NA,NA,NA
+"D173","gf1","damage",2019-07-03,"13:30:00","galium","Syrphus","Syrphus","Diptera",NA,NA,267,0,469,0.15
+"D174","gf1","damage",2019-07-03,"13:30:00","galium","Syrphus","Syrphus","Diptera",0,0,267,0,469,0.15
+"D175","gf1","damage",2019-07-03,"13:30:00","galium","Augochlora","Augochlora","Other Bee",0,0,267,0,469,0.15
+"D176","gf1","damage",2019-07-03,"13:30:00","galium","Syrphus","Syrphus","Diptera",0,0,267,0,469,0.15
+"D177","gf1","damage",2019-07-03,"13:30:00","galium","Other Insect","Other Insect","Other Insect",0,0,267,0,469,0.15
+"D18","gf1","control",2019-06-27,"12:25:00","galium","Syrphus","Syrphus","Diptera",0,0,NA,NA,NA,NA
+"D19","gf1","control",2019-06-27,"12:25:00","galium","Syrphus","Syrphus","Diptera",NA,NA,NA,NA,NA,NA
+"D194","gf2","control",2019-07-05,"10:40:00","galium","Syrphus","Syrphus","Diptera",0,0,144,14,321,0.05
+"D195","gf2","control",2019-07-05,"10:40:00","galium","Syrphus","Syrphus","Diptera",0,0,144,14,321,0.05
+"D196","gf2","control",2019-07-05,"10:40:00","galium","Syrphus","Syrphus","Diptera",0,0,144,14,321,0.05
+"D20","gf1","control",2019-06-27,"12:25:00","galium","Syrphus","Syrphus","Diptera",0,0,NA,NA,NA,NA
+"D206","gf2","damage",2019-07-05,"10:40:00","galium","Syrphus","Syrphus","Diptera",0,0,177,9,310,0.05
+"D270","gf2","damage",2019-07-01,"09:30:00","galium","Other Insect","Other Insect","Other Insect",0,0,57,17,272,0.2
+"D271","gf2","damage",2019-07-01,"09:30:00","galium","Other Insect","Other Insect","Other Insect",2,0,57,17,272,0.2
+"D272","gf2","damage",2019-07-01,"09:30:00","galium","Syrphus","Syrphus","Diptera",0,0,57,17,272,0.2
+"D28","gf2","damage",2019-06-28,"11:45:00","galium","Syrphus","Syrphus","Diptera",0,0,8,13,39,0.3
+"D29","gf2","damage",2019-06-28,"11:45:00","galium","Syrphus","Syrphus","Diptera",0,0,8,13,39,0.3
+"D30","gf2","damage",2019-06-28,"11:45:00","galium","Syrphus","Syrphus","Diptera",0,0,8,13,39,0.3
+"D31","gf2","damage",2019-06-28,"11:45:00","galium","Syrphus","Syrphus","Diptera",NA,NA,8,13,39,0.3
+"D32","gf2","damage",2019-06-28,"11:45:00","galium","Syrphus","Syrphus","Diptera",0,0,8,13,39,0.3
+"D36","gf2","control",2019-06-28,"12:30:00","galium","Syrphus","Syrphus","Diptera",0,0,33,16,60,0.1
+"D37","gf2","control",2019-06-28,"12:30:00","galium","Syrphus","Syrphus","Diptera",0,0,33,16,60,0.1
+"D38","gf2","control",2019-06-28,"12:30:00","galium","Syrphus","Syrphus","Diptera",0,0,33,16,60,0.1
+"D39","gf2","control",2019-06-28,"12:30:00","galium","Syrphus","Syrphus","Diptera",0,0,33,16,60,0.1
+"D43","gf2","damage",2019-06-28,"13:45:00","galium","Syrphus","Syrphus","Diptera",0,0,8,13,39,0.3
+"D46","gf2","control",2019-06-28,"14:25:00","galium","Augochlora","Augochlora","Other Bee",0,0,33,16,60,0.1
+"D47","gf2","control",2019-06-28,"14:25:00","galium","Syrphus","Syrphus","Diptera",0,0,33,16,60,0.1
+"D52","gf3","damage",2019-07-01,"09:30:00","galium","Syrphus","Syrphus","Diptera",0,0,57,17,272,0.2
+"D53","gf3","damage",2019-07-01,"09:30:00","galium","Syrphus","Syrphus","Diptera",0,0,57,17,272,0.2
+"D54","gf3","damage",2019-07-01,"09:30:00","galium","Syrphus","Syrphus","Diptera",0,0,57,17,272,0.2
+"D55","gf3","damage",2019-07-01,"09:30:00","galium","Apis mellifera","Apis","Apis",0,0,57,17,272,0.2
+"D63","gf3","control",2019-07-01,"10:10:00","galium","Diptera","Diptera","Diptera",9,0,236,25,314,0.4
+"D64","gf3","control",2019-07-01,"10:10:00","galium","Other Insect","Other Insect","Other Insect",0,0,236,25,314,0.4
+"D68","gf3","damage",2019-07-01,"11:00:00","galium","Syrphus","Syrphus","Diptera",NA,NA,57,17,272,0.2
+"D69","gf3","damage",2019-07-01,"11:00:00","galium","Syrphus","Syrphus","Diptera",0,0,57,17,272,0.2
+"D70","gf3","damage",2019-07-01,"11:00:00","galium","Syrphus","Syrphus","Diptera",0,0,57,17,272,0.2
+"D71","gf3","damage",2019-07-01,"11:00:00","galium","Other Insect","Other Insect","Other Insect",0,0,57,17,272,0.2
+"D72","gf3","damage",2019-07-01,"11:00:00","galium","Syrphus","Syrphus","Diptera",0,0,57,17,272,0.2
+"D73","gf3","damage",2019-07-01,"11:00:00","galium","Syrphus","Syrphus","Diptera",0,0,57,17,272,0.2
+"D74","gf3","damage",2019-07-01,"11:00:00","galium","Syrphus","Syrphus","Diptera",NA,NA,57,17,272,0.2
+"D83","gf3","damage",2019-07-01,"12:35:00","galium","Syrphus","Syrphus","Diptera",4,0,57,17,272,0.2
+"D84","gf3","damage",2019-07-01,"12:35:00","galium","Syrphus","Syrphus","Diptera",6,0,57,17,272,0.2
+"D85","gf3","damage",2019-07-01,"12:35:00","galium","Syrphus","Syrphus","Diptera",0,0,57,17,272,0.2
+"D86","gf3","damage",2019-07-01,"12:35:00","galium","Syrphus","Syrphus","Diptera",0,0,57,17,272,0.2
+"D9","gf1","damage",2019-06-27,"11:00:00","galium","Wasp","Wasp","Wasp",0,0,NA,NA,NA,NA
+"D93","gf3","control",2019-07-01,"14:15:00","galium","Syrphus","Syrphus","Diptera",0,0,236,25,314,0.4
+"D94","gf3","control",2019-07-01,"14:15:00","galium","Syrphus","Syrphus","Diptera",NA,NA,236,25,314,0.4
+"D95","gf3","control",2019-07-01,"14:15:00","galium","Syrphus","Syrphus","Diptera",0,0,236,25,314,0.4
+"D96","gf3","control",2019-07-01,"14:15:00","galium","Syrphus","Syrphus","Diptera",0,0,236,25,314,0.4
+"D97","gf3","control",2019-07-01,"14:15:00","galium","Syrphus","Syrphus","Diptera",0,0,236,25,314,0.4
+"A1","gf1","control",2019-06-27,"10:20:00","milkweed","Apis mellifera","Apis","Apis",5,0,NA,NA,NA,NA
+"A101","gf1","damage",2019-07-03,"09:29:00","milkweed","Apis mellifera","Apis","Apis",0,0,267,0,469,0.15
+"A102","gf1","damage",2019-07-03,"09:29:00","milkweed","Diptera","Diptera","Diptera",1,0,267,0,469,0.15
+"A103","gf1","damage",2019-07-03,"09:29:00","milkweed","Other Insect","Other Insect","Other Insect",0,0,267,0,469,0.15
+"A104","gf1","damage",2019-07-03,"09:29:00","milkweed","Apis mellifera","Apis","Apis",11,0,267,0,469,0.15
+"A105","gf1","damage",2019-07-03,"09:29:00","milkweed","Apis mellifera","Apis","Apis",0,0,267,0,469,0.15
+"A106","gf1","damage",2019-07-03,"09:29:00","milkweed","Apis mellifera","Apis","Apis",1,0,267,0,469,0.15
+"A107","gf1","damage",2019-07-03,"09:29:00","milkweed","Diptera","Diptera","Diptera",0,0,267,0,469,0.15
+"A108","gf1","damage",2019-07-03,"09:29:00","milkweed","Apis mellifera","Apis","Apis",6,0,267,0,469,0.15
+"A109","gf1","damage",2019-07-03,"09:29:00","milkweed","Apis mellifera","Apis","Apis",2,0,267,0,469,0.15
+"A11","gf1","control",2019-06-27,"11:00:00","milkweed","Apis mellifera","Apis","Apis",12,0,NA,NA,NA,NA
+"A110","gf1","damage",2019-07-03,"09:29:00","milkweed","Other Insect","Other Insect","Other Insect",1,0,267,0,469,0.15
+"A115","gf1","control",2019-07-03,"10:27:00","milkweed","Xylocopa virginica","Xylocopa","Other Bee",0,0,169,7,302,0.2
+"A116","gf1","control",2019-07-03,"10:27:00","milkweed","Bombus vagans","Bombus","Bombus",5,0,169,7,302,0.2
+"A117","gf1","control",2019-07-03,"10:27:00","milkweed","Apis mellifera","Apis","Apis",3,0,169,7,302,0.2
+"A118","gf1","control",2019-07-03,"10:27:00","milkweed","Bombus griseocolis","Bombus","Bombus",0,1,169,7,302,0.2
+"A119","gf1","control",2019-07-03,"10:27:00","milkweed","Apis mellifera","Apis","Apis",12,0,169,7,302,0.2
+"A120","gf1","control",2019-07-03,"10:27:00","milkweed","Diptera","Diptera","Diptera",4,0,169,7,302,0.2
+"A121","gf1","control",2019-07-03,"10:27:00","milkweed","Apis mellifera","Apis","Apis",9,0,169,7,302,0.2
+"A122","gf1","control",2019-07-03,"10:27:00","milkweed","Apis mellifera","Apis","Apis",2,0,169,7,302,0.2
+"A123","gf1","control",2019-07-03,"10:27:00","milkweed","Diptera","Diptera","Diptera",0,0,169,7,302,0.2
+"A124","gf1","control",2019-07-03,"10:27:00","milkweed","Other Insect","Other Insect","Other Insect",NA,NA,169,7,302,0.2
+"A125","gf1","control",2019-07-03,"10:27:00","milkweed","Apis mellifera","Apis","Apis",4,0,169,7,302,0.2
+"A126","gf1","control",2019-07-03,"10:27:00","milkweed","Apis mellifera","Apis","Apis",7,0,169,7,302,0.2
+"A127","gf1","control",2019-07-03,"10:27:00","milkweed","Xylocopa virginica","Xylocopa","Other Bee",7,0,169,7,302,0.2
+"A128","gf1","control",2019-07-03,"10:27:00","milkweed","Apis mellifera","Apis","Apis",3,0,169,7,302,0.2
+"A13","gf1","control",2019-06-27,"11:00:00","milkweed","Xylocopa virginica","Xylocopa","Other Bee",0,0,NA,NA,NA,NA
+"A132","gf1","damage",2019-07-03,"13:12:00","milkweed","Apis mellifera","Apis","Apis",2,0,267,0,469,0.15
+"A133","gf1","damage",2019-07-03,"13:12:00","milkweed","Other Insect","Other Insect","Other Insect",NA,NA,267,0,469,0.15
+"A134","gf1","damage",2019-07-03,"13:12:00","milkweed","Apis mellifera","Apis","Apis",5,0,267,0,469,0.15
+"A135","gf1","damage",2019-07-03,"13:12:00","milkweed","Apis mellifera","Apis","Apis",1,0,267,0,469,0.15
+"A136","gf1","damage",2019-07-03,"13:12:00","milkweed","Apis mellifera","Apis","Apis",9,0,267,0,469,0.15
+"A137","gf1","damage",2019-07-03,"13:12:00","milkweed","Apis mellifera","Apis","Apis",2,0,267,0,469,0.15
+"A138","gf1","damage",2019-07-03,"13:12:00","milkweed","Apis mellifera","Apis","Apis",3,0,267,0,469,0.15
+"A139","gf1","damage",2019-07-03,"13:12:00","milkweed","Apis mellifera","Apis","Apis",2,0,267,0,469,0.15
+"A14","gf1","damage",2019-06-27,"12:30:00","milkweed","Apis mellifera","Apis","Apis",14,0,NA,NA,NA,NA
+"A140","gf1","damage",2019-07-03,"13:12:00","milkweed","Bombus griseocolis","Bombus","Bombus",0,1,267,0,469,0.15
+"A141","gf1","damage",2019-07-03,"13:12:00","milkweed","Apis mellifera","Apis","Apis",4,0,267,0,469,0.15
+"A142","gf1","damage",2019-07-03,"13:12:00","milkweed","Apis mellifera","Apis","Apis",3,0,267,0,469,0.15
+"A143","gf1","damage",2019-07-03,"13:12:00","milkweed","Apis mellifera","Apis","Apis",4,0,267,0,469,0.15
+"A146","gf1","control",2019-07-03,"14:31:00","milkweed","Other Insect","Other Insect","Other Insect",NA,NA,169,7,302,0.2
+"A147","gf1","control",2019-07-03,"14:31:00","milkweed","Apis mellifera","Apis","Apis",3,0,169,7,302,0.2
+"A148","gf1","control",2019-07-03,"14:31:00","milkweed","Apis mellifera","Apis","Apis",5,0,169,7,302,0.2
+"A149","gf1","control",2019-07-03,"14:31:00","milkweed","Apis mellifera","Apis","Apis",2,0,169,7,302,0.2
+"A150","gf1","control",2019-07-03,"14:31:00","milkweed","Apis mellifera","Apis","Apis",5,0,169,7,302,0.2
+"A151","gf1","control",2019-07-03,"14:31:00","milkweed","Apis mellifera","Apis","Apis",3,0,169,7,302,0.2
+"A152","gf1","control",2019-07-03,"14:31:00","milkweed","Apis mellifera","Apis","Apis",3,0,169,7,302,0.2
+"A153","gf1","control",2019-07-03,"14:31:00","milkweed","Apis mellifera","Apis","Apis",NA,NA,169,7,302,0.2
+"A154","gf1","control",2019-07-03,"14:31:00","milkweed","Apis mellifera","Apis","Apis",7,0,169,7,302,0.2
+"A155","gf1","control",2019-07-03,"14:31:00","milkweed","Apis mellifera","Apis","Apis",9,0,169,7,302,0.2
+"A156","gf1","control",2019-07-03,"14:31:00","milkweed","Apis mellifera","Apis","Apis",1,0,169,7,302,0.2
+"A157","gf1","control",2019-07-03,"14:31:00","milkweed","Apis mellifera","Apis","Apis",NA,NA,169,7,302,0.2
+"A158","gf1","control",2019-07-03,"14:31:00","milkweed","Apis mellifera","Apis","Apis",7,0,169,7,302,0.2
+"A159","gf1","control",2019-07-03,"14:31:00","milkweed","Apis mellifera","Apis","Apis",5,0,169,7,302,0.2
+"A16","gf1","damage",2019-06-27,"12:30:00","milkweed","Apis mellifera","Apis","Apis",1,0,NA,NA,NA,NA
+"A160","gf1","control",2019-07-03,"14:31:00","milkweed","Syrphus","Syrphus","Diptera",1,0,169,7,302,0.2
+"A161","gf1","control",2019-07-03,"14:31:00","milkweed","Apis mellifera","Apis","Apis",NA,NA,169,7,302,0.2
+"A164","gf2","damage",2019-07-05,"09:36:00","milkweed","Other Insect","Other Insect","Other Insect",0,0,177,9,310,0.05
+"A165","gf2","damage",2019-07-05,"09:36:00","milkweed","Apis mellifera","Apis","Apis",1,0,177,9,310,0.05
+"A166","gf2","damage",2019-07-05,"09:36:00","milkweed","Bombus vagans","Bombus","Bombus",3,0,177,9,310,0.05
+"A167","gf2","damage",2019-07-05,"09:36:00","milkweed","Apis mellifera","Apis","Apis",2,0,177,9,310,0.05
+"A168","gf2","damage",2019-07-05,"09:36:00","milkweed","Apis mellifera","Apis","Apis",0,0,177,9,310,0.05
+"A169","gf2","damage",2019-07-05,"09:36:00","milkweed","Apis mellifera","Apis","Apis",4,0,177,9,310,0.05
+"A17","gf1","damage",2019-06-27,"12:30:00","milkweed","Apis mellifera","Apis","Apis",15,0,NA,NA,NA,NA
+"A170","gf2","damage",2019-07-05,"09:36:00","milkweed","Apis mellifera","Apis","Apis",2,0,177,9,310,0.05
+"A172","gf2","control",2019-07-05,"10:30:00","milkweed","Xylocopa virginica","Xylocopa","Other Bee",1,0,144,14,321,0.05
+"A173","gf2","control",2019-07-05,"10:30:00","milkweed","Apis mellifera","Apis","Apis",5,0,144,14,321,0.05
+"A174","gf2","control",2019-07-05,"10:30:00","milkweed","Diptera","Diptera","Diptera",6,0,144,14,321,0.05
+"A175","gf2","control",2019-07-05,"10:30:00","milkweed","Apis mellifera","Apis","Apis",5,0,144,14,321,0.05
+"A176","gf2","control",2019-07-05,"10:30:00","milkweed","Apis mellifera","Apis","Apis",6,0,144,14,321,0.05
+"A177","gf3","control",2019-07-08,"09:17:00","milkweed","Apis mellifera","Apis","Apis",3,0,214,58,202,0.05
+"A178","gf3","control",2019-07-08,"09:17:00","milkweed","Bombus vagans","Bombus","Bombus",0,0,214,58,202,0.05
+"A179","gf3","control",2019-07-08,"09:17:00","milkweed","Apis mellifera","Apis","Apis",3,0,214,58,202,0.05
+"A180","gf3","control",2019-07-08,"09:17:00","milkweed","Apis mellifera","Apis","Apis",1,0,214,58,202,0.05
+"A181","gf3","control",2019-07-08,"09:17:00","milkweed","Apis mellifera","Apis","Apis",1,0,214,58,202,0.05
+"A182","gf3","control",2019-07-08,"09:17:00","milkweed","Apis mellifera","Apis","Apis",4,0,214,58,202,0.05
+"A183","gf3","control",2019-07-08,"09:17:00","milkweed","Apis mellifera","Apis","Apis",1,0,214,58,202,0.05
+"A184","gf3","control",2019-07-08,"09:17:00","milkweed","Apis mellifera","Apis","Apis",3,0,214,58,202,0.05
+"A185","gf3","control",2019-07-08,"09:17:00","milkweed","Apis mellifera","Apis","Apis",2,0,214,58,202,0.05
+"A186","gf3","control",2019-07-08,"09:17:00","milkweed","Other Insect","Other Insect","Other Insect",1,0,214,58,202,0.05
+"A187","gf3","control",2019-07-08,"09:17:00","milkweed","Apis mellifera","Apis","Apis",5,0,214,58,202,0.05
+"A188","gf3","damage",2019-07-08,"10:17:00","milkweed","Apis mellifera","Apis","Apis",0,0,68,26,321,0.05
+"A189","gf3","damage",2019-07-08,"10:17:00","milkweed","Apis mellifera","Apis","Apis",3,0,68,26,321,0.05
+"A19","gf1","damage",2019-06-27,"12:30:00","milkweed","Apis mellifera","Apis","Apis",7,0,NA,NA,NA,NA
+"A190","gf3","damage",2019-07-08,"10:17:00","milkweed","Apis mellifera","Apis","Apis",5,0,68,26,321,0.05
+"A191","gf3","damage",2019-07-08,"10:17:00","milkweed","Syrphus","Syrphus","Diptera",0,0,68,26,321,0.05
+"A192","gf3","damage",2019-07-08,"10:17:00","milkweed","Apis mellifera","Apis","Apis",3,0,68,26,321,0.05
+"A193","gf3","control",2019-07-08,"10:44:00","milkweed","Other Insect","Other Insect","Other Insect",0,0,214,58,202,0.05
+"A194","gf3","control",2019-07-08,"10:44:00","milkweed","Other Insect","Other Insect","Other Insect",2,0,214,58,202,0.05
+"A195","gf3","control",2019-07-08,"10:44:00","milkweed","Apis mellifera","Apis","Apis",6,0,214,58,202,0.05
+"A196","gf3","control",2019-07-08,"10:44:00","milkweed","Apis mellifera","Apis","Apis",1,0,214,58,202,0.05
+"A197","gf3","control",2019-07-08,"10:44:00","milkweed","Apis mellifera","Apis","Apis",2,0,214,58,202,0.05
+"A198","gf3","control",2019-07-08,"10:44:00","milkweed","Bombus griseocolis","Bombus","Bombus",0,0,214,58,202,0.05
+"A200","gf3","damage",2019-07-08,"12:06:00","milkweed","Apis mellifera","Apis","Apis",4,0,68,26,321,0.05
+"A201","gf3","damage",2019-07-08,"12:06:00","milkweed","Apis mellifera","Apis","Apis",8,0,68,26,321,0.05
+"A202","gf3","damage",2019-07-08,"12:06:00","milkweed","Apis mellifera","Apis","Apis",4,0,68,26,321,0.05
+"A203","gf3","damage",2019-07-08,"12:06:00","milkweed","Apis mellifera","Apis","Apis",7,0,68,26,321,0.05
+"A204","gf3","damage",2019-07-08,"12:06:00","milkweed","Apis mellifera","Apis","Apis",4,0,68,26,321,0.05
+"A205","gf3","damage",2019-07-08,"12:06:00","milkweed","Wasp","Wasp","Wasp",1,0,68,26,321,0.05
+"A206","gf3","damage",2019-07-08,"12:06:00","milkweed","Apis mellifera","Apis","Apis",2,0,68,26,321,0.05
+"A207","gf3","damage",2019-07-08,"12:06:00","milkweed","Apis mellifera","Apis","Apis",5,0,68,26,321,0.05
+"A208","gf3","damage",2019-07-08,"12:06:00","milkweed","Apis mellifera","Apis","Apis",3,0,68,26,321,0.05
+"A209","gf3","damage",2019-07-08,"12:06:00","milkweed","Other Insect","Other Insect","Other Insect",0,0,68,26,321,0.05
+"A210","gf3","damage",2019-07-09,"09:25:00","milkweed","Other Insect","Other Insect","Other Insect",0,0,66,24,287,0.05
+"A211","gf3","damage",2019-07-09,"09:25:00","milkweed","Apis mellifera","Apis","Apis",2,0,66,24,287,0.05
+"A212","gf3","damage",2019-07-09,"09:25:00","milkweed","Apis mellifera","Apis","Apis",6,0,66,24,287,0.05
+"A213","gf3","damage",2019-07-09,"09:25:00","milkweed","Other Insect","Other Insect","Other Insect",0,0,66,24,287,0.05
+"A214","gf3","damage",2019-07-09,"09:25:00","milkweed","Other Insect","Other Insect","Other Insect",0,0,66,24,287,0.05
+"A215","gf3","control",2019-07-09,"10:05:00","milkweed","Apis mellifera","Apis","Apis",4,0,200,50,172,0.05
+"A216","gf3","control",2019-07-09,"10:05:00","milkweed","Other Insect","Other Insect","Other Insect",0,0,200,50,172,0.05
+"A217","gf3","control",2019-07-09,"10:05:00","milkweed","Other Insect","Other Insect","Other Insect",0,0,200,50,172,0.05
+"A218","gf3","control",2019-07-09,"10:05:00","milkweed","Other Insect","Other Insect","Other Insect",0,0,200,50,172,0.05
+"A219","gf3","control",2019-07-09,"10:05:00","milkweed","Apis mellifera","Apis","Apis",3,0,200,50,172,0.05
+"A22","gf1","damage",2019-06-27,"13:47:00","milkweed","Apis mellifera","Apis","Apis",4,0,NA,NA,NA,NA
+"A23","gf1","damage",2019-06-27,"13:47:00","milkweed","Apis mellifera","Apis","Apis",5,0,NA,NA,NA,NA
+"A29","gf2","control",2019-06-28,"13:44:00","milkweed","Diptera","Diptera","Diptera",NA,NA,33,16,60,0.1
+"A3","gf1","control",2019-06-27,"10:20:00","milkweed","Apis mellifera","Apis","Apis",22,0,NA,NA,NA,NA
+"A30","gf2","damage",2019-06-28,"14:29:00","milkweed","Apis mellifera","Apis","Apis",10,0,8,13,39,0.3
+"A31","gf2","damage",2019-06-28,"14:29:00","milkweed","Bombus griseocolis","Bombus","Bombus",0,0,8,13,39,0.3
+"A32","gf2","damage",2019-06-28,"14:29:00","milkweed","Apis mellifera","Apis","Apis",6,0,8,13,39,0.3
+"A33","gf2","damage",2019-06-28,"14:29:00","milkweed","Xylocopa virginica","Xylocopa","Other Bee",1,0,8,13,39,0.3
+"A38","gf3","control",2019-07-01,"09:18:00","milkweed","Bombus griseocolis","Bombus","Bombus",0,1,236,25,314,0.4
+"A39","gf3","control",2019-07-01,"09:18:00","milkweed","Apis mellifera","Apis","Apis",3,0,236,25,314,0.4
+"A42","gf3","damage",2019-07-01,"10:15:00","milkweed","Wasp","Wasp","Wasp",7,0,57,17,272,0.2
+"A43","gf3","damage",2019-07-01,"10:15:00","milkweed","Syrphus","Syrphus","Diptera",0,0,57,17,272,0.2
+"A5","gf1","control",2019-06-27,"10:20:00","milkweed","Apis mellifera","Apis","Apis",1,0,NA,NA,NA,NA
+"A50","gf3","control",2019-07-01,"10:58:00","milkweed","Syrphus","Syrphus","Diptera",0,0,236,25,314,0.4
+"A51","gf3","control",2019-07-01,"10:58:00","milkweed","Apis mellifera","Apis","Apis",4,0,236,25,314,0.4
+"A52","gf3","control",2019-07-01,"10:58:00","milkweed","Bombus griseocolis","Bombus","Bombus",0,0,236,25,314,0.4
+"A53","gf3","control",2019-07-01,"10:58:00","milkweed","Other Insect","Other Insect","Other Insect",1,0,236,25,314,0.4
+"A54","gf3","control",2019-07-01,"10:58:00","milkweed","Apis mellifera","Apis","Apis",3,0,236,25,314,0.4
+"A55","gf3","control",2019-07-01,"10:58:00","milkweed","Diptera","Diptera","Diptera",1,0,236,25,314,0.4
+"A56","gf3","damage",2019-07-01,"12:19:00","milkweed","Apis mellifera","Apis","Apis",7,0,57,17,272,0.2
+"A57","gf3","damage",2019-07-01,"12:19:00","milkweed","Apis mellifera","Apis","Apis",23,0,57,17,272,0.2
+"A58","gf3","damage",2019-07-01,"12:19:00","milkweed","Other Insect","Other Insect","Other Insect",2,0,57,17,272,0.2
+"A63","gf3","control",2019-07-01,"14:00:00","milkweed","Other Insect","Other Insect","Other Insect",NA,NA,236,25,314,0.4
+"A64","gf3","control",2019-07-01,"14:00:00","milkweed","Apis mellifera","Apis","Apis",2,0,236,25,314,0.4
+"A65","gf3","control",2019-07-01,"14:00:00","milkweed","Apis mellifera","Apis","Apis",1,0,236,25,314,0.4
+"A66","gf3","control",2019-07-01,"14:00:00","milkweed","Other Insect","Other Insect","Other Insect",NA,NA,236,25,314,0.4
+"A67","gf3","control",2019-07-01,"14:00:00","milkweed","Apis mellifera","Apis","Apis",3,0,236,25,314,0.4
+"A68","gf3","control",2019-07-01,"14:00:00","milkweed","Diptera","Diptera","Diptera",1,0,236,25,314,0.4
+"A69","gf3","control",2019-07-01,"14:00:00","milkweed","Apis mellifera","Apis","Apis",4,0,236,25,314,0.4
+"A70","gf3","control",2019-07-01,"14:00:00","milkweed","Other Insect","Other Insect","Other Insect",1,0,236,25,314,0.4
+"A71","gf3","control",2019-07-01,"14:00:00","milkweed","Apis mellifera","Apis","Apis",3,0,236,25,314,0.4
+"A79","gf4","damage",2019-07-02,"09:50:00","milkweed","Apis mellifera","Apis","Apis",2,0,133,8,110,0.1
+"A8","gf1","control",2019-06-27,"11:00:00","milkweed","Diptera","Diptera","Diptera",0,0,NA,NA,NA,NA
+"A80","gf4","damage",2019-07-02,"09:50:00","milkweed","Apis mellifera","Apis","Apis",9,0,133,8,110,0.1
+"A81","gf4","damage",2019-07-02,"09:50:00","milkweed","Apis mellifera","Apis","Apis",2,0,133,8,110,0.1
+"A82","gf4","damage",2019-07-02,"09:50:00","milkweed","Apis mellifera","Apis","Apis",3,0,133,8,110,0.1
+"A83","gf4","damage",2019-07-02,"09:50:00","milkweed","Apis mellifera","Apis","Apis",2,0,133,8,110,0.1
+"A84","gf4","damage",2019-07-02,"09:50:00","milkweed","Apis mellifera","Apis","Apis",10,0,133,8,110,0.1
+"A89","gf4","control",2019-07-02,"10:38:00","milkweed","Apis mellifera","Apis","Apis",3,0,96,55,287,0.15
+"A9","gf1","control",2019-06-27,"11:00:00","milkweed","Megachile","Megachile","Other Bee",0,0,NA,NA,NA,NA
+"A90","gf4","control",2019-07-02,"10:38:00","milkweed","Apis mellifera","Apis","Apis",2,0,96,55,287,0.15
+"A91","gf4","control",2019-07-02,"10:38:00","milkweed","Diptera","Diptera","Diptera",4,0,96,55,287,0.15
+"A92","gf4","control",2019-07-02,"10:38:00","milkweed","Apis mellifera","Apis","Apis",0,0,96,55,287,0.15
+"A93","gf4","control",2019-07-02,"10:38:00","milkweed","Bombus griseocolis","Bombus","Bombus",0,0,96,55,287,0.15
+"A94","gf4","control",2019-07-02,"10:38:00","milkweed","Apis mellifera","Apis","Apis",2,0,96,55,287,0.15
+"A95","gf4","control",2019-07-02,"10:38:00","milkweed","Apis mellifera","Apis","Apis",2,0,96,55,287,0.15
+"A96","gf4","control",2019-07-02,"10:38:00","milkweed","Bombus griseocolis","Bombus","Bombus",0,0,96,55,287,0.15
+"B100","gf1","damage",2019-07-03,"14:30:00","milkweed","Apis mellifera","Apis","Apis",6,0,267,0,469,0.15
+"B101","gf1","damage",2019-07-03,"14:30:00","milkweed","Apis mellifera","Apis","Apis",3,0,267,0,469,0.15
+"B102","gf1","damage",2019-07-03,"14:30:00","milkweed","Apis mellifera","Apis","Apis",6,0,267,0,469,0.15
+"B103","gf1","damage",2019-07-03,"14:30:00","milkweed","Apis mellifera","Apis","Apis",16,0,267,0,469,0.15
+"B11","gf1","damage",2019-06-27,"12:30:00","milkweed","Apis mellifera","Apis","Apis",13,0,NA,NA,NA,NA
+"B12","gf1","damage",2019-06-27,"12:30:00","milkweed","Apis mellifera","Apis","Apis",8,0,NA,NA,NA,NA
+"B123","gf3","damage",2019-07-08,"09:15:00","milkweed","Bombus griseocolis","Bombus","Bombus",0,1,68,26,321,0.05
+"B124","gf3","damage",2019-07-08,"09:15:00","milkweed","Other Insect","Other Insect","Other Insect",0,0,68,26,321,0.05
+"B126","gf3","control",2019-07-08,"10:05:00","milkweed","Other Insect","Other Insect","Other Insect",0,0,214,58,202,0.05
+"B127","gf3","control",2019-07-08,"10:05:00","milkweed","Syrphus","Syrphus","Diptera",0,0,214,58,202,0.05
+"B128","gf3","control",2019-07-08,"10:05:00","milkweed","Other Insect","Other Insect","Other Insect",0,0,214,58,202,0.05
+"B129","gf3","control",2019-07-08,"10:05:00","milkweed","Other Insect","Other Insect","Other Insect",0,0,214,58,202,0.05
+"B130","gf3","control",2019-07-08,"10:05:00","milkweed","Apis mellifera","Apis","Apis",2,0,214,58,202,0.05
+"B131","gf3","control",2019-07-08,"10:05:00","milkweed","Other Insect","Other Insect","Other Insect",1,0,214,58,202,0.05
+"B132","gf3","damage",2019-07-08,"10:47:00","milkweed","Apis mellifera","Apis","Apis",2,0,68,26,321,0.05
+"B133","gf3","damage",2019-07-08,"10:47:00","milkweed","Apis mellifera","Apis","Apis",1,0,68,26,321,0.05
+"B134","gf3","damage",2019-07-08,"10:47:00","milkweed","Other Insect","Other Insect","Other Insect",0,0,68,26,321,0.05
+"B135","gf3","damage",2019-07-08,"10:47:00","milkweed","Apis mellifera","Apis","Apis",5,0,68,26,321,0.05
+"B136","gf3","damage",2019-07-08,"10:47:00","milkweed","Apis mellifera","Apis","Apis",1,0,68,26,321,0.05
+"B137","gf3","damage",2019-07-08,"10:47:00","milkweed","Other Insect","Other Insect","Other Insect",0,0,68,26,321,0.05
+"B138","gf3","damage",2019-07-08,"10:47:00","milkweed","Apis mellifera","Apis","Apis",5,0,68,26,321,0.05
+"B139","gf3","control",2019-07-08,"12:08:00","milkweed","Bombus vagans","Bombus","Bombus",3,0,214,58,202,0.05
+"B14","gf1","damage",2019-06-27,"13:47:00","milkweed","Bombus griseocolis","Bombus","Bombus",0,0,NA,NA,NA,NA
+"B140","gf3","control",2019-07-08,"12:08:00","milkweed","Other Insect","Other Insect","Other Insect",0,0,214,58,202,0.05
+"B141","gf3","control",2019-07-08,"12:08:00","milkweed","Apis mellifera","Apis","Apis",1,0,214,58,202,0.05
+"B142","gf3","control",2019-07-08,"12:08:00","milkweed","Other Insect","Other Insect","Other Insect",0,0,214,58,202,0.05
+"B143","gf3","control",2019-07-08,"12:08:00","milkweed","Other Insect","Other Insect","Other Insect",0,0,214,58,202,0.05
+"B145","gf3","damage",2019-07-09,"09:25:00","milkweed","Apis mellifera","Apis","Apis",1,0,66,24,287,0.05
+"B146","gf3","damage",2019-07-09,"09:25:00","milkweed","Apis mellifera","Apis","Apis",3,0,66,24,287,0.05
+"B147","gf3","damage",2019-07-09,"09:25:00","milkweed","Bombus griseocolis","Bombus","Bombus",0,0,66,24,287,0.05
+"B148","gf3","damage",2019-07-09,"09:25:00","milkweed","Bombus griseocolis","Bombus","Bombus",0,1,66,24,287,0.05
+"B149","gf3","damage",2019-07-09,"09:25:00","milkweed","Other Insect","Other Insect","Other Insect",NA,NA,66,24,287,0.05
+"B15","gf1","damage",2019-06-27,"13:47:00","milkweed","Apis mellifera","Apis","Apis",2,0,NA,NA,NA,NA
+"B150","gf3","damage",2019-07-09,"09:25:00","milkweed","Apis mellifera","Apis","Apis",5,0,66,24,287,0.05
+"B151","gf3","control",2019-07-09,"10:10:00","milkweed","Apis mellifera","Apis","Apis",2,0,200,50,172,0.05
+"B152","gf3","control",2019-07-09,"10:10:00","milkweed","Apis mellifera","Apis","Apis",4,0,200,50,172,0.05
+"B153","gf3","control",2019-07-09,"10:10:00","milkweed","Other Insect","Other Insect","Other Insect",NA,NA,200,50,172,0.05
+"B18","gf1","damage",2019-06-27,"13:47:00","milkweed","Apis mellifera","Apis","Apis",16,0,NA,NA,NA,NA
+"B2","gf1","control",2019-06-27,"10:20:00","milkweed","Apis mellifera","Apis","Apis",8,0,NA,NA,NA,NA
+"B23","gf2","damage",2019-06-28,"12:29:00","milkweed","Apis mellifera","Apis","Apis",6,0,8,13,39,0.3
+"B24","gf2","damage",2019-06-28,"12:29:00","milkweed","Apis mellifera","Apis","Apis",3,0,8,13,39,0.3
+"B26","gf2","control",2019-06-28,"13:44:00","milkweed","Other Insect","Other Insect","Other Insect",0,0,33,16,60,0.1
+"B29","gf2","damage",2019-06-28,"14:29:00","milkweed","Apis mellifera","Apis","Apis",6,0,8,13,39,0.3
+"B3","gf1","control",2019-06-27,"10:20:00","milkweed","Apis mellifera","Apis","Apis",18,0,NA,NA,NA,NA
+"B30","gf2","damage",2019-06-28,"14:29:00","milkweed","Apis mellifera","Apis","Apis",4,1,8,13,39,0.3
+"B33","gf3","damage",2019-07-01,"09:15:00","milkweed","Apis mellifera","Apis","Apis",9,0,57,17,272,0.2
+"B34","gf3","damage",2019-07-01,"09:15:00","milkweed","Apis mellifera","Apis","Apis",8,0,57,17,272,0.2
+"B38","gf3","control",2019-07-01,"10:10:00","milkweed","Apis mellifera","Apis","Apis",10,0,236,25,314,0.4
+"B39","gf3","control",2019-07-01,"10:10:00","milkweed","Other Insect","Other Insect","Other Insect",6,0,236,25,314,0.4
+"B40","gf3","control",2019-07-01,"10:10:00","milkweed","Apis mellifera","Apis","Apis",9,0,236,25,314,0.4
+"B41","gf3","control",2019-07-01,"10:10:00","milkweed","Apis mellifera","Apis","Apis",7,0,236,25,314,0.4
+"B45","gf3","damage",2019-07-01,"11:00:00","milkweed","Apis mellifera","Apis","Apis",6,0,57,17,272,0.2
+"B46","gf3","damage",2019-07-01,"11:00:00","milkweed","Apis mellifera","Apis","Apis",14,0,57,17,272,0.2
+"B47","gf3","damage",2019-07-01,"11:00:00","milkweed","Apis mellifera","Apis","Apis",2,0,57,17,272,0.2
+"B49","gf3","control",2019-07-01,"12:20:00","milkweed","Apis mellifera","Apis","Apis",0,0,236,25,314,0.4
+"B50","gf3","control",2019-07-01,"12:20:00","milkweed","Apis mellifera","Apis","Apis",5,0,236,25,314,0.4
+"B51","gf3","control",2019-07-01,"12:20:00","milkweed","Apis mellifera","Apis","Apis",4,0,236,25,314,0.4
+"B52","gf3","damage",2019-07-01,"14:00:00","milkweed","Bombus griseocolis","Bombus","Bombus",0,0,57,17,272,0.2
+"B53","gf3","damage",2019-07-01,"14:00:00","milkweed","Apis mellifera","Apis","Apis",8,0,57,17,272,0.2
+"B54","gf3","damage",2019-07-01,"14:00:00","milkweed","Apis mellifera","Apis","Apis",6,0,57,17,272,0.2
+"B55","gf3","damage",2019-07-01,"14:00:00","milkweed","Bombus griseocolis","Bombus","Bombus",0,0,57,17,272,0.2
+"B58","gf4","control",2019-07-02,"09:45:00","milkweed","Apis mellifera","Apis","Apis",0,0,96,55,287,0.15
+"B59","gf4","control",2019-07-02,"09:45:00","milkweed","Apis mellifera","Apis","Apis",6,0,96,55,287,0.15
+"B6","gf1","control",2019-06-27,"10:20:00","milkweed","Apis mellifera","Apis","Apis",3,0,NA,NA,NA,NA
+"B60","gf4","control",2019-07-02,"09:45:00","milkweed","Apis mellifera","Apis","Apis",7,0,96,55,287,0.15
+"B61","gf4","damage",2019-07-02,"10:45:00","milkweed","Apis mellifera","Apis","Apis",4,0,133,8,110,0.1
+"B62","gf4","damage",2019-07-02,"10:45:00","milkweed","Apis mellifera","Apis","Apis",4,0,133,8,110,0.1
+"B63","gf4","damage",2019-07-02,"10:45:00","milkweed","Apis mellifera","Apis","Apis",2,0,133,8,110,0.1
+"B64","gf4","damage",2019-07-02,"10:45:00","milkweed","Apis mellifera","Apis","Apis",4,0,133,8,110,0.1
+"B65","gf1","control",2019-07-03,"09:15:00","milkweed","Apis mellifera","Apis","Apis",1,0,169,7,302,0.2
+"B66","gf1","control",2019-07-03,"09:15:00","milkweed","Apis mellifera","Apis","Apis",0,0,169,7,302,0.2
+"B67","gf1","control",2019-07-03,"09:15:00","milkweed","Apis mellifera","Apis","Apis",2,0,169,7,302,0.2
+"B68","gf1","control",2019-07-03,"09:15:00","milkweed","Other Insect","Other Insect","Other Insect",3,0,169,7,302,0.2
+"B70","gf1","damage",2019-07-03,"10:30:00","milkweed","Other Insect","Other Insect","Other Insect",1,0,267,0,469,0.15
+"B71","gf1","damage",2019-07-03,"10:30:00","milkweed","Apis mellifera","Apis","Apis",4,0,267,0,469,0.15
+"B72","gf1","damage",2019-07-03,"10:30:00","milkweed","Diptera","Diptera","Diptera",10,0,267,0,469,0.15
+"B73","gf1","damage",2019-07-03,"10:30:00","milkweed","Apis mellifera","Apis","Apis",2,0,267,0,469,0.15
+"B74","gf1","damage",2019-07-03,"10:30:00","milkweed","Apis mellifera","Apis","Apis",1,0,267,0,469,0.15
+"B75","gf1","damage",2019-07-03,"10:30:00","milkweed","Apis mellifera","Apis","Apis",8,0,267,0,469,0.15
+"B8","gf1","control",2019-06-27,"11:00:00","milkweed","Xylocopa virginica","Xylocopa","Other Bee",9,0,NA,NA,NA,NA
+"B81","gf1","control",2019-07-03,"13:10:00","milkweed","Apis mellifera","Apis","Apis",2,0,169,7,302,0.2
+"B82","gf1","control",2019-07-03,"13:10:00","milkweed","Apis mellifera","Apis","Apis",5,0,169,7,302,0.2
+"B83","gf1","control",2019-07-03,"13:10:00","milkweed","Apis mellifera","Apis","Apis",6,0,169,7,302,0.2
+"B84","gf1","control",2019-07-03,"13:10:00","milkweed","Other Insect","Other Insect","Other Insect",NA,NA,169,7,302,0.2
+"B85","gf1","control",2019-07-03,"13:10:00","milkweed","Apis mellifera","Apis","Apis",NA,NA,169,7,302,0.2
+"B86","gf1","control",2019-07-03,"13:10:00","milkweed","Apis mellifera","Apis","Apis",10,0,169,7,302,0.2
+"B87","gf1","control",2019-07-03,"13:10:00","milkweed","Bombus vagans","Bombus","Bombus",8,0,169,7,302,0.2
+"B88","gf1","control",2019-07-03,"13:10:00","milkweed","Apis mellifera","Apis","Apis",3,0,169,7,302,0.2
+"B89","gf1","control",2019-07-03,"13:10:00","milkweed","Apis mellifera","Apis","Apis",4,0,169,7,302,0.2
+"B9","gf1","control",2019-06-27,"11:00:00","milkweed","Danaus plexippus","Danaus","Lepidoptera",0,0,NA,NA,NA,NA
+"B91","gf1","damage",2019-07-03,"14:30:00","milkweed","Apis mellifera","Apis","Apis",9,0,267,0,469,0.15
+"B92","gf1","damage",2019-07-03,"14:30:00","milkweed","Apis mellifera","Apis","Apis",11,0,267,0,469,0.15
+"B93","gf1","damage",2019-07-03,"14:30:00","milkweed","Other Insect","Other Insect","Other Insect",NA,NA,267,0,469,0.15
+"B94","gf1","damage",2019-07-03,"14:30:00","milkweed","Apis mellifera","Apis","Apis",2,0,267,0,469,0.15
+"B95","gf1","damage",2019-07-03,"14:30:00","milkweed","Apis mellifera","Apis","Apis",4,0,267,0,469,0.15
+"B96","gf1","damage",2019-07-03,"14:30:00","milkweed","Apis mellifera","Apis","Apis",11,0,267,0,469,0.15
+"B97","gf1","damage",2019-07-03,"14:30:00","milkweed","Apis mellifera","Apis","Apis",3,0,267,0,469,0.15
+"B98","gf1","damage",2019-07-03,"14:30:00","milkweed","Apis mellifera","Apis","Apis",4,0,267,0,469,0.15
+"B99","gf1","damage",2019-07-03,"14:30:00","milkweed","Apis mellifera","Apis","Apis",3,0,267,0,469,0.15
+"C10","gf1","control",2019-06-27,"12:25:00","milkweed","Apis mellifera","Apis","Apis",17,0,NA,NA,NA,NA
+"C100","gf3","control",2019-07-08,"10:44:00","milkweed","Apis mellifera","Apis","Apis",1,0,214,58,202,0.05
+"C101","gf3","damage",2019-07-08,"12:06:00","milkweed","Apis mellifera","Apis","Apis",4,0,68,26,321,0.05
+"C102","gf3","damage",2019-07-08,"12:06:00","milkweed","Apis mellifera","Apis","Apis",11,0,68,26,321,0.05
+"C103","gf3","damage",2019-07-08,"12:06:00","milkweed","Apis mellifera","Apis","Apis",7,0,68,26,321,0.05
+"C104","gf3","control",2019-07-09,"09:30:00","milkweed","Apis mellifera","Apis","Apis",0,0,200,50,172,0.05
+"C105","gf3","damage",2019-07-09,"10:10:00","milkweed","Apis mellifera","Apis","Apis",4,0,66,24,287,0.05
+"C106","gf3","damage",2019-07-09,"10:10:00","milkweed","Apis mellifera","Apis","Apis",2,0,66,24,287,0.05
+"C107","gf3","damage",2019-07-09,"10:10:00","milkweed","Apis mellifera","Apis","Apis",3,0,66,24,287,0.05
+"C108","gf3","damage",2019-07-09,"10:10:00","milkweed","Other Insect","Other Insect","Other Insect",NA,NA,66,24,287,0.05
+"C11","gf1","control",2019-06-27,"12:25:00","milkweed","Apis mellifera","Apis","Apis",26,0,NA,NA,NA,NA
+"C12","gf1","control",2019-06-27,"12:25:00","milkweed","Lepidoptera","Lepidoptera","Lepidoptera",0,0,NA,NA,NA,NA
+"C13","gf1","control",2019-06-27,"12:25:00","milkweed","Diptera","Diptera","Diptera",9,0,NA,NA,NA,NA
+"C14","gf1","control",2019-06-27,"12:25:00","milkweed","Apis mellifera","Apis","Apis",12,0,NA,NA,NA,NA
+"C15","gf1","control",2019-06-27,"12:25:00","milkweed","Diptera","Diptera","Diptera",7,0,NA,NA,NA,NA
+"C22","gf3","control",2019-07-01,"09:18:00","milkweed","Apis mellifera","Apis","Apis",7,0,236,25,314,0.4
+"C26","gf3","damage",2019-07-01,"10:15:00","milkweed","Apis mellifera","Apis","Apis",4,0,57,17,272,0.2
+"C31","gf3","control",2019-07-01,"10:58:00","milkweed","Apis mellifera","Apis","Apis",4,0,236,25,314,0.4
+"C32","gf3","control",2019-07-01,"10:58:00","milkweed","Apis mellifera","Apis","Apis",9,0,236,25,314,0.4
+"C36","gf3","damage",2019-07-01,"12:19:00","milkweed","Apis mellifera","Apis","Apis",11,0,57,17,272,0.2
+"C37","gf3","damage",2019-07-01,"12:19:00","milkweed","Apis mellifera","Apis","Apis",8,0,57,17,272,0.2
+"C4","gf1","damage",2019-06-27,"11:00:00","milkweed","Other Insect","Other Insect","Other Insect",0,0,NA,NA,NA,NA
+"C40","gf3","control",2019-07-01,"14:00:00","milkweed","Apis mellifera","Apis","Apis",3,0,236,25,314,0.4
+"C41","gf3","control",2019-07-01,"14:00:00","milkweed","Apis mellifera","Apis","Apis",2,0,236,25,314,0.4
+"C42","gf3","control",2019-07-01,"14:00:00","milkweed","Apis mellifera","Apis","Apis",3,0,236,25,314,0.4
+"C43","gf3","control",2019-07-01,"14:00:00","milkweed","Apis mellifera","Apis","Apis",3,0,236,25,314,0.4
+"C44","gf3","control",2019-07-01,"14:00:00","milkweed","Apis mellifera","Apis","Apis",9,0,236,25,314,0.4
+"C45","gf3","control",2019-07-01,"14:00:00","milkweed","Apis mellifera","Apis","Apis",6,0,236,25,314,0.4
+"C46","gf3","control",2019-07-01,"14:00:00","milkweed","Apis mellifera","Apis","Apis",3,0,236,25,314,0.4
+"C47","gf3","damage",2019-07-01,"14:00:00","milkweed","Other Insect","Other Insect","Other Insect",NA,NA,57,17,272,0.2
+"C48","gf4","damage",2019-07-02,"09:50:00","milkweed","Other Insect","Other Insect","Other Insect",0,0,133,8,110,0.1
+"C49","gf4","damage",2019-07-02,"09:50:00","milkweed","Other Insect","Other Insect","Other Insect",3,0,133,8,110,0.1
+"C5","gf1","damage",2019-06-27,"11:00:00","milkweed","Other Insect","Other Insect","Other Insect",NA,NA,NA,NA,NA,NA
+"C50","gf4","damage",2019-07-02,"09:50:00","milkweed","Other Insect","Other Insect","Other Insect",0,0,133,8,110,0.1
+"C53","gf4","control",2019-07-02,"10:38:00","milkweed","Syrphus","Syrphus","Diptera",0,0,96,55,287,0.15
+"C54","gf4","control",2019-07-02,"10:38:00","milkweed","Other Insect","Other Insect","Other Insect",3,0,96,55,287,0.15
+"C55","gf4","control",2019-07-02,"10:38:00","milkweed","Syrphus","Syrphus","Diptera",0,0,96,55,287,0.15
+"C56","gf4","control",2019-07-02,"10:38:00","milkweed","Syrphus","Syrphus","Diptera",0,0,96,55,287,0.15
+"C57","gf4","control",2019-07-02,"10:38:00","milkweed","Apis mellifera","Apis","Apis",0,0,96,55,287,0.15
+"C6","gf1","damage",2019-06-27,"11:00:00","milkweed","Other Insect","Other Insect","Other Insect",0,0,NA,NA,NA,NA
+"C60","gf1","damage",2019-07-03,"09:29:00","milkweed","Apis mellifera","Apis","Apis",1,0,267,0,469,0.15
+"C62","gf1","control",2019-07-03,"09:29:00","milkweed","Apis mellifera","Apis","Apis",0,0,169,7,302,0.2
+"C63","gf1","control",2019-07-03,"09:29:00","milkweed","Apis mellifera","Apis","Apis",2,0,169,7,302,0.2
+"C64","gf1","control",2019-07-03,"09:29:00","milkweed","Apis mellifera","Apis","Apis",2,0,169,7,302,0.2
+"C65","gf1","control",2019-07-03,"09:29:00","milkweed","Apis mellifera","Apis","Apis",3,0,169,7,302,0.2
+"C66","gf1","control",2019-07-03,"09:29:00","milkweed","Apis mellifera","Apis","Apis",3,0,169,7,302,0.2
+"C67","gf1","damage",2019-07-03,"13:12:00","milkweed","Apis mellifera","Apis","Apis",4,0,267,0,469,0.15
+"C68","gf1","damage",2019-07-03,"13:12:00","milkweed","Apis mellifera","Apis","Apis",2,0,267,0,469,0.15
+"C69","gf1","damage",2019-07-03,"13:12:00","milkweed","Apis mellifera","Apis","Apis",3,0,267,0,469,0.15
+"C7","gf1","damage",2019-06-27,"11:00:00","milkweed","Other Insect","Other Insect","Other Insect",NA,NA,NA,NA,NA,NA
+"C70","gf1","damage",2019-07-03,"13:12:00","milkweed","Apis mellifera","Apis","Apis",3,0,267,0,469,0.15
+"C74","gf1","control",2019-07-03,"14:31:00","milkweed","Apis mellifera","Apis","Apis",0,0,169,7,302,0.2
+"C75","gf1","control",2019-07-03,"14:31:00","milkweed","Apis mellifera","Apis","Apis",10,0,169,7,302,0.2
+"C76","gf1","control",2019-07-03,"14:31:00","milkweed","Apis mellifera","Apis","Apis",12,0,169,7,302,0.2
+"C77","gf1","control",2019-07-03,"14:31:00","milkweed","Apis mellifera","Apis","Apis",10,0,169,7,302,0.2
+"C78","gf1","control",2019-07-03,"14:31:00","milkweed","Apis mellifera","Apis","Apis",8,0,169,7,302,0.2
+"C79","gf1","control",2019-07-03,"14:31:00","milkweed","Apis mellifera","Apis","Apis",NA,NA,169,7,302,0.2
+"C8","gf1","damage",2019-06-27,"11:00:00","milkweed","Xylocopa virginica","Xylocopa","Other Bee",0,0,NA,NA,NA,NA
+"C81","gf2","damage",2019-07-05,"09:36:00","milkweed","Apis mellifera","Apis","Apis",2,0,177,9,310,0.05
+"C82","gf2","damage",2019-07-05,"09:36:00","milkweed","Apis mellifera","Apis","Apis",3,0,177,9,310,0.05
+"C83","gf2","damage",2019-07-05,"09:36:00","milkweed","Syrphus","Syrphus","Diptera",0,0,177,9,310,0.05
+"C84","gf2","damage",2019-07-05,"09:36:00","milkweed","Apis mellifera","Apis","Apis",9,0,177,9,310,0.05
+"C85","gf2","damage",2019-07-05,"09:36:00","milkweed","Apis mellifera","Apis","Apis",4,0,177,9,310,0.05
+"C86","gf2","damage",2019-07-05,"09:36:00","milkweed","Apis mellifera","Apis","Apis",0,0,177,9,310,0.05
+"C87","gf2","damage",2019-07-05,"09:36:00","milkweed","Apis mellifera","Apis","Apis",2,0,177,9,310,0.05
+"C88","gf2","control",2019-07-05,"10:30:00","milkweed","Apis mellifera","Apis","Apis",4,0,144,14,321,0.05
+"C89","gf2","control",2019-07-05,"10:30:00","milkweed","Apis mellifera","Apis","Apis",1,0,144,14,321,0.05
+"C9","gf1","damage",2019-06-27,"11:00:00","milkweed","Other Insect","Other Insect","Other Insect",0,0,NA,NA,NA,NA
+"C91","gf3","control",2019-07-08,"09:17:00","milkweed","Other Insect","Other Insect","Other Insect",2,0,214,58,202,0.05
+"C92","gf3","control",2019-07-08,"09:17:00","milkweed","Bombus vagans","Bombus","Bombus",1,0,214,58,202,0.05
+"C93","gf3","control",2019-07-08,"09:17:00","milkweed","Apis mellifera","Apis","Apis",2,0,214,58,202,0.05
+"C94","gf3","damage",2019-07-08,"10:17:00","milkweed","Bombus griseocolis","Bombus","Bombus",0,1,68,26,321,0.05
+"C95","gf3","damage",2019-07-08,"10:17:00","milkweed","Apis mellifera","Apis","Apis",0,0,68,26,321,0.05
+"C96","gf3","damage",2019-07-08,"10:17:00","milkweed","Bombus griseocolis","Bombus","Bombus",0,0,68,26,321,0.05
+"C97","gf3","damage",2019-07-08,"10:17:00","milkweed","Bombus griseocolis","Bombus","Bombus",0,0,68,26,321,0.05
+"C98","gf3","control",2019-07-08,"10:44:00","milkweed","Other Insect","Other Insect","Other Insect",0,0,214,58,202,0.05
+"C99","gf3","control",2019-07-08,"10:44:00","milkweed","Apis mellifera","Apis","Apis",1,0,214,58,202,0.05
+"D1","gf1","damage",2019-06-27,"10:30:00","milkweed","Other Insect","Other Insect","Other Insect",NA,NA,NA,NA,NA,NA
+"D100","gf4","control",2019-07-02,"09:45:00","milkweed","Apis mellifera","Apis","Apis",0,0,96,55,287,0.15
+"D101","gf4","control",2019-07-02,"09:45:00","milkweed","Apis mellifera","Apis","Apis",2,0,96,55,287,0.15
+"D102","gf4","control",2019-07-02,"09:45:00","milkweed","Apis mellifera","Apis","Apis",0,0,96,55,287,0.15
+"D103","gf4","control",2019-07-02,"09:45:00","milkweed","Apis mellifera","Apis","Apis",2,0,96,55,287,0.15
+"D109","gf4","damage",2019-07-02,"10:45:00","milkweed","Lepidoptera","Lepidoptera","Lepidoptera",0,0,133,8,110,0.1
+"D110","gf4","damage",2019-07-02,"10:45:00","milkweed","Wasp","Wasp","Wasp",NA,NA,133,8,110,0.1
+"D111","gf4","damage",2019-07-02,"10:45:00","milkweed","Apis mellifera","Apis","Apis",4,0,133,8,110,0.1
+"D112","gf4","damage",2019-07-02,"10:45:00","milkweed","Apis mellifera","Apis","Apis",5,0,133,8,110,0.1
+"D113","gf4","damage",2019-07-02,"10:45:00","milkweed","Apis mellifera","Apis","Apis",11,0,133,8,110,0.1
+"D114","gf4","damage",2019-07-02,"10:45:00","milkweed","Apis mellifera","Apis","Apis",2,0,133,8,110,0.1
+"D115","gf4","damage",2019-07-02,"10:45:00","milkweed","Apis mellifera","Apis","Apis",3,0,133,8,110,0.1
+"D123","gf1","control",2019-07-03,"09:15:00","milkweed","Syrphus","Syrphus","Diptera",1,0,169,7,302,0.2
+"D124","gf1","control",2019-07-03,"09:15:00","milkweed","Apis mellifera","Apis","Apis",2,0,169,7,302,0.2
+"D125","gf1","control",2019-07-03,"09:15:00","milkweed","Bombus vagans","Bombus","Bombus",7,0,169,7,302,0.2
+"D126","gf1","control",2019-07-03,"09:15:00","milkweed","Apis mellifera","Apis","Apis",1,0,169,7,302,0.2
+"D127","gf1","control",2019-07-03,"09:15:00","milkweed","Apis mellifera","Apis","Apis",2,0,169,7,302,0.2
+"D128","gf1","control",2019-07-03,"09:15:00","milkweed","Apis mellifera","Apis","Apis",1,0,169,7,302,0.2
+"D129","gf1","control",2019-07-03,"09:15:00","milkweed","Apis mellifera","Apis","Apis",0,0,169,7,302,0.2
+"D130","gf1","control",2019-07-03,"09:15:00","milkweed","Apis mellifera","Apis","Apis",2,0,169,7,302,0.2
+"D131","gf1","control",2019-07-03,"09:15:00","milkweed","Apis mellifera","Apis","Apis",4,0,169,7,302,0.2
+"D132","gf1","control",2019-07-03,"09:15:00","milkweed","Apis mellifera","Apis","Apis",2,0,169,7,302,0.2
+"D133","gf1","control",2019-07-03,"09:15:00","milkweed","Apis mellifera","Apis","Apis",2,0,169,7,302,0.2
+"D134","gf1","control",2019-07-03,"09:15:00","milkweed","Apis mellifera","Apis","Apis",3,0,169,7,302,0.2
+"D139","gf1","damage",2019-07-03,"10:30:00","milkweed","Apis mellifera","Apis","Apis",1,0,267,0,469,0.15
+"D140","gf1","damage",2019-07-03,"10:30:00","milkweed","Apis mellifera","Apis","Apis",3,0,267,0,469,0.15
+"D141","gf1","damage",2019-07-03,"10:30:00","milkweed","Apis mellifera","Apis","Apis",NA,NA,267,0,469,0.15
+"D142","gf1","damage",2019-07-03,"10:30:00","milkweed","Other Insect","Other Insect","Other Insect",2,0,267,0,469,0.15
+"D143","gf1","damage",2019-07-03,"10:30:00","milkweed","Other Insect","Other Insect","Other Insect",NA,NA,267,0,469,0.15
+"D144","gf1","damage",2019-07-03,"10:30:00","milkweed","Other Insect","Other Insect","Other Insect",0,0,267,0,469,0.15
+"D145","gf1","damage",2019-07-03,"10:30:00","milkweed","Apis mellifera","Apis","Apis",0,0,267,0,469,0.15
+"D146","gf1","damage",2019-07-03,"10:30:00","milkweed","Apis mellifera","Apis","Apis",1,0,267,0,469,0.15
+"D147","gf1","damage",2019-07-03,"10:30:00","milkweed","Apis mellifera","Apis","Apis",1,0,267,0,469,0.15
+"D148","gf1","damage",2019-07-03,"10:30:00","milkweed","Apis mellifera","Apis","Apis",NA,NA,267,0,469,0.15
+"D149","gf1","damage",2019-07-03,"10:30:00","milkweed","Apis mellifera","Apis","Apis",6,0,267,0,469,0.15
+"D150","gf1","damage",2019-07-03,"10:30:00","milkweed","Apis mellifera","Apis","Apis",2,0,267,0,469,0.15
+"D157","gf1","control",2019-07-03,"13:10:00","milkweed","Apis mellifera","Apis","Apis",4,0,169,7,302,0.2
+"D158","gf1","control",2019-07-03,"13:10:00","milkweed","Bombus vagans","Bombus","Bombus",6,1,169,7,302,0.2
+"D159","gf1","control",2019-07-03,"13:10:00","milkweed","Other Insect","Other Insect","Other Insect",0,0,169,7,302,0.2
+"D160","gf1","control",2019-07-03,"13:10:00","milkweed","Apis mellifera","Apis","Apis",0,0,169,7,302,0.2
+"D161","gf1","control",2019-07-03,"13:10:00","milkweed","Andrena","Andrena","Other Bee",6,0,169,7,302,0.2
+"D162","gf1","control",2019-07-03,"13:10:00","milkweed","Apis mellifera","Apis","Apis",7,0,169,7,302,0.2
+"D163","gf1","control",2019-07-03,"13:10:00","milkweed","Apis mellifera","Apis","Apis",4,0,169,7,302,0.2
+"D164","gf1","control",2019-07-03,"13:10:00","milkweed","Apis mellifera","Apis","Apis",4,0,169,7,302,0.2
+"D165","gf1","control",2019-07-03,"13:10:00","milkweed","Apis mellifera","Apis","Apis",NA,NA,169,7,302,0.2
+"D166","gf1","control",2019-07-03,"13:10:00","milkweed","Apis mellifera","Apis","Apis",2,0,169,7,302,0.2
+"D167","gf1","control",2019-07-03,"13:10:00","milkweed","Apis mellifera","Apis","Apis",3,0,169,7,302,0.2
+"D168","gf1","control",2019-07-03,"13:10:00","milkweed","Apis mellifera","Apis","Apis",4,0,169,7,302,0.2
+"D169","gf1","control",2019-07-03,"13:10:00","milkweed","Other Insect","Other Insect","Other Insect",0,0,169,7,302,0.2
+"D170","gf1","control",2019-07-03,"13:10:00","milkweed","Bombus perplexus","Bombus","Bombus",2,0,169,7,302,0.2
+"D178","gf1","damage",2019-07-03,"13:30:00","milkweed","Apis mellifera","Apis","Apis",1,0,267,0,469,0.15
+"D179","gf1","damage",2019-07-03,"13:30:00","milkweed","Apis mellifera","Apis","Apis",3,0,267,0,469,0.15
+"D180","gf1","damage",2019-07-03,"13:30:00","milkweed","Apis mellifera","Apis","Apis",3,0,267,0,469,0.15
+"D181","gf1","damage",2019-07-03,"13:30:00","milkweed","Apis mellifera","Apis","Apis",2,0,267,0,469,0.15
+"D182","gf1","damage",2019-07-03,"13:30:00","milkweed","Other Insect","Other Insect","Other Insect",0,0,267,0,469,0.15
+"D183","gf1","damage",2019-07-03,"13:30:00","milkweed","Apis mellifera","Apis","Apis",3,0,267,0,469,0.15
+"D184","gf1","damage",2019-07-03,"13:30:00","milkweed","Apis mellifera","Apis","Apis",10,0,267,0,469,0.15
+"D185","gf1","damage",2019-07-03,"13:30:00","milkweed","Apis mellifera","Apis","Apis",6,0,267,0,469,0.15
+"D186","gf1","damage",2019-07-03,"13:30:00","milkweed","Apis mellifera","Apis","Apis",1,0,267,0,469,0.15
+"D187","gf1","damage",2019-07-03,"13:30:00","milkweed","Other Insect","Other Insect","Other Insect",2,0,267,0,469,0.15
+"D188","gf1","damage",2019-07-03,"13:30:00","milkweed","Other Insect","Other Insect","Other Insect",6,0,267,0,469,0.15
+"D189","gf1","damage",2019-07-03,"13:30:00","milkweed","Apis mellifera","Apis","Apis",4,0,267,0,469,0.15
+"D190","gf1","damage",2019-07-03,"13:30:00","milkweed","Apis mellifera","Apis","Apis",5,0,267,0,469,0.15
+"D191","gf1","damage",2019-07-03,"13:30:00","milkweed","Apis mellifera","Apis","Apis",7,0,267,0,469,0.15
+"D192","gf1","damage",2019-07-03,"13:30:00","milkweed","Apis mellifera","Apis","Apis",1,0,267,0,469,0.15
+"D193","gf1","damage",2019-07-03,"13:30:00","milkweed","Diptera","Diptera","Diptera",0,0,267,0,469,0.15
+"D197","gf2","control",2019-07-05,"10:40:00","milkweed","Apis mellifera","Apis","Apis",2,0,144,14,321,0.05
+"D198","gf2","control",2019-07-05,"10:40:00","milkweed","Apis mellifera","Apis","Apis",5,0,144,14,321,0.05
+"D199","gf2","control",2019-07-05,"10:40:00","milkweed","Other Insect","Other Insect","Other Insect",2,0,144,14,321,0.05
+"D2","gf1","damage",2019-06-27,"10:30:00","milkweed","Syrphus","Syrphus","Diptera",0,0,NA,NA,NA,NA
+"D200","gf2","control",2019-07-05,"10:40:00","milkweed","Apis mellifera","Apis","Apis",1,0,144,14,321,0.05
+"D201","gf2","control",2019-07-05,"10:40:00","milkweed","Syrphus","Syrphus","Diptera",4,0,144,14,321,0.05
+"D202","gf2","control",2019-07-05,"10:40:00","milkweed","Apis mellifera","Apis","Apis",3,0,144,14,321,0.05
+"D203","gf2","control",2019-07-05,"10:40:00","milkweed","Bombus vagans","Bombus","Bombus",1,0,144,14,321,0.05
+"D204","gf2","control",2019-07-05,"10:40:00","milkweed","Apis mellifera","Apis","Apis",0,0,144,14,321,0.05
+"D205","gf2","control",2019-07-05,"10:40:00","milkweed","Apis mellifera","Apis","Apis",0,0,144,14,321,0.05
+"D207","gf2","damage",2019-07-05,"10:40:00","milkweed","Apis mellifera","Apis","Apis",4,0,177,9,310,0.05
+"D208","gf2","damage",2019-07-05,"10:40:00","milkweed","Apis mellifera","Apis","Apis",1,0,177,9,310,0.05
+"D209","gf2","damage",2019-07-05,"10:40:00","milkweed","Apis mellifera","Apis","Apis",3,0,177,9,310,0.05
+"D21","gf1","control",2019-06-27,"13:07:00","milkweed","Apis mellifera","Apis","Apis",19,0,NA,NA,NA,NA
+"D210","gf2","damage",2019-07-05,"10:40:00","milkweed","Apis mellifera","Apis","Apis",1,0,177,9,310,0.05
+"D211","gf2","damage",2019-07-05,"10:40:00","milkweed","Apis mellifera","Apis","Apis",0,0,177,9,310,0.05
+"D212","gf2","damage",2019-07-05,"10:40:00","milkweed","Apis mellifera","Apis","Apis",8,0,177,9,310,0.05
+"D213","gf2","damage",2019-07-05,"10:40:00","milkweed","Bombus griseocolis","Bombus","Bombus",0,1,177,9,310,0.05
+"D214","gf2","damage",2019-07-05,"10:40:00","milkweed","Apis mellifera","Apis","Apis",1,0,177,9,310,0.05
+"D215","gf2","damage",2019-07-05,"10:40:00","milkweed","Apis mellifera","Apis","Apis",2,0,177,9,310,0.05
+"D216","gf2","damage",2019-07-05,"10:40:00","milkweed","Apis mellifera","Apis","Apis",6,0,177,9,310,0.05
+"D217","gf2","damage",2019-07-05,"10:40:00","milkweed","Apis mellifera","Apis","Apis",2,0,177,9,310,0.05
+"D218","gf2","damage",2019-07-05,"10:40:00","milkweed","Other Insect","Other Insect","Other Insect",0,0,177,9,310,0.05
+"D219","gf2","damage",2019-07-05,"10:40:00","milkweed","Apis mellifera","Apis","Apis",3,0,177,9,310,0.05
+"D22","gf1","control",2019-06-27,"13:07:00","milkweed","Apis mellifera","Apis","Apis",22,0,NA,NA,NA,NA
+"D220","gf2","damage",2019-07-05,"10:40:00","milkweed","Apis mellifera","Apis","Apis",4,0,177,9,310,0.05
+"D222","gf3","damage",2019-07-08,"09:15:00","milkweed","Other Insect","Other Insect","Other Insect",1,0,68,26,321,0.05
+"D223","gf3","damage",2019-07-08,"09:15:00","milkweed","Diptera","Diptera","Diptera",2,0,68,26,321,0.05
+"D224","gf3","damage",2019-07-08,"09:15:00","milkweed","Apis mellifera","Apis","Apis",2,0,68,26,321,0.05
+"D225","gf3","damage",2019-07-08,"09:15:00","milkweed","Apis mellifera","Apis","Apis",3,0,68,26,321,0.05
+"D226","gf3","damage",2019-07-08,"09:15:00","milkweed","Diptera","Diptera","Diptera",4,0,68,26,321,0.05
+"D227","gf3","damage",2019-07-08,"09:15:00","milkweed","Apis mellifera","Apis","Apis",2,0,68,26,321,0.05
+"D228","gf3","damage",2019-07-08,"09:15:00","milkweed","Other Insect","Other Insect","Other Insect",NA,NA,68,26,321,0.05
+"D229","gf3","damage",2019-07-08,"09:15:00","milkweed","Apis mellifera","Apis","Apis",1,0,68,26,321,0.05
+"D23","gf1","control",2019-06-27,"13:07:00","milkweed","Apis mellifera","Apis","Apis",10,0,NA,NA,NA,NA
+"D230","gf3","damage",2019-07-08,"09:15:00","milkweed","Other Insect","Other Insect","Other Insect",0,0,68,26,321,0.05
+"D231","gf3","damage",2019-07-08,"09:15:00","milkweed","Other Insect","Other Insect","Other Insect",NA,NA,68,26,321,0.05
+"D233","gf3","control",2019-07-08,"10:05:00","milkweed","Other Insect","Other Insect","Other Insect",0,0,214,58,202,0.05
+"D234","gf3","control",2019-07-08,"10:05:00","milkweed","Apis mellifera","Apis","Apis",3,0,214,58,202,0.05
+"D235","gf3","control",2019-07-08,"10:05:00","milkweed","Andrena","Andrena","Other Bee",1,0,214,58,202,0.05
+"D236","gf3","control",2019-07-08,"10:05:00","milkweed","Bombus vagans","Bombus","Bombus",5,0,214,58,202,0.05
+"D237","gf3","control",2019-07-08,"10:05:00","milkweed","Syrphus","Syrphus","Diptera",0,0,214,58,202,0.05
+"D238","gf3","damage",2019-07-08,"10:45:00","milkweed","Other Insect","Other Insect","Other Insect",0,0,68,26,321,0.05
+"D239","gf3","damage",2019-07-08,"10:45:00","milkweed","Apis mellifera","Apis","Apis",2,0,68,26,321,0.05
+"D24","gf1","control",2019-06-27,"13:07:00","milkweed","Apis mellifera","Apis","Apis",15,0,NA,NA,NA,NA
+"D240","gf3","damage",2019-07-08,"10:45:00","milkweed","Xylocopa virginica","Xylocopa","Other Bee",0,0,68,26,321,0.05
+"D241","gf3","damage",2019-07-08,"10:45:00","milkweed","Apis mellifera","Apis","Apis",2,0,68,26,321,0.05
+"D242","gf3","damage",2019-07-08,"10:45:00","milkweed","Apis mellifera","Apis","Apis",6,0,68,26,321,0.05
+"D246","gf3","control",2019-07-08,"12:05:00","milkweed","Apis mellifera","Apis","Apis",1,0,214,58,202,0.05
+"D247","gf3","control",2019-07-08,"12:05:00","milkweed","Other Insect","Other Insect","Other Insect",1,0,214,58,202,0.05
+"D248","gf3","control",2019-07-08,"12:05:00","milkweed","Apis mellifera","Apis","Apis",2,0,214,58,202,0.05
+"D249","gf3","control",2019-07-08,"12:05:00","milkweed","Apis mellifera","Apis","Apis",6,0,214,58,202,0.05
+"D25","gf1","control",2019-06-27,"13:07:00","milkweed","Other Insect","Other Insect","Other Insect",NA,NA,NA,NA,NA,NA
+"D250","gf3","control",2019-07-08,"12:05:00","milkweed","Other Insect","Other Insect","Other Insect",0,0,214,58,202,0.05
+"D251","gf3","control",2019-07-08,"12:05:00","milkweed","Apis mellifera","Apis","Apis",6,0,214,58,202,0.05
+"D252","gf3","control",2019-07-09,"09:30:00","milkweed","Other Insect","Other Insect","Other Insect",0,0,200,50,172,0.05
+"D253","gf3","control",2019-07-09,"09:30:00","milkweed","Other Insect","Other Insect","Other Insect",0,0,200,50,172,0.05
+"D254","gf3","control",2019-07-09,"09:30:00","milkweed","Apis mellifera","Apis","Apis",3,0,200,50,172,0.05
+"D255","gf3","control",2019-07-09,"09:30:00","milkweed","Other Insect","Other Insect","Other Insect",0,0,200,50,172,0.05
+"D256","gf3","control",2019-07-09,"09:30:00","milkweed","Diptera","Diptera","Diptera",0,0,200,50,172,0.05
+"D257","gf3","control",2019-07-09,"09:30:00","milkweed","Apis mellifera","Apis","Apis",1,0,200,50,172,0.05
+"D258","gf3","damage",2019-07-09,"10:10:00","milkweed","Diptera","Diptera","Diptera",0,0,66,24,287,0.05
+"D259","gf3","damage",2019-07-09,"10:10:00","milkweed","Syrphus","Syrphus","Diptera",0,0,66,24,287,0.05
+"D26","gf1","control",2019-06-27,"13:07:00","milkweed","Apis mellifera","Apis","Apis",0,0,NA,NA,NA,NA
+"D260","gf3","damage",2019-07-09,"10:10:00","milkweed","Apis mellifera","Apis","Apis",7,1,66,24,287,0.05
+"D261","gf3","damage",2019-07-09,"10:10:00","milkweed","Apis mellifera","Apis","Apis",2,0,66,24,287,0.05
+"D262","gf3","damage",2019-07-09,"10:10:00","milkweed","Apis mellifera","Apis","Apis",20,0,66,24,287,0.05
+"D263","gf3","damage",2019-07-09,"10:10:00","milkweed","Other Insect","Other Insect","Other Insect",0,0,66,24,287,0.05
+"D264","gf3","damage",2019-07-09,"10:10:00","milkweed","Apis mellifera","Apis","Apis",3,0,66,24,287,0.05
+"D265","gf3","damage",2019-07-09,"10:10:00","milkweed","Other Insect","Other Insect","Other Insect",2,0,66,24,287,0.05
+"D266","gf3","damage",2019-07-09,"10:10:00","milkweed","Apis mellifera","Apis","Apis",2,0,66,24,287,0.05
+"D267","gf3","damage",2019-07-09,"10:10:00","milkweed","Apis mellifera","Apis","Apis",6,0,66,24,287,0.05
+"D3","gf1","damage",2019-06-27,"10:30:00","milkweed","Other Insect","Other Insect","Other Insect",0,0,NA,NA,NA,NA
+"D33","gf2","damage",2019-06-28,"12:05:00","milkweed","Apis mellifera","Apis","Apis",14,0,8,13,39,0.3
+"D34","gf2","damage",2019-06-28,"12:05:00","milkweed","Other Insect","Other Insect","Other Insect",0,0,8,13,39,0.3
+"D35","gf2","damage",2019-06-28,"12:05:00","milkweed","Apis mellifera","Apis","Apis",3,0,8,13,39,0.3
+"D4","gf1","damage",2019-06-27,"10:30:00","milkweed","Syrphus","Syrphus","Diptera",0,0,NA,NA,NA,NA
+"D40","gf2","control",2019-06-28,"12:50:00","milkweed","Apis mellifera","Apis","Apis",7,0,33,16,60,0.1
+"D41","gf2","control",2019-06-28,"12:50:00","milkweed","Apis mellifera","Apis","Apis",7,0,33,16,60,0.1
+"D42","gf2","control",2019-06-28,"12:50:00","milkweed","Other Insect","Other Insect","Other Insect",0,0,33,16,60,0.1
+"D44","gf2","damage",2019-06-28,"13:45:00","milkweed","Apis mellifera","Apis","Apis",1,0,8,13,39,0.3
+"D45","gf2","damage",2019-06-28,"13:45:00","milkweed","Apis mellifera","Apis","Apis",11,0,8,13,39,0.3
+"D48","gf2","control",2019-06-28,"14:40:00","milkweed","Other Insect","Other Insect","Other Insect",NA,NA,33,16,60,0.1
+"D49","gf2","control",2019-06-28,"14:40:00","milkweed","Syrphus","Syrphus","Diptera",0,0,33,16,60,0.1
+"D5","gf1","damage",2019-06-27,"10:30:00","milkweed","Wasp","Wasp","Wasp",3,0,NA,NA,NA,NA
+"D50","gf3","damage",2019-07-01,"09:15:00","milkweed","Other Insect","Other Insect","Other Insect",0,0,57,17,272,0.2
+"D51","gf3","damage",2019-07-01,"09:15:00","milkweed","Syrphus","Syrphus","Diptera",0,0,57,17,272,0.2
+"D56","gf3","control",2019-07-01,"10:10:00","milkweed","Diptera","Diptera","Diptera",0,0,236,25,314,0.4
+"D57","gf3","control",2019-07-01,"10:10:00","milkweed","Lepidoptera","Lepidoptera","Lepidoptera",2,0,236,25,314,0.4
+"D58","gf3","control",2019-07-01,"10:10:00","milkweed","Apis mellifera","Apis","Apis",5,0,236,25,314,0.4
+"D59","gf3","control",2019-07-01,"10:10:00","milkweed","Apis mellifera","Apis","Apis",7,0,236,25,314,0.4
+"D6","gf1","damage",2019-06-27,"10:30:00","milkweed","Syrphus","Syrphus","Diptera",0,0,NA,NA,NA,NA
+"D60","gf3","control",2019-07-01,"10:10:00","milkweed","Apis mellifera","Apis","Apis",4,0,236,25,314,0.4
+"D61","gf3","control",2019-07-01,"10:10:00","milkweed","Other Insect","Other Insect","Other Insect",1,0,236,25,314,0.4
+"D62","gf3","control",2019-07-01,"10:10:00","milkweed","Apis mellifera","Apis","Apis",13,0,236,25,314,0.4
+"D65","gf3","damage",2019-07-01,"11:00:00","milkweed","Other Insect","Other Insect","Other Insect",NA,NA,57,17,272,0.2
+"D66","gf3","damage",2019-07-01,"11:00:00","milkweed","Other Insect","Other Insect","Other Insect",NA,NA,57,17,272,0.2
+"D67","gf3","damage",2019-07-01,"11:00:00","milkweed","Other Insect","Other Insect","Other Insect",NA,NA,57,17,272,0.2
+"D7","gf1","damage",2019-06-27,"10:30:00","milkweed","Syrphus","Syrphus","Diptera",0,0,NA,NA,NA,NA
+"D76","gf3","damage",2019-07-01,"12:20:00","milkweed","Other Insect","Other Insect","Other Insect",4,0,57,17,272,0.2
+"D77","gf3","damage",2019-07-01,"12:20:00","milkweed","Other Insect","Other Insect","Other Insect",NA,NA,57,17,272,0.2
+"D78","gf3","damage",2019-07-01,"12:20:00","milkweed","Apis mellifera","Apis","Apis",8,0,57,17,272,0.2
+"D79","gf3","damage",2019-07-01,"12:20:00","milkweed","Bombus vagans","Bombus","Bombus",7,0,57,17,272,0.2
+"D8","gf1","damage",2019-06-27,"10:30:00","milkweed","Syrphus","Syrphus","Diptera",0,0,NA,NA,NA,NA
+"D80","gf3","damage",2019-07-01,"12:20:00","milkweed","Apis mellifera","Apis","Apis",4,0,57,17,272,0.2
+"D81","gf3","damage",2019-07-01,"12:20:00","milkweed","Syrphus","Syrphus","Diptera",0,0,57,17,272,0.2
+"D82","gf3","damage",2019-07-01,"12:20:00","milkweed","Other Insect","Other Insect","Other Insect",NA,NA,57,17,272,0.2
+"D87","gf3","control",2019-07-01,"14:00:00","milkweed","Other Insect","Other Insect","Other Insect",17,0,236,25,314,0.4
+"D88","gf3","control",2019-07-01,"14:00:00","milkweed","Apis mellifera","Apis","Apis",6,0,236,25,314,0.4
+"D89","gf3","control",2019-07-01,"14:00:00","milkweed","Apis mellifera","Apis","Apis",7,0,236,25,314,0.4
+"D90","gf3","control",2019-07-01,"14:00:00","milkweed","Apis mellifera","Apis","Apis",12,0,236,25,314,0.4
+"D91","gf3","control",2019-07-01,"14:00:00","milkweed","Syrphus","Syrphus","Diptera",0,0,236,25,314,0.4
+"D92","gf3","control",2019-07-01,"14:00:00","milkweed","Xylocopa virginica","Xylocopa","Other Bee",0,0,236,25,314,0.4
+"D98","gf4","control",2019-07-02,"09:45:00","milkweed","Apis mellifera","Apis","Apis",1,0,96,55,287,0.15
+"D99","gf4","control",2019-07-02,"09:45:00","milkweed","Apis mellifera","Apis","Apis",1,0,96,55,287,0.15
+"A199","gf3","damage",2019-07-08,"12:06:00","vetch","Agapostemon","Agapostemon","Other Bee",0,0,68,26,321,0.05
+"A220","gf3","control",2019-07-09,"10:20:00","vetch","Other Insect","Other Insect","Other Insect",0,0,200,50,172,0.05
+"A40","gf3","damage",2019-07-01,"10:15:00","vetch","Andrena","Andrena","Other Bee",0,0,57,17,272,0.2
+"A41","gf3","damage",2019-07-01,"10:15:00","vetch","Syrphus","Syrphus","Diptera",0,0,57,17,272,0.2
+"B125","gf3","damage",2019-07-08,"09:35:00","vetch","Other Insect","Other Insect","Other Insect",0,0,68,26,321,0.05
+"B144","gf3","damage",2019-07-09,"09:25:00","vetch","Other Insect","Other Insect","Other Insect",0,0,66,24,287,0.05
+"B35","gf3","damage",2019-07-01,"09:15:00","vetch","Bombus griseocolis","Bombus","Bombus",0,1,57,17,272,0.2
+"C29","gf3","damage",2019-07-01,"10:15:00","vetch","Lepidoptera","Lepidoptera","Lepidoptera",3,0,57,17,272,0.2
+"C33","gf3","control",2019-07-01,"10:58:00","vetch","Other Insect","Other Insect","Other Insect",NA,NA,236,25,314,0.4
+"C35","gf3","damage",2019-07-01,"12:19:00","vetch","Other Insect","Other Insect","Other Insect",NA,NA,57,17,272,0.2
+"D221","gf3","damage",2019-07-08,"09:15:00","vetch","Other Insect","Other Insect","Other Insect",0,0,68,26,321,0.05
+"D232","gf3","control",2019-07-08,"10:05:00","vetch","Bombus impatiens","Bombus","Bombus",0,1,214,58,202,0.05
+"D244","gf3","control",2019-07-08,"12:05:00","vetch","Other Insect","Other Insect","Other Insect",1,0,214,58,202,0.05
+"D245","gf3","control",2019-07-08,"12:05:00","vetch","Other Insect","Other Insect","Other Insect",0,0,214,58,202,0.05
+"D75","gf3","damage",2019-07-01,"11:25:00","vetch","Other Insect","Other Insect","Other Insect",NA,NA,57,17,272,0.2
