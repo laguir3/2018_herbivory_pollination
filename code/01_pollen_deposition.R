@@ -458,7 +458,7 @@ vet18_plot <- vet18_plot +
                                 "damage" = cb[7]), 
                      labels = c("Control",
                                 "Herbivory")) +
-  scale_x_discrete(limits=c("Site 1", "Site 3")) +
+  scale_x_discrete(limits=c("A", "C")) +
   theme(legend.position = "none") +
   annotate(geom = "text",
            x = 1.6,
@@ -627,10 +627,10 @@ vet19_plot <- vet19_plot +
                                 "damage" = cb[7]), 
                      labels = c("Control",
                                 "Herbivory")) + 
-  scale_x_discrete(limits = c("Site 1", 
-                              "Site 2",
-                              "Site 3", 
-                              "Site 4")) +
+  scale_x_discrete(limits = c("A", 
+                              "B",
+                              "C", 
+                              "D")) +
   theme(legend.position = "none") +
   annotate(geom = "text", 
            y = .3, 
@@ -852,10 +852,10 @@ vet21_plot <- vet21_plot +
                                 "damage" = cb[7]), 
                      labels = c("Control",
                                 "Herbivory")) + 
-  scale_x_discrete(limits = c("Site 1", 
-                              "Site 2",
-                              "Site 3", 
-                              "Site 4")) +
+  scale_x_discrete(limits = c("A", 
+                              "B",
+                              "C", 
+                              "D")) +
   theme(legend.position = "none", 
         plot.title.position = ) +
   annotate(geom = "text", 
@@ -1046,7 +1046,7 @@ gal18_plot <- gal18_plot +
                                 "damage" = cb[7]), 
                      labels = c("Control",
                                 "Herbivory")) + 
-  scale_x_discrete(limits=c("Site 1", "Site 3")) +
+  scale_x_discrete(limits=c("A", "C")) +
   theme(legend.position = "none") +
   annotate(geom = "text",
            y = .15, 
@@ -1290,10 +1290,10 @@ gal19_plot <- gal19_plot +
                                 "damage" = cb[7]), 
                      labels = c("Control",
                                 "Herbivory")) + 
-  scale_x_discrete(limits = c("Site 1", 
-                              "Site 2",
-                              "Site 3", 
-                              "Site 4")) +
+  scale_x_discrete(limits = c("A", 
+                              "B",
+                              "C", 
+                              "D")) +
   theme(legend.position = "none") +
   annotate(geom = "text",
            y = .15, 
@@ -1500,10 +1500,10 @@ gal21_plot <- gal21_plot +
                                 "damage" = cb[7]), 
                      labels = c("Control",
                                 "Herbivory")) + 
-  scale_x_discrete(limits = c("Site 1", 
-                              "Site 2",
-                              "Site 3", 
-                              "Site 4")) +
+  scale_x_discrete(limits = c("A", 
+                              "B",
+                              "C", 
+                              "D")) +
   theme(legend.position = "none") +
   annotate(geom = "text", 
            y = .15, 
@@ -1730,8 +1730,6 @@ loo19_mod2 <- glmmTMB(proportion_het ~ treatment + date + vetch,
                      ziformula = ~ 1,
                      contrasts = list(treatment = "contr.sum", 
                                       date = "contr.sum"))
-
-
 
 # Diagnostics
 summary(loo19_mod2)
@@ -2062,8 +2060,8 @@ spill_dam_plot <- spill_dam_plot +
                                 "out" = cb[6]), 
                      labels = c("Inside Plot",
                                 "Outside Plot")) + 
-  scale_x_discrete(limits = c("Site 3", 
-                              "Site 4")) +
+  scale_x_discrete(limits = c("C", 
+                              "D")) +
   theme(legend.position = "bottom") +
   annotate(geom = "text", 
            y = .15, 
@@ -2248,9 +2246,9 @@ spill_con_plot <- spill_con_plot +
                                 "out" = cb[6]), 
                      labels = c("Inside Plot",
                                 "Outside Plot")) + 
-  scale_x_discrete(limits = c("Site 1",
-                              "Site 3", 
-                              "Site 4")) +
+  scale_x_discrete(limits = c("A",
+                              "C", 
+                              "D")) +
   theme(legend.position = "bottom") +
   annotate(geom = "text", 
            y = 0.15, 
@@ -2426,9 +2424,9 @@ vet19_in_plot <- vet19_in_plot +
                                 "damage" = cb[7]), 
                      labels = c("Control",
                                 "Herbivory")) + 
-  scale_x_discrete(limits = c("Site 2",
-                              "Site 3", 
-                              "Site 4")) +
+  scale_x_discrete(limits = c("B",
+                              "C", 
+                              "D")) +
   theme(legend.position = "bottom") +
   annotate(geom = "text", 
            y = .15, 

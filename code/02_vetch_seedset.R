@@ -205,7 +205,8 @@ seed18_plot <- seed18_plot +
                                 "damage" = cb[7]), 
                      labels = c("Control",
                                 "Herbivory")) + 
-  scale_x_discrete(limits=c("Site 1", "Site 3")) +
+  scale_x_discrete(limits=c("A", 
+                            "C")) +
   theme(legend.position = "none") + 
   annotate(geom = "text", 
            y = 3.5, 
@@ -251,11 +252,6 @@ simulateResiduals(seed21_mod2,
 testDispersion(simulateResiduals(seed21_mod2, 
                                  plot = T), 
                alternative = "less")
-
-# Model Check
-summary(seed21_mod3)
-simulateResiduals(seed21_mod3, 
-                  plot = T)
 
 
 AIC(seed21_mod2, 
@@ -310,10 +306,10 @@ seed21_plot <- seed21_plot +
                                 "damage" = cb[7]), 
                      labels = c("Control",
                                 "Herbivory")) +
-  scale_x_discrete(limits = c("Site 1", 
-                              "Site 2",
-                              "Site 3", 
-                              "Site 4")) +
+  scale_x_discrete(limits = c("A", 
+                              "B",
+                              "C", 
+                              "D")) +
   theme(legend.position = "none")  + 
   annotate(geom = "text", 
            y = 6, 
