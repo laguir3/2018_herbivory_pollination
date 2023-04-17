@@ -1,5 +1,6 @@
 #### DESCRIPTION ####
-# Analysis for Aguirre et al. Effects of herbivory on community-wide pollination processes.
+# Analysis for Aguirre et al. Effects of herbivory on community-wide 
+# pollination processes.
 # 
 # Code by Luis A. Aguirre
 
@@ -28,6 +29,32 @@ cb <- c("#000000", # black
         "#0072B2", # dark blue
         "#D55E00", # red
         "#CC79A7") # pink
+
+# Load common legend for all plots
+common_legend <- readRDS("figures/common_legend.RDS")
+
+# Function to change point shapes in plots created via ggeffects wrapper fun.
+# Function to change point shapes in plots created via ggeffects wrapper fun.
+manual_shape_change <- function(x, shape){
+  # x = ggplot to modify
+  temp <- ggplot_build(x)
+  
+  # v = vector of points to change
+  v <- vector()
+  if(nrow(temp$data[[1]]) == 4){
+    v <- c(1,3)
+  } else if(nrow(temp$data[[1]]) == 6) {
+    v <- c(1,3,5)
+  } else if(nrow(temp$data[[1]]) == 8){
+    v <- c(1,3,5,7)
+  }
+  
+  # set shape to triangle (17)
+  temp$data[[1]]$shape[v] <- shape
+  
+  #
+  return(as.ggplot(ggplot_gtable(temp)))
+}
 
 # Load datasets 
 # Vetch
@@ -79,8 +106,6 @@ galium21$plotpair <- as.factor(galium21$site)
 basil18$plotpair <- as.factor(basil18$site)
 loose19$plotpair <- as.factor(loose19$site)
 
-# r
-
 ## QUICK VIZ ####
 # Vetch 2018
 ggplot(data = vetch18, 
@@ -94,19 +119,21 @@ ggplot(data = vetch18,
 # NOTE: Deposition for the damage treatment, in the lower site, looks quite
 # lower. Not sure the effect is there for the higher site. 
 
+
 ggplot(data = vetch18, 
        aes(x = proportion_het)) +
-  geom_histogram(data = subset(vetch18, 
-                              subset = vetch18$treatment == "control"), 
+  geom_histogram(data = filter(vetch18, 
+                               treatment == "control"), 
                  fill = cb[4], # green
                  alpha = 0.5) + 
-  geom_histogram(data = subset(vetch18, 
-                               subset = vetch18$treatment == "damage"), 
+  geom_histogram(data = filter(vetch18, 
+                               treatment == "damage"), 
                  fill = cb[7], # red
                  alpha = 0.5) + 
   theme_classic()
 # NOTE: Overall, it looks like there are quite a few more stigmas with only 
 # vetch pollen in the control plots. That's quite expected. 
+
 
 # Vetch 2019
 # boxplot
@@ -124,13 +151,13 @@ ggplot(data = vetch19,
 # histogram
 ggplot(data = vetch19, 
        aes(x = proportion_het)) +
-  geom_histogram(data = subset(vetch19, 
-                               subset = vetch19$treatment == "control"), 
-                 fill = cb[4], 
+  geom_histogram(data = filter(vetch19, 
+                               treatment == "control"), 
+                 fill = cb[4], # green
                  alpha = 0.5) + 
-  geom_histogram(data = subset(vetch19, 
-                               subset = vetch19$treatment == "damage"), 
-                 fill = cb[7], 
+  geom_histogram(data = filter(vetch19, 
+                               treatment == "damage"), 
+                 fill = cb[7], # red
                  alpha = 0.5) + 
   theme_classic()
 # NOTE: This histogram also shows that stigmas in damage plots received lower 
@@ -154,13 +181,13 @@ ggplot(data = vetch21,
 # Histogram
 ggplot(data = vetch21, 
        aes(x = proportion_het)) +
-  geom_histogram(data = subset(vetch21, 
-                               subset = vetch21$treatment == "control"), 
-                 fill = cb[4], 
+  geom_histogram(data = filter(vetch21, 
+                               treatment == "control"), 
+                 fill = cb[4], # green
                  alpha = 0.5) + 
-  geom_histogram(data = subset(vetch21, 
-                               subset = vetch21$treatment == "damage"), 
-                 fill = cb[7], 
+  geom_histogram(data = filter(vetch21, 
+                               treatment == "damage"), 
+                 fill = cb[7], # red
                  alpha = 0.5) + 
   theme_classic()
 # NOTE: This is much more unclear, possible effects a not clear at all.  
@@ -182,13 +209,13 @@ ggplot(data = galium18,
 # Histogram
 ggplot(data = galium18, 
        aes(x = proportion_het)) +
-  geom_histogram(data = subset(galium18, 
-                               subset = galium18$treatment == "control"), 
-                 fill = cb[4], 
+  geom_histogram(data = filter(galium18, 
+                               treatment == "control"), 
+                 fill = cb[4], # green
                  alpha = 0.5) + 
-  geom_histogram(data = subset(galium18, 
-                               subset = galium18$treatment == "damage"), 
-                 fill = cb[7], 
+  geom_histogram(data = filter(galium18, 
+                               treatment == "damage"), 
+                 fill = cb[7], # red
                  alpha = 0.5) + 
   theme_classic()
 # NOTE: Far more values close to one for the control stigmas. 
@@ -211,13 +238,13 @@ ggplot(data = galium19,
 # Histogram 
 ggplot(data = galium19, 
        aes(x = proportion_het)) +
-  geom_histogram(data = subset(galium19, 
-                               subset = galium19$treatment == "control"), 
-                 fill = cb[4], 
+  geom_histogram(data = filter(galium19, 
+                               treatment == "control"), 
+                 fill = cb[4], # green
                  alpha = 0.5) + 
-  geom_histogram(data = subset(galium19, 
-                               subset = galium19$treatment == "damage"), 
-                 fill = cb[7], 
+  geom_histogram(data = filter(galium19, 
+                               treatment == "damage"), 
+                 fill = cb[7], # red
                  alpha = 0.5) + 
   theme_classic()
 # NOTE: Distributions look very, very similar. No clear effect. 
@@ -236,13 +263,13 @@ ggplot(data = galium21,
 # Histogram 
 ggplot(data = galium21, 
        aes(x = proportion_het)) +
-  geom_histogram(data = subset(galium19, 
-                               subset = galium19$treatment == "control"), 
-                 fill = cb[4], 
+  geom_histogram(data = filter(galium21, 
+                               treatment == "control"), 
+                 fill = cb[4], # green
                  alpha = 0.5) + 
-  geom_histogram(data = subset(galium19, 
-                               subset = galium19$treatment == "damage"), 
-                 fill = cb[7], 
+  geom_histogram(data = filter(galium21, 
+                               treatment == "damage"), 
+                 fill = cb[7], # red
                  alpha = 0.5) + 
   theme_classic()
 # NOTE: Distributions look very, very similar. No clear effect. 
@@ -263,13 +290,13 @@ ggplot(data = basil18,
 # Histogram
 ggplot(data = basil18, 
        aes(x = proportion_het)) +
-  geom_histogram(data = subset(basil18, 
-                               subset = basil18$treatment == "control"), 
-                 fill = cb[4], 
+  geom_histogram(data = filter(basil18, 
+                               treatment == "control"), 
+                 fill = cb[4], # green
                  alpha = 0.5) + 
-  geom_histogram(data = subset(basil18, 
-                               subset = basil18$treatment == "damage"), 
-                 fill = cb[7], 
+  geom_histogram(data = filter(basil18, 
+                               treatment == "damage"), 
+                 fill = cb[7], # red
                  alpha = 0.5) + 
   theme_classic()
 # NOTE: Clear difference, no 1's in the damage plots. Really great result. 
@@ -289,13 +316,13 @@ ggplot(data = loose19,
 # Histogram
 ggplot(data = loose19, 
        aes(x = proportion_het)) +
-  geom_histogram(data = subset(loose19, 
-                               subset = loose19$treatment == "control"), 
-                 fill = cb[4], 
+  geom_histogram(data = filter(loose19, 
+                               treatment == "control"), 
+                 fill = cb[4], # green
                  alpha = 0.5) + 
-  geom_histogram(data = subset(loose19, 
-                               subset = loose19$treatment == "damage"), 
-                 fill = cb[7], 
+  geom_histogram(data = filter(loose19, 
+                               treatment == "damage"), 
+                 fill = cb[7], # red
                  alpha = 0.5) + 
   theme_classic()
 # NOTE: Clear difference, no 1's in the damage plots. Really great result.
@@ -331,7 +358,7 @@ vet18_mod <- glmmTMB(proportion_het ~ treatment * plotpair +
                      contrasts = list(treatment = "contr.sum",
                                       plotpair = "contr.sum"))
 
-# Diagnostics
+# Model check
 summary(vet18_mod)
 simulateResiduals(vet18_mod, # Good
                   plot = T)
@@ -345,11 +372,12 @@ vet18_mod2 <- glmmTMB(proportion_het ~ treatment * plotpair,
                       contrasts = list(treatment = "contr.sum",
                                        plotpair = "contr.sum"))
 
-# Diagnostics 
+# Model check 
 summary(vet18_mod2)
 simulateResiduals(vet18_mod2, # Good
                   plot = T)
 
+# Compare
 AIC(vet18_mod, 
     vet18_mod2) # Simpler is better
 
@@ -367,11 +395,10 @@ AIC(vet18_mod,
     vet18_mod2, # Model 2 is best
     vet18_mod3)
 
-# Diagnostics
+# Model check
 summary(vet18_mod3)
 simulateResiduals(vet18_mod3, # Good
                   plot = T)
-
 
 
 ###### Best Fit ####
@@ -404,7 +431,8 @@ app_summs[[1]] <- vet18_mod2
 
 ###### LRT ####
 lrtest(vet18_mod2, 
-       update(vet18_mod2, .~. -treatment:plotpair)) # Good model
+       update(vet18_mod2, 
+              .~. -treatment:plotpair)) # Good model
 # Likelihood ratio test
 # 
 # Model 1: proportion_het ~ treatment * plotpair
@@ -426,8 +454,9 @@ pairs(emmeans(vet18_mod2,
 # NOTE: Inflated because these are tukey tests
 
 print(ggemmeans(vet18_mod, 
-        ~ treatment * plotpair, 
-        type = "fe.zi"), digits = 5)
+                ~ treatment * plotpair, 
+                type = "fe.zi"), 
+      digits = 5)
 # treatment plotpair response     SE  df lower.CL upper.CL
 # control   gf1     0.119 0.0191 147   0.0858    0.162
 # damage    gf1     0.182 0.0189 147   0.1480    0.223
@@ -444,15 +473,17 @@ vet18_plot <- plot(ggpredict(vet18_mod2,
                    dot.size = 5, 
                    line.size = 2)
 
+# Customize
 vet18_plot <- vet18_plot + 
-  ggtitle("A) 2018") + 
+  ggtitle(expression(paste("A) 2018 - ", 
+                           italic("V. cracca")))) + 
   labs(# Turn on/off
     # x = "Plot Pair",  
     x = "",
     y = "Proportion of \n Heterospecific Pollen"
   ) +
   ylim(range(0,.30)) +
-  theme_classic(base_size = 35) +
+  theme_classic(base_size = 30) +
   scale_color_manual(name = "Treatment", 
                      values = c("control" = cb[4], 
                                 "damage" = cb[7]), 
@@ -462,18 +493,14 @@ vet18_plot <- vet18_plot +
   theme(legend.position = "none") +
   annotate(geom = "text",
            x = 1.6,
-           y = .29,
+           y = .27,
            label = paste("Treatment: P = 0.93\n",
-                         "Treatment x Plot Pair: P = 0.02"), 
-           size = 7) 
+                         "Treatment x Plot Pair: \n P = 0.02"), 
+           size = 8) 
 
-# ggsave("figures/vet18_plot.png", 
-#        last_plot(), 
-#        device = "png",
-#        width = 6, 
-#        height = 4.25, 
-#        units = "in", 
-#        dpi = 300)
+# change shape for treatment
+vet18_plot <- manual_shape_change(vet18_plot, 17)
+
 
 ##### 2019 Model Selection ####
 
@@ -486,7 +513,7 @@ vet19_mod <- glmmTMB(proportion_het ~ treatment + plotpair + vetch +
                      contrasts = list(treatment = "contr.sum",
                                       plotpair = "contr.sum"))
 
-# Diagnostics
+# Model check
 summary(vet19_mod)
 simulateResiduals(vet19_mod, 
                   plot = T) # A lot of dispersion and fails KS test
@@ -504,7 +531,7 @@ vet19_mod2 <- glmmTMB(proportion_het ~ treatment + plotpair + vetch,
 AIC(vet19_mod, 
     vet19_mod2) # simpler is better
 
-# Diagnostics
+# Model check
 summary(vet19_mod2)
 simulateResiduals(vet19_mod2,
                   plot = T) # Still lots of dispersion
@@ -523,7 +550,7 @@ AIC(vet19_mod,
     vet19_mod2, 
     vet19_mod3) # better, but overdispersion possible
 
-# Diagnostics
+# Model check
 summary(vet19_mod3)
 simulateResiduals(vet19_mod3, 
                   plot = T) # Seems like this is overdispersed
@@ -531,13 +558,13 @@ simulateResiduals(vet19_mod3,
 
 # Use complete dataset
 refit_vet19_mod3 <- glmmTMB(proportion_het ~ treatment + plotpair,
-                         data = vetch19, # all observations
-                         family = beta_family(),
-                         ziformula = ~ treatment + plotpair,
-                         contrasts = list(treatment = "contr.sum",
-                                          plotpair = "contr.sum"))
+                            data = vetch19, # all observations
+                            family = beta_family(),
+                            ziformula = ~ treatment + plotpair,
+                            contrasts = list(treatment = "contr.sum",
+                                             plotpair = "contr.sum"))
 
-# Diagnostics
+# Model check
 summary(refit_vet19_mod3)
 simulateResiduals(refit_vet19_mod3, 
                   plot = T) # Seems like this is overdispersed
@@ -574,7 +601,8 @@ app_summs[[2]] <- refit_vet19_mod3
 
 ###### LRT ####
 lrtest(vet19_mod3, 
-       update(vet19_mod3, .~. -treatment))
+       update(vet19_mod3, 
+              .~. -treatment))
 # Likelihood ratio test
 # 
 # Model 1: proportion_het ~ treatment + plotpair
@@ -613,15 +641,17 @@ vet19_plot <- plot(ggpredict(vet19_mod3,
                    dot.size = 5, 
                    line.size = 2)
 
+# Customize
 vet19_plot <- vet19_plot + 
-  ggtitle("B) 2019") + 
+  ggtitle(expression(paste("B) 2019 - ", 
+                           italic("V. cracca")))) +
   labs(x = "Plot Pair",
        # Turn on/off
        # y = "Proportion of \n Heterospecific Pollen", 
        y = ""
   ) +
   ylim(range(0,.30)) +
-  theme_classic(base_size = 35) +
+  theme_classic(base_size = 30) +
   scale_color_manual(name = "Treatment", 
                      values = c("control" = cb[4], 
                                 "damage" = cb[7]), 
@@ -636,15 +666,11 @@ vet19_plot <- vet19_plot +
            y = .3, 
            x = 3, 
            label = "Treatment: P = 0.01", 
-           size = 7)
+           size = 8)
 
-# ggsave("figures/vet19_plot.png", 
-#        last_plot(), 
-#        device = "png",
-#        width = 6, 
-#        height = 4.25, 
-#        units = "in", 
-#        dpi = 300)
+# change shape for treatment
+vet19_plot <- manual_shape_change(vet19_plot, 17)
+
 
 ##### 2021 Model Selection ####
 # Global Model with vetch as resources
@@ -656,7 +682,7 @@ vet21_modv <- glmmTMB(proportion_het ~ treatment * plotpair + vetch +
                       contrasts = list(treatment = "contr.sum",
                                        plotpair = "contr.sum"))
 
-# Diagnostics
+# Model check
 summary(vet21_modv)
 simulateResiduals(vet21_modv,
                   plot = T)
@@ -670,7 +696,7 @@ vet21_modm <- glmmTMB(proportion_het ~ treatment * plotpair + milk_in +
                       contrasts = list(treatment = "contr.sum",
                                        plotpair = "contr.sum"))
 
-# Diagnostics
+# Model check
 summary(vet21_modm)
 simulateResiduals(vet21_modm,
                   plot = T)
@@ -688,7 +714,7 @@ vet21_mod2 <- glmmTMB(proportion_het ~ treatment * plotpair +
                       contrasts = list(treatment = "contr.sum",
                                        plotpair = "contr.sum"))
 
-# Diagnostics
+# Model check
 summary(vet21_mod2)
 simulateResiduals(vet21_mod2,
                   plot = T)
@@ -699,15 +725,15 @@ AIC(vet21_modv,
 
 # Model w/o random effects
 vet21_mod3 <- glmmTMB(proportion_het ~ treatment * plotpair ,
-                     data = vetch21,
-                     family = beta_family(),
-                     ziformula = ~ treatment * plotpair,
-                     contrasts = list(treatment = "contr.sum",
-                                      plotpair = "contr.sum"))
+                      data = vetch21,
+                      family = beta_family(),
+                      ziformula = ~ treatment * plotpair,
+                      contrasts = list(treatment = "contr.sum",
+                                       plotpair = "contr.sum"))
 
 
 
-# Diagnostics
+# Model check
 summary(vet21_mod3)
 simulateResiduals(vet21_mod3,
                   plot = T)
@@ -724,7 +750,7 @@ vet21_mod4 <- glmmTMB(proportion_het ~ treatment + plotpair,
                       contrasts = list(treatment = "contr.sum",
                                        plotpair = "contr.sum"))
 
-# Diagnostics
+# Model check
 summary(vet21_mod4)
 simulateResiduals(vet21_mod4,
                   plot = T)
@@ -742,20 +768,20 @@ vet21_mod5 <- glmmTMB(proportion_het ~ treatment,
                       contrasts = list(treatment = "contr.sum",
                                        plotpair = "contr.sum"))
 
-# Diagnostics
+# Model check
 summary(vet21_mod5)
 simulateResiduals(vet21_mod5,
                   plot = T)
 
 # Model modifying to keep only sig terms in the fe and zi components
 vet21_mod5b <- glmmTMB(proportion_het ~ treatment + plotpair,
-                      data = vetch21,
-                      family = beta_family(),
-                      ziformula = ~ plotpair,
-                      contrasts = list(treatment = "contr.sum",
-                                       plotpair = "contr.sum"))
+                       data = vetch21,
+                       family = beta_family(),
+                       ziformula = ~ plotpair,
+                       contrasts = list(treatment = "contr.sum",
+                                        plotpair = "contr.sum"))
 
-# Diagnostics
+# Model check
 summary(vet21_mod5b)
 simulateResiduals(vet21_mod5b,
                   plot = T)
@@ -795,7 +821,8 @@ app_summs[[3]] <- vet21_mod5b
 
 ###### LRT #####
 lrtest(vet21_mod5b, 
-       update(vet21_mod5b, .~. -treatment))
+       update(vet21_mod5b,
+              .~. -treatment))
 
 # Likelihood ratio test
 # 
@@ -808,15 +835,16 @@ lrtest(vet21_mod5b,
 
 # Dertermine difference between treatments
 pairs(emmeans(vet21_mod5b, 
-        "treatment", 
-        type = "response"))
+              "treatment", 
+              type = "response"))
 # contrast         odds.ratio    SE df null t.ratio p.value
 # control / damage      0.699 0.136 92    1  -1.844  0.0684
 
 
 print(ggpredict(vet21_mod5b, 
-          terms = c("treatment", "plotpair"), 
-          type = "fe"), digits = 5)
+                terms = c("treatment", "plotpair"), 
+                type = "fe"), 
+      digits = 5)
 # treatment plotpair response      SE df lower.CL upper.CL
 # control   gf1    0.0168 0.00476 88  0.00958   0.0295
 # damage    gf1    0.0248 0.00634 88  0.01484   0.0410
@@ -837,8 +865,10 @@ vet21_plot <- plot(ggpredict(vet21_mod5b,
                    dot.size = 5, 
                    line.size = 2)
 
+# Customize
 vet21_plot <- vet21_plot + 
-  ggtitle("C) 2021") + 
+  ggtitle(expression(paste("C) 2021 - ", 
+                           italic("V. cracca")))) +
   labs(# Turn on/off
     # x = "Plot Pair",  
     x = "",
@@ -846,7 +876,7 @@ vet21_plot <- vet21_plot +
     y = ""
   ) +
   ylim(range(0,.10)) +
-  theme_classic(base_size = 35) +
+  theme_classic(base_size = 30) +
   scale_color_manual(name = "Treatment", 
                      values = c("control" = cb[4], 
                                 "damage" = cb[7]), 
@@ -862,25 +892,19 @@ vet21_plot <- vet21_plot +
            y = .1, 
            x = 3,
            label = "Treatment: P = 0.07", 
-           size = 7) 
+           size = 8) 
 
-# ggsave("figures/vet21_plot.png", 
-#        last_plot(), 
-#        device = "png",
-#        width = 6, 
-#        height = 4.25, 
-#        units = "in", 
-#        dpi = 300)
+# change shape for treatment
+vet21_plot <- manual_shape_change(vet21_plot, 17)
 
 ##### All Vetch Plots ####
-vetch_plots <- vet18_plot + 
-  vet19_plot + 
-  vet21_plot + 
+vetch_plots <- (vet18_plot + vet19_plot + vet21_plot) / 
+  common_legend + 
   plot_annotation(expression(paste(italic("Vicia cracca "), 
                                    "Pollen Deposition"))) + 
-  plot_layout(guides = "collect") &
-  theme(legend.position = "bottom", 
-        plot.title = element_text(size = 30)) 
+  plot_layout(guides = "collect", 
+              height = c(8,1)) &
+  theme(plot.title = element_text(size = 30)) 
 
 # Save
 ggsave("figures/vetch_deposition.png", 
@@ -898,27 +922,28 @@ galium18  <- galium18[complete.cases(galium18),]
 
 ##### 2018 Model Selection #####
 # Global Model
-gal18_mod <- glmmTMB(proportion_het ~ treatment * plotpair + (1|date), 
+gal18_mod <- glmmTMB(proportion_het ~ treatment * plotpair +
+                       (1|date), 
                      data = galium18,
                      family = beta_family(),
                      ziformula = ~ treatment * plotpair,
                      contrasts = list(treatment = "contr.sum",
                                       plotpair = "contr.sum"))
 
-# Diagnostics
+# Model check
 summary(gal18_mod)
 simulateResiduals(gal18_mod, 
                   plot = T)
 
 # w/o random effects
 gal18_mod2 <- glmmTMB(proportion_het ~ treatment * plotpair, 
-                     data = galium18,
-                     family = beta_family(),
-                     ziformula = ~ treatment * plotpair,
-                     contrasts = list(treatment = "contr.sum",
-                                      plotpair = "contr.sum"))
+                      data = galium18,
+                      family = beta_family(),
+                      ziformula = ~ treatment * plotpair,
+                      contrasts = list(treatment = "contr.sum",
+                                       plotpair = "contr.sum"))
 
-# Diagnostics
+# Model check
 summary(gal18_mod2)
 simulateResiduals(gal18_mod2, 
                   plot = T)
@@ -940,7 +965,7 @@ AIC(gal18_mod,
     gal18_mod2, 
     gal18_mod3)# Best
 
-# Diagnostics
+# Model check
 summary(gal18_mod3)
 simulateResiduals(gal18_mod3, 
                   plot = T)
@@ -953,7 +978,7 @@ gal18_mod4 <- glmmTMB(proportion_het ~ plotpair,
                       contrasts = list(treatment = "contr.sum",
                                        plotpair = "contr.sum"))
 
-# Diagnostics
+# Model check
 summary(gal18_mod4)
 simulateResiduals(gal18_mod4, 
                   plot = T)
@@ -991,7 +1016,8 @@ app_summs[[4]] <- gal18_mod3
 
 ###### LRT ####
 lrtest(gal18_mod3, 
-       update(gal18_mod2, .~. -treatment)) # without interaction
+       update(gal18_mod2, 
+              .~. -treatment)) # without interaction
 
 # Likelihood ratio test
 # 
@@ -1032,15 +1058,17 @@ gal18_plot <- plot(ggpredict(gal18_mod3,
                    dot.size = 5, 
                    line.size = 2)
 
+# Customize
 gal18_plot <- gal18_plot + 
-  ggtitle("D) 2018") + 
+  ggtitle(expression(paste("D) 2018 - ", 
+                           italic("G. palustre")))) +
   labs(# Turn on/off
     # x = "Plot Pair",  
     x = "",
     y = "Proportion of \n Heterospecific Pollen"
   ) +
   ylim(range(0,.15)) +
-  theme_classic(base_size = 35) +
+  theme_classic(base_size = 30) +
   scale_color_manual(name = "Treatment", 
                      values = c("control" = cb[4], 
                                 "damage" = cb[7]), 
@@ -1052,27 +1080,23 @@ gal18_plot <- gal18_plot +
            y = .15, 
            x = 1.75, 
            label = "Treatment: P = 0.94", 
-           size = 7)
+           size = 8)
 
-# ggsave("figures/gal18_plot.png", 
-#        last_plot(), 
-#        device = "png",
-#        width = 6, 
-#        height = 4.25, 
-#        units = "in", 
-#        dpi = 300)
+# change shape for treatment
+gal18_plot <- manual_shape_change(gal18_plot, 17)
+
 
 ##### 2019 Model Selection #####
 # Global model with vetch as resource
 gal19_modv <- glmmTMB(proportion_het ~ treatment * plotpair + vetch +
-                       (1|date), 
-                     data = galium19[complete.cases(galium19),], # ignore na's,
-                     family = beta_family(),
-                     ziformula = ~ treatment * plotpair,
-                     contrasts = list(treatment = "contr.sum",
-                                      plotpair = "contr.sum"))
+                        (1|date), 
+                      data = galium19[complete.cases(galium19),], # ignore na's,
+                      family = beta_family(),
+                      ziformula = ~ treatment * plotpair,
+                      contrasts = list(treatment = "contr.sum",
+                                       plotpair = "contr.sum"))
 
-# Diagnostics
+# Model check
 summary(gal19_modv)
 simulateResiduals(gal19_modv, 
                   plot = T)
@@ -1086,7 +1110,7 @@ gal19_modm <- glmmTMB(proportion_het ~ treatment * plotpair + milk_in +
                       contrasts = list(treatment = "contr.sum",
                                        plotpair = "contr.sum"))
 
-# Diagnostics
+# Model check
 summary(gal19_modm)
 simulateResiduals(gal19_modm, 
                   plot = T)
@@ -1100,7 +1124,7 @@ gal19_modg <- glmmTMB(proportion_het ~ treatment * plotpair + galium +
                       contrasts = list(treatment = "contr.sum",
                                        plotpair = "contr.sum"))
 
-# Diagnostics
+# Model check
 summary(gal19_modg)
 simulateResiduals(gal19_modg, 
                   plot = T)
@@ -1118,7 +1142,7 @@ gal19_mod2 <- glmmTMB(proportion_het ~ treatment * plotpair + galium,
                       contrasts = list(treatment = "contr.sum", 
                                        plotpair = "contr.sum"))
 
-# Diagnostics
+# Model check
 summary(gal19_mod2)
 simulateResiduals(gal19_mod2, 
                   plot = T)
@@ -1135,11 +1159,12 @@ gal19_mod3 <- glmmTMB(proportion_het ~ treatment + plotpair + galium,
                       contrasts = list(treatment = "contr.sum", 
                                        plotpair = "contr.sum"))
 
-# Diagnostics
+# Model check
 summary(gal19_mod3)
 simulateResiduals(gal19_mod3, 
                   plot = T)
 
+# Compare
 AIC(gal19_mod2, 
     gal19_mod3) # simpler is better
 
@@ -1151,7 +1176,7 @@ gal19_mod4 <- glmmTMB(proportion_het ~ treatment + plotpair,
                       contrasts = list(treatment = "contr.sum",
                                        plotpair = "contr.sum"))
 
-# Diagnostics
+# Model check
 summary(gal19_mod4)
 simulateResiduals(gal19_mod4,
                   plot = T)
@@ -1168,7 +1193,7 @@ refit_gal19_mod4 <- glmmTMB(proportion_het ~ treatment + plotpair,
                             contrasts = list(treatment = "contr.sum",
                                              plotpair = "contr.sum"))
 
-# Diagnostics
+# Model check
 summary(refit_gal19_mod4)
 simulateResiduals(refit_gal19_mod4,
                   plot = T) # some outlier, but summaries are close enough
@@ -1181,7 +1206,7 @@ gal19_mod5 <- glmmTMB(proportion_het ~ treatment + plotpair,
                       contrasts = list(treatment = "contr.sum",
                                        plotpair = "contr.sum"))
 
-# Diagnostics
+# Model check
 summary(gal19_mod5)
 simulateResiduals(gal19_mod5,
                   plot = T)
@@ -1198,7 +1223,7 @@ gal19_mod6 <- glmmTMB(proportion_het ~  plotpair,
                       contrasts = list(treatment = "contr.sum",
                                        plotpair = "contr.sum"))
 
-# Diagnostics
+# Model check
 summary(gal19_mod6)
 simulateResiduals(gal19_mod6,
                   plot = T)
@@ -1233,7 +1258,8 @@ app_summs[[5]] <- refit_gal19_mod4
 
 ###### LRT ####
 lrtest(gal19_mod5, 
-       update(gal19_mod5, .~. -treatment))
+       update(gal19_mod5, 
+              .~. -treatment))
 
 # Likelihood ratio test
 # 
@@ -1276,15 +1302,17 @@ gal19_plot <- plot(ggpredict(gal19_mod5,
                    dot.size = 5, 
                    line.size = 2)
 
+# Customize
 gal19_plot <- gal19_plot + 
-  ggtitle("E) 2019") + 
+  ggtitle(expression(paste("E) 2019 - ", 
+                           italic("G. palustre")))) +
   labs(# Turn on/off
     x = "Plot Pair",
     # y = "Proportion of \n Heterospecific Pollen", 
     y = ""
   ) +
   ylim(range(0,.15)) +
-  theme_classic(base_size = 35) +
+  theme_classic(base_size = 30) +
   scale_color_manual(name = "Treatment", 
                      values = c("control" = cb[4], 
                                 "damage" = cb[7]), 
@@ -1299,33 +1327,16 @@ gal19_plot <- gal19_plot +
            y = .15, 
            x = 3, 
            label = "Treatment: P = 0.53", 
-           size = 7)
+           size = 8)
 
-# ggsave("figures/gal19_plot.png", 
-#        last_plot(), 
-#        device = "png",
-#        width = 6, 
-#        height = 4.25, 
-#        units = "in", 
-#        dpi = 300)
+# change shape for treatment
+gal19_plot <- manual_shape_change(gal19_plot, 17)
+
 
 ##### 2021 Model Selection ####
 # Global Model with vetch as resource
-gal21_modv <- glmmTMB(proportion_het ~ treatment + plotpair + vetch + (1|date), 
-                     data = galium21,
-                     family = beta_family(),
-                     ziformula = ~ treatment + plotpair, 
-                     contrasts = list(treatment = "contr.sum",
-                                      plotpair = "contr.sum"))
-# NOTE: won't converge with interactions.
-
-# Diagnostics
-summary(gal21_modv)
-simulateResiduals(gal21_modv, 
-                  plot = T)
-
-# Global Model with milkweed as resource
-gal21_modm <- glmmTMB(proportion_het ~ treatment + plotpair + milk_in + (1|date), 
+gal21_modv <- glmmTMB(proportion_het ~ treatment + plotpair + vetch + 
+                        (1|date), 
                       data = galium21,
                       family = beta_family(),
                       ziformula = ~ treatment + plotpair, 
@@ -1333,13 +1344,29 @@ gal21_modm <- glmmTMB(proportion_het ~ treatment + plotpair + milk_in + (1|date)
                                        plotpair = "contr.sum"))
 # NOTE: won't converge with interactions.
 
-# Diagnostics
+# Model check
+summary(gal21_modv)
+simulateResiduals(gal21_modv, 
+                  plot = T)
+
+# Global Model with milkweed as resource
+gal21_modm <- glmmTMB(proportion_het ~ treatment + plotpair + milk_in +
+                        (1|date), 
+                      data = galium21,
+                      family = beta_family(),
+                      ziformula = ~ treatment + plotpair, 
+                      contrasts = list(treatment = "contr.sum",
+                                       plotpair = "contr.sum"))
+# NOTE: won't converge with interactions.
+
+# Model check
 summary(gal21_modm)
 simulateResiduals(gal21_modm, 
                   plot = T)
 
 # Global Model with galium as resource
-gal21_modg <- glmmTMB(proportion_het ~ treatment + plotpair + galium + (1|date), 
+gal21_modg <- glmmTMB(proportion_het ~ treatment + plotpair + galium + 
+                        (1|date), 
                       data = galium21,
                       family = beta_family(),
                       ziformula = ~ treatment + plotpair, 
@@ -1347,7 +1374,7 @@ gal21_modg <- glmmTMB(proportion_het ~ treatment + plotpair + galium + (1|date),
                                        plotpair = "contr.sum"))
 # NOTE: won't converge with interactions. Zero inflation part looks funky
 
-# Diagnostics
+# Model check
 summary(gal21_modg)
 simulateResiduals(gal21_modg, 
                   plot = T)
@@ -1365,7 +1392,7 @@ gal21_mod2 <- glmmTMB(proportion_het ~ treatment + plotpair + galium,
                       contrasts = list(treatment = "contr.sum",
                                        plotpair = "contr.sum"))
 
-# Diagnostics
+# Model check
 summary(gal21_mod2)
 simulateResiduals(gal21_mod2, 
                   plot = T)
@@ -1382,7 +1409,7 @@ gal21_mod3 <- glmmTMB(proportion_het ~ treatment + plotpair,
                       contrasts = list(treatment = "contr.sum",
                                        plotpair = "contr.sum"))
 
-# Diagnostics
+# Model check
 summary(gal21_mod3)
 simulateResiduals(gal21_mod3, 
                   plot = T)
@@ -1399,7 +1426,7 @@ gal21_mod4 <- glmmTMB(proportion_het ~ plotpair,
                       contrasts = list(treatment = "contr.sum",
                                        plotpair = "contr.sum"))
 
-# Diagnostics
+# Model check
 summary(gal21_mod4)
 simulateResiduals(gal21_mod4, 
                   plot = T)
@@ -1441,7 +1468,8 @@ app_summs[[6]] <- gal21_mod3
 
 ###### LRT ####
 lrtest(gal21_mod3, 
-       update(gal21_mod3, .~. -treatment))
+       update(gal21_mod3, 
+              .~. -treatment))
 
 # Likelihood ratio test
 # 
@@ -1485,8 +1513,10 @@ gal21_plot <- plot(ggpredict(gal21_mod3,
                    dot.size = 5, 
                    line.size = 2)
 
+# Customize
 gal21_plot <- gal21_plot + 
-  ggtitle("F) 2021") + 
+  ggtitle(expression(paste("F) 2021 - ", 
+                           italic("G. palustre")))) +
   labs(# Turn on/off
     # x = "Plot Pair",  
     x = "",
@@ -1494,7 +1524,7 @@ gal21_plot <- gal21_plot +
     y = ""
   ) +
   ylim(range(0,.15)) +
-  theme_classic(base_size = 35) +
+  theme_classic(base_size = 30) +
   scale_color_manual(name = "Treatment", 
                      values = c("control" = cb[4], 
                                 "damage" = cb[7]), 
@@ -1509,22 +1539,17 @@ gal21_plot <- gal21_plot +
            y = .15, 
            x = 3, 
            label = "Treatment: P = 0.57", 
-           size = 7)
+           size = 8)
 
-# ggsave("figures/gal21_plot.png", 
-#        last_plot(), 
-#        device = "png",
-#        width = 6, 
-#        height = 4.25, 
-#        units = "in", 
-#        dpi = 300)
+# change shape for treatment
+gal21_plot <- manual_shape_change(gal21_plot, 17)
+
 
 ##### All Galium Plots ####
-galium_plots <- gal18_plot + 
-  gal19_plot + 
-  gal21_plot +
+galium_plots <- (gal18_plot + gal19_plot + gal21_plot) /
+  common_legend +
   plot_annotation(expression(paste(italic("Galium palustre "),
-                        "Pollen Deposition"))) + 
+                                   "Pollen Deposition"))) + 
   plot_layout(guides = "collect") &
   theme(legend.position = "bottom", 
         plot.title = element_text(size = 30))
@@ -1543,7 +1568,6 @@ ggsave("figures/galium_deposition.png",
 # NA's removed
 basil18 <- basil18[complete.cases(basil18), ]
 
-
 ##### 2018 Model Selection ####
 # Global model
 bas18_mod <- glmmTMB(proportion_het ~ treatment * date, 
@@ -1553,24 +1577,24 @@ bas18_mod <- glmmTMB(proportion_het ~ treatment * date,
                      contrasts = list(treatment = "contr.sum", 
                                       date = "contr.sum"))
 
-# Diagnostics
+# Model check
 summary(bas18_mod)
 simulateResiduals(bas18_mod, 
                   plot = T)
 
 # w/o interaction
 bas18_mod2 <- glmmTMB(proportion_het ~ treatment + date, 
-                     data = basil18,
-                     family = beta_family(),
-                     ziformula = ~ treatment + date,
-                     contrasts = list(treatment = "contr.sum", 
-                                      date = "contr.sum"))
+                      data = basil18,
+                      family = beta_family(),
+                      ziformula = ~ treatment + date,
+                      contrasts = list(treatment = "contr.sum", 
+                                       date = "contr.sum"))
 
 # Compare
 AIC(bas18_mod, 
     bas18_mod2)
 
-# Diagnostics
+# Model check
 summary(bas18_mod2)
 simulateResiduals(bas18_mod2, 
                   plot = T)
@@ -1588,7 +1612,7 @@ AIC(bas18_mod,
     bas18_mod2, 
     bas18_mod3) # Best
 
-# Diagnostics
+# Model check
 summary(bas18_mod3)
 simulateResiduals(bas18_mod3, 
                   plot = T)
@@ -1619,7 +1643,8 @@ app_summs[[7]] <- bas18_mod3
 
 ###### LRT ####
 lrtest(bas18_mod2, 
-       update(bas18_mod2, .~. -treatment))
+       update(bas18_mod2, 
+              .~. -treatment))
 # Likelihood ratio test
 # 
 # Model 1: proportion_het ~ treatment + date
@@ -1661,12 +1686,13 @@ bas18_plot <- plot(ggpredict(bas18_mod3,
                    dot.size = 5, 
                    line.size = 2)
 
+# Customize
 bas18_plot <- bas18_plot + 
   ggtitle(expression(paste("G) 2018 - ", italic("C. vulgare")))) + 
   labs(x = "Date", 
        y = "Proportion of \n Heterospecific Pollen") + 
   ylim(range(0,.6)) +
-  theme_classic(base_size = 35) +
+  theme_classic(base_size = 30) +
   scale_color_manual(name = "Treatment", 
                      values = c("control" = cb[4], 
                                 "damage" = cb[7]), 
@@ -1679,32 +1705,29 @@ bas18_plot <- bas18_plot +
            y = .6,
            x = 1.75, 
            label = "Treatment: P = 0.01", 
-           size = 7)
+           size = 8)
 
-# ggsave("figures/bas18_plot.png", 
-#        last_plot(), 
-#        device = "png",
-#        width = 6, 
-#        height = 4.25, 
-#        units = "in", 
-#        dpi = 300)
+# change shape for treatment
+bas18_plot <- manual_shape_change(bas18_plot, 17)
+
 
 #### Whorled Loosestrife ##### 
 ##### 2019 Model Selection ####
 ## NOTE: not starting w/ interactions because model won't converge
 
 # Global Model with vetch as resource
-loo19_modv <- glmmTMB(proportion_het ~ treatment + date + vetch,
+loo19_modv <- glmmTMB(proportion_het ~ treatment + date + vetch + 
+                        treatment:vetch,
                       data = loose19,
                       family = beta_family(),
                       ziformula = ~ treatment + date,
                       contrasts = list(treatment = "contr.sum", 
                                        date = "contr.sum"))
 
-# Diagnostics
-summary(loo19_modv)
+# Model check
+summary(loo19_modv) # Not working
 simulateResiduals(loo19_modv, 
-                  plot = T) # Outlier problem
+                  plot = T) # Outlier problem 
 
 # Global Model with milkweed as resource
 loo19_modm <- glmmTMB(proportion_het ~ treatment + date + milk_in,
@@ -1714,7 +1737,7 @@ loo19_modm <- glmmTMB(proportion_het ~ treatment + date + milk_in,
                       contrasts = list(treatment = "contr.sum", 
                                        date = "contr.sum"))
 
-# Diagnostics
+# Model check
 summary(loo19_modm)
 simulateResiduals(loo19_modm, 
                   plot = T) # Outlier problem
@@ -1724,14 +1747,14 @@ AIC(loo19_modv,
     loo19_modm) # Not sure why these are the same
 
 # Without zero inflation formula
-loo19_mod2 <- glmmTMB(proportion_het ~ treatment + date + vetch,
-                     data = loose19,
-                     family = beta_family(),
-                     ziformula = ~ 1,
-                     contrasts = list(treatment = "contr.sum", 
-                                      date = "contr.sum"))
+loo19_mod2 <- glmmTMB(proportion_het ~ treatment + date + vetch + treatment:vetch,
+                      data = loose19,
+                      family = beta_family(),
+                      ziformula = ~ 1,
+                      contrasts = list(treatment = "contr.sum", 
+                                       date = "contr.sum"))
 
-# Diagnostics
+# Model check
 summary(loo19_mod2)
 simulateResiduals(loo19_mod2, 
                   plot = T) # Outlier problem is gone
@@ -1748,7 +1771,7 @@ loo19_mod3 <- glmmTMB(proportion_het ~ treatment + date,
                       contrasts = list(treatment = "contr.sum", 
                                        date = "contr.sum"))
 
-# Diagnostics
+# Model check
 summary(loo19_mod3)
 simulateResiduals(loo19_mod3, 
                   plot = T) # Outlier problem is gone
@@ -1787,7 +1810,8 @@ app_summs[[8]] <- loo19_mod2
 ###### LRT #####
 # Without resources
 lrtest(loo19_mod2, 
-       update(loo19_mod2, .~. -vetch))
+       update(loo19_mod2, 
+              .~. -vetch))
 # Likelihood ratio test
 # 
 # Model 1: proportion_het ~ treatment + date + vetch
@@ -1798,7 +1822,8 @@ lrtest(loo19_mod2,
 
 # Without treatment
 lrtest(loo19_mod2, 
-       update(loo19_mod2, .~. -treatment))
+       update(loo19_mod2,
+              .~. -treatment))
 # Likelihood ratio test
 # 
 # Model 1: proportion_het ~ treatment + date + vetch
@@ -1812,7 +1837,9 @@ loo19_plot <- plot(ggpredict(loo19_mod2,
                              ~ vetch + treatment, 
                              type = "fe"), 
                    dot.size = 5, 
-                   line.size = 2)
+                   line.size = 2, 
+                   colors = "bw", 
+                   show.legend = FALSE)  # this changes the linetype
 
 loo19_plot <- loo19_plot + 
   ggtitle(expression(paste("H) 2019 - ", 
@@ -1822,9 +1849,9 @@ loo19_plot <- loo19_plot +
                        "Flower Racemes")),
        # y = "Proportion of \n Heterospecific Pollen"
        y = ""
-       ) + 
+  ) + 
   ylim(range(0,.3)) +
-  theme_classic(base_size = 35) +
+  theme_classic(base_size = 30) +
   scale_color_manual(name = "Treatment", 
                      values = c("control" = cb[4], 
                                 "damage" = cb[7]), 
@@ -1835,19 +1862,28 @@ loo19_plot <- loo19_plot +
                                "damage" = cb[7]), 
                     labels = c("Control",
                                "Herbivory")) + 
+  scale_linetype_manual(name = "Treatment", 
+                        values = c("control" = 1, 
+                                   "damage" = 2), 
+                        labels = c("Control",
+                                   "Herbivory")) + 
   theme(legend.position = "none") +
   annotate(geom = "text", 
            y = .27,
            x = 45, 
-           label = "Treatment: P = 0.01 \n Resources: P = 0.05", 
-           size = 7)
+           label = "Treatment: P = 0.01 \nResources: P = 0.05", 
+           size = 8) 
+
+# this gets this in the same dimensions as the other plots
+loo19_plot <- as.ggplot(ggplot_gtable(ggplot_build(loo19_plot)))
+
+# get legend for 
+loose_legend <-  readRDS("figures/loose_legend.RDS")
 
 ##### Two Species Plot ####
-two_spec_plots <- bas18_plot +
-  loo19_plot  + 
-  plot_layout(guides = "collect") &
-  theme(legend.position = "bottom", 
-        plot.title = element_text(size = 30))
+two_spec_plots <- (bas18_plot + loo19_plot) /
+  loose_legend + 
+  theme(plot.title = element_text(size = 30))
 
 # Save
 ggsave("figures/clin_lysi_deposition.png", 
@@ -1859,816 +1895,28 @@ ggsave("figures/clin_lysi_deposition.png",
        dpi = 300)
 
 #### All Species Plots ####
-all_specs_plots <- vet18_plot + vet19_plot + vet21_plot +
-  gal18_plot + gal19_plot + gal21_plot +
-  bas18_plot + loo19_plot + plot_spacer() + 
-  plot_layout(guides = "collect") &
-  theme(legend.position = "bottom", 
-        plot.title = element_text(size = 30))
+all_specs_plots <- 
+  (vet18_plot + vet19_plot + vet21_plot) / # first row
+  (gal18_plot + gal19_plot + gal21_plot) / # second row
+  (bas18_plot + loo19_plot + plot_spacer()) / # third row
+  (as.ggplot(common_legend) + as.ggplot(loose_legend)) + # legends
+  plot_layout(nrow = 4, # specify arrangement
+              heights = c(8,8,8,1), 
+              widths = c(8,8,8)) & 
+  theme(plot.title = element_text(size = 30))
 
 # Save
 ggsave("figures/all_deposition.png", 
        last_plot(), 
        device = "png",
        width = 21, 
-       height = 21, 
+       height = 25, 
        units = "in",
        dpi = 300)
 
 
-#### Effect Spillover ####
-##### 2019 Vetch #####
-###### Damage - In/Out Comparison ####
-# Global Model for in/out comparison for damage with vetch resources
-spill_dam_modv <- glmmTMB(proportion_het ~ in_out * plotpair + vetch +
-                            (1|date),
-                          data = filter(vetch19, 
-                                        treatment == "damage", # only dates with
-                                        date %in% c("2019-07-02", # in and out 
-                                                    "2019-07-08", # for damage
-                                                    "2019-07-09")),
-                          family = beta_family(),
-                          ziformula = ~ in_out * plotpair,
-                          contrasts = list(in_out = "contr.sum",
-                                           plotpair = "contr.sum"))
-
-# Diagnostics
-summary(spill_dam_modv) # no apparent effect
-simulateResiduals(spill_dam_modv, 
-                  plot = T) # no problems
-
-# Global model with milkweed resources
-spill_dam_modm <- glmmTMB(proportion_het ~ in_out * plotpair + milk_in +
-                            (1|date),
-                          data = filter(vetch19,
-                                        treatment == "damage", 
-                                        date %in% c("2019-07-02", 
-                                                    "2019-07-08",
-                                                    "2019-07-09")),
-                          family = beta_family(),
-                          ziformula = ~ in_out * plotpair,
-                          contrasts = list(in_out = "contr.sum",
-                                           plotpair = "contr.sum"))
-
-# Diagnostics
-summary(spill_dam_modm)
-simulateResiduals(spill_dam_modm, 
-                  plot = T) # 
-
-# Compare
-AIC(spill_dam_modv, 
-    spill_dam_modm) # neither model is good, reduce
-
-# Without random effects
-spill_dam_mod2 <- glmmTMB(proportion_het ~ in_out * plotpair + vetch,
-                          data = filter(vetch19, 
-                                        treatment == "damage", # only dates with
-                                        date %in% c("2019-07-02", # in and out 
-                                                    "2019-07-08", # for damage
-                                                    "2019-07-09")),
-                          family = beta_family(),
-                          ziformula = ~ in_out * plotpair,
-                          contrasts = list(in_out = "contr.sum",
-                                           plotpair = "contr.sum"))
-
-# Diagnostics
-summary(spill_dam_mod2)
-simulateResiduals(spill_dam_mod2, 
-                  plot = T) # 
-
-# Compare
-AIC(spill_dam_modv, 
-    spill_dam_mod2) # better
-
-# Without interaction
-spill_dam_mod3 <- glmmTMB(proportion_het ~ in_out + plotpair + vetch,
-                          data = filter(vetch19,
-                                        treatment == "damage", 
-                                        date %in% c("2019-07-02", 
-                                                    "2019-07-08",
-                                                    "2019-07-09")),
-                          family = beta_family(),
-                          ziformula = ~ in_out + plotpair,
-                          contrasts = list(in_out = "contr.sum",
-                                           plotpair = "contr.sum"))
-
-# Diagnostics
-summary(spill_dam_mod3)
-simulateResiduals(spill_dam_mod3, 
-                  plot = T) 
-
-AIC(spill_dam_mod2, 
-    spill_dam_mod3) # better
-
-# Without resources
-spill_dam_mod4 <- glmmTMB(proportion_het ~ in_out + plotpair,
-                          data = filter(vetch19,
-                                        treatment == "damage", 
-                                        date %in% c("2019-07-02", 
-                                                    "2019-07-08",
-                                                    "2019-07-09")),
-                          family = beta_family(),
-                          ziformula = ~ in_out + plotpair,
-                          contrasts = list(in_out = "contr.sum",
-                                           plotpair = "contr.sum"))
-
-# Diagnostics
-summary(spill_dam_mod4)
-simulateResiduals(spill_dam_mod4, 
-                  plot = T) # 
-
-# Compare
-AIC(spill_dam_mod3,
-    spill_dam_mod4) # better
-
-
-# Without Plot Pair in main effects
-spill_dam_mod5 <- glmmTMB(proportion_het ~ in_out ,
-                          data = filter(vetch19,
-                                        treatment == "damage", 
-                                        date %in% c("2019-07-02", 
-                                                    "2019-07-08",
-                                                    "2019-07-09")),
-                          family = beta_family(),
-                          ziformula = ~ in_out,
-                          contrasts = list(in_out = "contr.sum"))
-
-# Diagnostics
-summary(spill_dam_mod5) # still no discernible effect of in_out
-simulateResiduals(spill_dam_mod5, 
-                  plot = T) 
-
-# Compare 
-AIC(spill_dam_mod4, 
-    spill_dam_mod5)
-#                df       AIC
-# spill_dam_mod4  7 -45.09342
-# spill_dam_mod5  5 -44.87531
-
-###### Best Fit ####
-# Family: beta  ( logit )
-# Formula:          proportion_het ~ in_out
-# Zero inflation:                  ~in_out
-# Data: 
-#   filter(vetch19, treatment == "damage", date %in% c("2019-07-02",  
-#                                                      "2019-07-08", 
-#                                                      "2019-07-09"))
-# 
-# AIC      BIC   logLik deviance df.resid 
-# -44.9    -34.4     27.4    -54.9       55 
-# 
-# 
-# Dispersion parameter for beta family (): 15.3 
-# 
-# Conditional model:
-#             Estimate Std. Error z value Pr(>|z|)    
-# (Intercept)  -2.1633     0.1213 -17.829   <2e-16 ***
-# in_out1      -0.1512     0.1083  -1.396    0.163    
-# 
-# Zero-inflation model:
-#             Estimate Std. Error z value Pr(>|z|)    
-# (Intercept) -1.10059    0.29866  -3.685 0.000229 ***
-# in_out1     -0.08899    0.29866  -0.298 0.765725 
-
-###### LRT #### 
-lrtest(spill_dam_mod5, 
-       update(spill_dam_mod5, .~. -in_out))
-# Likelihood ratio test
-# 
-# Model 1: proportion_het ~ in_out
-# Model 2: proportion_het ~ 1
-#   #Df LogLik Df  Chisq Pr(>Chisq)
-# 1   5 27.438                     
-# 2   4 26.481 -1 1.9136     0.1666
-
-###### Plot ####
-spill_dam_plot <- plot(ggpredict(spill_dam_mod4, 
-                                 ~ plotpair + in_out, 
-                                 type = "zero_inflated"), 
-                       dot.size = 5, 
-                       line.size = 2)
-
-spill_dam_plot <- spill_dam_plot + 
-  ggtitle("Simulated Herbivory Plots") + 
-  # xlab("Plot Pair") + 
-  xlab("") +
-  ylab("Proportion of \n Heterospecific Pollen") +
-  ylim(range(0,.15)) +
-  theme_classic(base_size = 35) +
-  scale_color_manual(name = "Location", 
-                     values = c("in" = cb[2], 
-                                "out" = cb[6]), 
-                     labels = c("Inside Plot",
-                                "Outside Plot")) + 
-  scale_x_discrete(limits = c("C", 
-                              "D")) +
-  theme(legend.position = "bottom") +
-  annotate(geom = "text", 
-           y = .15, 
-           x = 1.75, 
-           label = "Location: P = 0.16", 
-           size = 7)
-
-# ggsave("figures/vet19_damloc_plot.png", 
-#        last_plot(), 
-#        device = "png",
-#        width = 6, 
-#        height = 4.25, 
-#        units = "in", 
-#        dpi = 300)
-
-###### Control - In/Out Comparison ####
-# Global Model for in/out comparison  vetch resources
-spill_con_modv <- glmmTMB(proportion_het ~ in_out * plotpair + vetch +
-                            (1|date),
-                          data = filter(vetch19, #only dates DO NOT contain both
-                                        treatment == "control", # in and out for
-                                        !date %in% c("2019-06-27", # control
-                                                   "2019-06-28", 
-                                                   "2019-07-05")),
-                          family = beta_family(),
-                          ziformula = ~ in_out * plotpair,
-                          contrasts = list(in_out = "contr.sum",
-                                           plotpair = "contr.sum"))
-
-# Diagnostics
-summary(spill_con_modv) # no apparent effect
-simulateResiduals(spill_con_modv, 
-                  plot = T) # no problems
-
-# Global Model for in/out comparison milk_in resources
-spill_con_modm <- glmmTMB(proportion_het ~ in_out * plotpair + milk_in +
-                            (1|date),
-                          data = filter(vetch19, #only dates DO NOT contain both
-                                        treatment == "control", # in and out for
-                                        !date %in% c("2019-06-27", # control
-                                                     "2019-06-28", 
-                                                     "2019-07-05")),
-                          family = beta_family(),
-                          ziformula = ~ in_out * plotpair,
-                          contrasts = list(in_out = "contr.sum",
-                                           plotpair = "contr.sum"))
-
-# Diagnostics
-summary(spill_con_modm) # maybe some effect of in and out
-simulateResiduals(spill_con_modm, 
-                  plot = T) # no problems
-
-# Compare
-AIC(spill_con_modv, # essentially same
-    spill_con_modm)
-
-# Without random effects
-spill_con_mod2 <- glmmTMB(proportion_het ~ in_out * plotpair + vetch,
-                          data = filter(vetch19, #only dates DO NOT contain both
-                                        treatment == "control", # in and out for
-                                        !date %in% c("2019-06-27", # control
-                                                     "2019-06-28", 
-                                                     "2019-07-05")),
-                          family = beta_family(),
-                          ziformula = ~ in_out * plotpair,
-                          contrasts = list(in_out = "contr.sum",
-                                           plotpair = "contr.sum"))
-
-# Diagnostics
-summary(spill_con_mod2) # no apparent effect
-simulateResiduals(spill_con_mod2, 
-                  plot = T) # no problems
-
-# Compare
-AIC(spill_con_modv, 
-    spill_con_mod2) # simpler
-
-# Without resources
-spill_con_mod3 <- glmmTMB(proportion_het ~ in_out * plotpair,
-                          data = filter(vetch19, #only dates DO NOT contain both
-                                        treatment == "control", # in and out for
-                                        !date %in% c("2019-06-27", # control
-                                                     "2019-06-28", 
-                                                     "2019-07-05")),
-                          family = beta_family(),
-                          ziformula = ~ in_out * plotpair,
-                          contrasts = list(in_out = "contr.sum",
-                                           plotpair = "contr.sum"))
-
-# Diagnostics
-summary(spill_con_mod3) # interaction between in_out and plotpair
-simulateResiduals(spill_con_mod3, 
-                  plot = T) # no problems
-
-# Compare
-AIC(spill_con_mod2, 
-    spill_con_mod3) # essentially same, but simpler is better
-
-
-# Without interaction in fe formula
-spill_con_mod4 <- glmmTMB(proportion_het ~ in_out + plotpair,
-                          data = filter(vetch19, #only dates DO NOT contain both
-                                        treatment == "control", # in and out for
-                                        !date %in% c("2019-06-27", # control
-                                                     "2019-06-28", 
-                                                     "2019-07-05")),
-                          family = beta_family(),
-                          ziformula = ~ in_out * plotpair,
-                          contrasts = list(in_out = "contr.sum",
-                                           plotpair = "contr.sum"))
-
-# Diagnostics
-summary(spill_con_mod4) # interaction between in_out and plotpair
-simulateResiduals(spill_con_mod4, 
-                  plot = T) # no problems
-
-# Compare
-AIC(spill_con_mod3, # interaction model is better
-    spill_con_mod4) 
-
-#               df       AIC
-#spill_con_mod3 13 -107.8689
-#spill_con_mod4  9 -103.7345
-
-###### Best Fit ####
-# Family: beta  ( logit )
-# Formula:          proportion_het ~ in_out + plotpair
-# Zero inflation:                  ~in_out * plotpair
-# Data: filter(vetch19, treatment == "control", !date %in% c("2019-06-27",  
-#                                                            "2019-06-28", "2019-07-05"))
-# 
-# AIC      BIC   logLik deviance df.resid 
-# -105.7    -74.8     63.8   -127.7      111 
-# 
-# 
-# Dispersion parameter for beta family (): 21.1 
-# 
-# Conditional model:
-#             Estimate Std. Error z value Pr(>|z|)    
-# (Intercept) -2.55560    0.09906 -25.798  < 2e-16 ***
-# in_out1     -0.21391    0.08220  -2.602  0.00926 ** 
-# plotpair1        0.32144    0.11211   2.867  0.00414 ** 
-# plotpair2       -0.13825    0.11244  -1.230  0.21886    
-# 
-# Zero-inflation model:
-#               Estimate Std. Error z value Pr(>|z|)    
-# (Intercept)    -0.9340     0.2574  -3.628 0.000286 ***
-# in_out1         0.3022     0.2574   1.174 0.240402    
-# plotpair1           0.1405     0.3304   0.425 0.670629    
-# plotpair2           0.4478     0.2999   1.493 0.135479    
-# in_out1:plotpair1   0.2906     0.3304   0.879 0.379134    
-# in_out1:plotpair2  -0.6633     0.2999  -2.211 0.027005 *  
-
-###### LRT #####
-# Without in_out 
-lrtest(spill_con_mod4, 
-       update(spill_con_mod4, .~. -in_out))
-# Likelihood ratio test
-# 
-# Model 1: proportion_het ~ in_out + plotpair
-# Model 2: proportion_het ~ plotpair
-#   #Df LogLik Df  Chisq Pr(>Chisq)  
-# 1  11 63.846                       
-# 2  10 60.536 -1 6.6188    0.01009 *
-
-###### Plot ####
-spill_con_plot <- plot(ggpredict(spill_con_mod4, 
-                                 ~ plotpair + in_out, 
-                                 type = "zero_inflated"), 
-                       dot.size = 5, 
-                       line.size = 2)
-
-spill_con_plot <- spill_con_plot + 
-  ggtitle("Control Plots") + 
-  xlab("Plot Pair") +
-  # ylab("Proportion of \n Heterospecific Pollen") +
-  ylab("") +
-  ylim(range(0, .15)) +
-  theme_classic(base_size = 35) +
-  scale_color_manual(name = "Location", 
-                     values = c("in" = cb[2], 
-                                "out" = cb[6]), 
-                     labels = c("Inside Plot",
-                                "Outside Plot")) + 
-  scale_x_discrete(limits = c("A",
-                              "C", 
-                              "D")) +
-  theme(legend.position = "bottom") +
-  annotate(geom = "text", 
-           y = 0.15, 
-           x = 2.5, 
-           label = "Location: P = 0.01", 
-           size = 7)
-
-# ggsave("figures/vet19_conloc_plot.png", 
-#        last_plot(), 
-#        device = "png",
-#        width = 6, 
-#        height = 4.25, 
-#        units = "in", 
-#        dpi = 300)
-
-###### In-Only Comparison Between Damage and Control ####
-# Global Model with vetch
-vet19_in_modv <- glmmTMB(proportion_het ~ treatment * plotpair + vetch +
-                          (1|date),
-                        data = filter(vetch19,
-                                      in_out == "in", 
-                                      !date == "2019-07-03"), # no in for damage
-                        family = beta_family(),
-                        ziformula = ~ treatment * plotpair,
-                        contrasts = list(treatment = "contr.sum",
-                                         plotpair = "contr.sum"))
-
-# Diagnostics
-summary(vet19_in_modv)
-simulateResiduals(vet19_in_modv, 
-                  plot = T) # A lot of dispersion
-testDispersion(vet19_in_modv)
-## NOTE: zero inflation estimates, look too suspicious for this model to be good
-
-# Global Model with milk_in
-vet19_in_modm <- glmmTMB(proportion_het ~ treatment * plotpair + 
-                           log(milk_in) + # Won't converge unless logged
-                           (1|date),
-                         data = filter(vetch19,
-                                       in_out == "in", 
-                                       !date == "2019-07-03"), # no in for damage
-                         family = beta_family(),
-                         ziformula = ~ treatment * plotpair,
-                         contrasts = list(treatment = "contr.sum",
-                                          plotpair = "contr.sum"))
-
-# Diagnostics
-summary(vet19_in_modm)
-simulateResiduals(vet19_in_modm, 
-                  plot = T) # A lot of dispersion and fail some test of variance
-## NOTE: zero inflation estimates, look too suspicious for this model to be good
-
-# Without interaction
-vet19_in_mod2 <- glmmTMB(proportion_het ~ treatment + plotpair + vetch +
-                          (1|date),
-                         data = filter(vetch19,
-                                       in_out == "in", 
-                                       !date == "2019-07-03"), # no in for damage
-                         family = beta_family(),
-                         ziformula = ~ treatment + plotpair,
-                         contrasts = list(treatment = "contr.sum",
-                                          plotpair = "contr.sum"))
-
-
-# Diagnostics
-summary(vet19_in_mod2)
-simulateResiduals(vet19_in_mod2, 
-                  plot = T) # A lot of dispersion and fail some test of variance
-## NOTE: zero nflation estimates, look too suspicious for this model to be good
-
-# Compare 
-AIC(vet19_in_modv, 
-    vet19_in_mod2) # better
-
-# Without random effects
-vet19_in_mod3 <- glmmTMB(proportion_het ~ treatment + plotpair + vetch,
-                         data = filter(vetch19,
-                                       in_out == "in", 
-                                       !date == "2019-07-03"), # no in for damage
-                         family = beta_family(),
-                         ziformula = ~ treatment + plotpair,
-                         contrasts = list(treatment = "contr.sum",
-                                          plotpair = "contr.sum"))
-
-# Diagnostics
-summary(vet19_in_mod3)
-simulateResiduals(vet19_in_mod3, 
-                  plot = T) # A lot of dispersion
-
-# Compare
-AIC(vet19_in_mod2, 
-    vet19_in_mod3) # better
-#               df       AIC
-# vet19_in_mod2 11 -164.2196
-# vet19_in_mod3 10 -166.21961
-
-# Without resources
-vet19_in_mod4 <- glmmTMB(proportion_het ~ treatment + plotpair,
-                         data = filter(vetch19,
-                                       in_out == "in", 
-                                       !date == "2019-07-03"), # no in for damage
-                         family = beta_family(),
-                         ziformula = ~ treatment + plotpair,
-                         contrasts = list(treatment = "contr.sum",
-                                          plotpair = "contr.sum"))
-
-# Diagnostics
-summary(vet19_in_mod4)
-simulateResiduals(vet19_in_mod4, 
-                  plot = T) # A lot of dispersion
-
-# Compare
-AIC(vet19_in_mod3, 
-    vet19_in_mod4) # delta is 1.97, but simpler is better
-#               df       AIC
-# vet19_in_mod3 10 -166.2196
-# vet19_in_mod4  9 -168.1827
-
-###### Best Fit #####
-# Family: beta  ( logit )
-# Formula:          proportion_het ~ treatment + plotpair
-# Zero inflation:                  ~treatment + plotpair
-# Data: filter(vetch19, in_out == "in", !date == "2019-07-03")
-# 
-# AIC      BIC   logLik deviance df.resid 
-# -168.2   -143.1     93.1   -186.2      111 
-# 
-# 
-# Dispersion parameter for beta family (): 18.2 
-# 
-# Conditional model:
-#             Estimate Std. Error z value Pr(>|z|)    
-# (Intercept) -2.40719    0.09179 -26.225   <2e-16 ***
-# treatment1  -0.18760    0.07675  -2.444   0.0145 *  
-# plotpair1        0.09911    0.10563   0.938   0.3481    
-# plotpair2       -0.21045    0.10489  -2.006   0.0448 *  
-# 
-# Zero-inflation model:
-#             Estimate Std. Error z value Pr(>|z|)    
-# (Intercept)  -1.5185     0.2770  -5.481 4.22e-08 ***
-# treatment1    0.4840     0.2410   2.008   0.0446 *  
-# plotpair1        -0.5140     0.3874  -1.327   0.1846    
-# plotpair2         0.4519     0.3190   1.417   0.1566    
-
-###### LRT #####
-lrtest(vet19_in_mod4, 
-       update(vet19_in_mod4, .~. -treatment))
-# Likelihood ratio test
-# 
-# Model 1: proportion_het ~ treatment + plotpair
-# Model 2: proportion_het ~ plotpair
-#   #Df LogLik Df  Chisq Pr(>Chisq)  
-# 1   9 93.091                       
-# 2   8 90.119 -1 5.9448    0.01476 *
-
-###### Plot ####
-vet19_in_plot <- plot(ggpredict(vet19_in_mod4, 
-                                 ~ plotpair + treatment, 
-                                 type = "zero_inflated"), 
-                      dot.size = 5, 
-                      line.size = 2)
-
-vet19_in_plot <- vet19_in_plot + 
-  ggtitle("") +
-  xlab("Plot Pair") +
-  # xlab("") +
-  ylab("Proportion of \n Heterospecific Pollen") +
-  # ylab("") +
-  ylim(range(0,.15)) +
-  theme_classic(base_size = 20) +
-  scale_color_manual(name = "Treatment", 
-                     values = c("control" = cb[4], 
-                                "damage" = cb[7]), 
-                     labels = c("Control",
-                                "Herbivory")) + 
-  scale_x_discrete(limits = c("B",
-                              "C", 
-                              "D")) +
-  theme(legend.position = "bottom") +
-  annotate(geom = "text", 
-           y = .15, 
-           x = 2.5, 
-           label = "Treatment: P = 0.02", 
-           size = 5)
-
-ggsave("figures/vet19_in_plot.png",
-       last_plot(),
-       device = "png",
-       width = 7,
-       height = 5,
-       units = "in",
-       dpi = 300)
-
-
-# ##### All Effect Spillover Plots #####
-# spill_plots <- spill_dam_plot +
-#   spill_con_plot  + 
-#   vet19_in_plot +
-#   plot_layout(guides = "collect") &
-#   theme(legend.position = "bottom", 
-#         plot.title = element_text(size = 25))
-# 
-# # Save
-# ggsave("figures/spillover_deposition.png", 
-#        last_plot(), 
-#        device = "png",
-#        width = 18, 
-#        height = 7, 
-#        units = "in",
-#        dpi = 300)
-
-#### 2019 Whorled Loosestrife ####
-# Global_model 
-spill_loo_mod <- glmmTMB(proportion_het ~ in_out * vetch + 
-                           (1|date), # will not converge with date as fe 
-                         data = filter(loose19, # only damage for in/out comp
-                                       treatment == "damage"),
-                         family = beta_family(),
-                         ziformula = ~ 1, # because no inflation in last model
-                         contrasts = list(in_out = "contr.sum"))
-
-# Diagnostics
-summary(spill_loo_mod)
-simulateResiduals(spill_loo_mod, 
-                  plot = T) 
-
-# Without random effects
-spill_loo_mod2 <- glmmTMB(proportion_het ~ in_out * vetch, 
-                         data = filter(loose19, # only damage for in/out comp
-                                       treatment == "damage"),
-                         family = beta_family(),
-                         ziformula = ~ 1, 
-                         contrasts = list(in_out = "contr.sum"))
-
-# Diagnostics
-summary(spill_loo_mod2)
-simulateResiduals(spill_loo_mod2, 
-                  plot = T) # outlier problem
-
-# Compare
-AIC(spill_loo_mod,
-    spill_loo_mod2) # simpler is better 
-
-# Without interaction
-spill_loo_mod3 <- glmmTMB(proportion_het ~ in_out + vetch, 
-                          data = filter(loose19, # only damage for in/out comp
-                                        treatment == "damage"),
-                          family = beta_family(),
-                          ziformula = ~ 1, 
-                          contrasts = list(in_out = "contr.sum"))
-
-# Diagnostics
-summary(spill_loo_mod3)
-simulateResiduals(spill_loo_mod3, 
-                  plot = T) # outlier problem
-
-# Compare
-AIC(spill_loo_mod2,
-    spill_loo_mod3) # simpler is better 
-
-# Without in_out
-spill_loo_mod4 <- glmmTMB(proportion_het ~  vetch, 
-                          data = filter(loose19, # only damage for in/out comp
-                                        treatment == "damage"),
-                          family = beta_family(),
-                          ziformula = ~ 1)
-
-# Diagnostics
-summary(spill_loo_mod4)
-simulateResiduals(spill_loo_mod4, 
-                  plot = T) # outlier problem
-
-# Compare
-AIC(spill_loo_mod3,
-    spill_loo_mod4) # better
-
-# Without resources
-spill_loo_mod5 <- glmmTMB(proportion_het ~ 1, 
-                          data = filter(loose19, # only damage for in/out comp
-                                        treatment == "damage"),
-                          family = beta_family(),
-                          ziformula = ~ 1, 
-                          contrasts = list(in_out = "contr.sum"))
-
-# Diagnostics
-summary(spill_loo_mod5)
-simulateResiduals(spill_loo_mod5, 
-                  plot = T) # outlier problem
-
-# Compare
-AIC(spill_loo_mod4,
-    spill_loo_mod5) # better
-
-###### Best Fit ####
-# Family: beta  ( logit )
-# Formula:          proportion_het ~ 1
-# Zero inflation:                  ~1
-# Data: filter(loose19, treatment == "damage")
-# 
-# AIC      BIC   logLik deviance df.resid 
-# -175.0   -167.8     90.5   -181.0       77 
-# 
-# 
-# Dispersion parameter for beta family (): 14.9 
-# 
-# Conditional model:
-#             Estimate Std. Error z value Pr(>|z|)    
-# (Intercept) -2.24564    0.09771  -22.98   <2e-16 ***
-# 
-# Zero-inflation model:
-#             Estimate Std. Error z value Pr(>|z|)    
-# (Intercept)   -2.944      0.513   -5.74 9.48e-09 ***
-
-###### LRT ####
-lrtest(spill_loo_mod3, 
-       update(spill_loo_mod3, .~. -in_out))
-# Likelihood ratio test
-# 
-# Model 1: proportion_het ~ in_out + vetch
-# Model 2: proportion_het ~ vetch
-#   #Df LogLik Df  Chisq Pr(>Chisq)
-# 1   5 91.758                     
-# 2   4 91.740 -1 0.0373     0.8468
-
-texreg(spill_loo_mod3, 
-       file = "figures/spill_loo_mod3.docx")
-
-
-######## Plot ####
-loo19_spill_plot <- plot(ggpredict(spill_loo_mod3, 
-                                 ~ vetch + in_out, 
-                                 type = "zero_inflated"), 
-                         dot.size = 5, 
-                         line.size = 2)
-
-loo19_spill_plot <- loo19_spill_plot + 
-  ggtitle(expression(paste(italic("L. quadrifolia, "), 
-                           "Simulated Herbivory Plots"))) + 
-  xlab(bquote(atop("Floral Resources (No. of ", 
-                 italic("Vicia cracca") ~ "Flower Racemes)"))) +
-  ylab("Proportion of \n Heterospecific Pollen") +
-  ylim(range(0,.18)) +
-  theme_classic(base_size = 30) +
-  scale_color_manual(name = "Location", 
-                     values = c("in" = cb[2], 
-                                "out" = cb[6]), 
-                     labels = c("Inside Plot",
-                                "Outside Plot")) + 
-  theme(legend.position = "bottom") +
-  annotate(geom = "text", 
-           y = .15, 
-           x = 24, 
-           label = "Location: P = 0.85 \n Resources: P = 0.11", 
-           size = 5.5)
-
-# Save
-ggsave("figures/loo19_spill_plot.png",
-       last_plot(),
-       device = "png",
-       width = 10,
-       height = 7,
-       units = "in",
-       dpi = 300)
-
-
-####### Appendix Table ####
-# For loop for making and saving tables
-tabs <- vector(mode = "list", 
-               length = 8)
-
-# name list objects
-names(tabs) <- names(app_summs)
-
-# insert changes to flextable::as_flextable.glmmTMB() to label zero-inflation
-# effects: Changes only last till session is closed
-trace(what = flextable:::as_flextable.glmmTMB, 
-      where = flextable, 
-      edit = TRUE)
-
-# In line 10 add: 
-# data_t$effect[data_t$component %in% "zi"] <- "Zero-inflation effects"
-
-# In line 26 change to:
-# ft <- set_header_labels(ft, term = "Terms", estimate = "Estimate", 
-# std.error = "Standard Error", statistic = "z-statistic", p.value = "p-value")
-
-for(i in 1:length(app_summs)){
-  # Get flextable
-  tabs[[i]] <- flextable::as_flextable(app_summs[[i]])
-  
-  # Add title at the top
-  tabs[[i]] <- add_header_lines(tabs[[i]],
-                                values = names(tabs)[i])
-  
-  # Check Plots
-  plot(tabs[[i]])
-  
-  title = paste0("table_", i)
-  
-  # Save
-  save_as_docx(title = tabs[[i]],
-               path = paste0(getwd(), "/tables/table_", i, ".docx"))
-}
-
-# Join table for species
-# Vetch
-read_docx() %>% 
-  body_add_flextable(value = tabs[[1]]) %>% 
-  body_add_flextable(value = tabs[[2]]) %>% 
-  body_add_flextable(value = tabs[[3]]) %>%
-  print(target = "tables/appendix_vetch_deposition.docx")
-
-# Galium
-read_docx() %>% 
-  body_add_flextable(value = tabs[[4]]) %>% 
-  body_add_flextable(value = tabs[[5]]) %>% 
-  body_add_flextable(value = tabs[[6]]) %>%
-  print(target = "tables/appendix_galium_deposition.docx")
-
-read_docx() %>% 
-  body_add_flextable(value = tabs[[7]]) %>% 
-  body_add_flextable(value = tabs[[8]]) %>% 
-  print(target = "tables/appendix_other_deposition.docx")
+# ###### editing legends for ggeffect::plot()
+# guides(linetype = guide_legend(override.aes = list(linetype = c(1,1),
+#                                                    color = c(cb[4], cb[7]),
+#                                                    shape = c(17,19)), 
+#                                keywidth = 5))

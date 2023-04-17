@@ -29,6 +29,34 @@ cb <- c("#000000", # black
         "#D55E00", # red
         "#CC79A7") # pink
 
+# Load common legend for plots 
+common_legend <- readRDS("figures/common_legend.RDS")
+
+# Function to change point shapes in plots created via ggeffects wrapper fun.
+# Function to change point shapes in plots created via ggeffects wrapper fun.
+manual_shape_change <- function(x, shape){
+  
+  # x = ggplot to modify
+  temp <- ggplot_build(x)
+  
+  # v = vector of points to change
+  v <- vector()
+  if(nrow(temp$data[[1]]) == 4){
+    v <- c(1,3)
+  } else if(nrow(temp$data[[1]]) == 6) {
+    v <- c(1,3,5)
+  } else if(nrow(temp$data[[1]]) == 8){
+    v <- c(1,3,5,7)
+  }
+  
+  # set shape to triangle (17)
+  temp$data[[1]]$shape[v] <- shape
+  
+  #
+  return(as.ggplot(ggplot_gtable(temp)))
+}
+
+
 # Load data
 # 2018
 seed18 <- read.csv("data/2018_vetch_seedset.csv",
@@ -53,15 +81,6 @@ for(i in 1:nrow(seed21)){
   }
 }
 
-# New column variable describing whether the plat fruited or not
-seed18$fruit <- NA
-for(i in 1:nrow(seed18)){
-  if(seed18$pods[i] == 0){
-    seed18$fruit[i] <- 0 
-  } else {
-    seed18$fruit[i] <- 1
-  }
-}
 
 # Fix row vid 51 in seed21
 seed21$treatment[51] <- "control"
@@ -127,11 +146,11 @@ ggplot(data = seed21,
 ##### 2018 Model Selection ####
 # Global Model
 seed18_mod <- glmmTMB(seeds ~ treatment * site, 
-                       data = seed18, 
-                       family = tweedie(),
-                       dispformula =  ~ pods + treatment,
-                       contrasts = list(treatment = "contr.sum", 
-                                        site = "contr.sum"))
+                      data = seed18, 
+                      family = tweedie(),
+                      dispformula =  ~ pods + treatment,
+                      contrasts = list(treatment = "contr.sum", 
+                                       site = "contr.sum"))
 
 # Diagnostics
 summary(seed18_mod)
@@ -214,13 +233,8 @@ seed18_plot <- seed18_plot +
            label = "Treatment: P = 0.14 \n Treatment x Plot Pair = P = 0.01", 
            size = 7)
 
-# ggsave("figures/seed18_plot.pdf", 
-#        last_plot(), 
-#        device = "pdf",
-#        width = 6, 
-#        height = 4, 
-#        units = "in", 
-#        dpi = 300)
+# change shape for treatment
+seed18_plot <- manual_shape_change(seed18_plot, 17)
 
 ##### 2021 Model Selection ####
 seed21_mod <- glmmTMB(seeds ~ treatment + site +
@@ -231,7 +245,7 @@ seed21_mod <- glmmTMB(seeds ~ treatment + site +
                       contrasts = list(treatment = "contr.sum",
                                        site = "contr.sum"))
 
-# Diagnostics
+# Model check
 summary(seed21_mod) # estimates look off, this may be a result of overfitting
 simulateResiduals(seed21_mod, 
                   plot = T)
@@ -245,7 +259,7 @@ seed21_mod2 <-  glmmTMB(seeds ~ treatment + site,
                         contrasts = list(treatment = "contr.sum",
                                          site = "contr.sum"))
 
-# Diagnostics
+# Model check
 summary(seed21_mod2)
 simulateResiduals(seed21_mod2, 
                   plot = T)
@@ -253,12 +267,9 @@ testDispersion(simulateResiduals(seed21_mod2,
                                  plot = T), 
                alternative = "less")
 
-
+# Compare
 AIC(seed21_mod2, 
     seed21_mod3) 
-AICc(seed21_mod2)
-AICc(seed21_mod3)
-
 
 ###### Best Fit ####
 # Family: tweedie  ( log )
@@ -317,23 +328,18 @@ seed21_plot <- seed21_plot +
            label = "Treatment: P = 0.10", 
            size = 7)
 
-# ggsave("figures/seed21_plot.pdf", 
-#        last_plot(), 
-#        device = "pdf",
-#        width = 6, 
-#        height = 4, 
-#        units = "in", 
-#        dpi = 300)
+# change shape for treatment
+seed21_plot <- manual_shape_change(seed21_plot, 17)
 
 ##### All Plots Together ####
-seed_plots <- seed18_plot + 
-  seed21_plot + 
+seed_plots <- (seed18_plot + seed21_plot) /
+  common_legend + 
   plot_annotation(expression(paste(italic("Vicia cracca "), 
                                    "Seed Production"))) + 
-  plot_layout(guides = "collect") &
+  plot_layout(guides = "collect", 
+              height = c(8,1)) &
   theme(legend.position = "bottom", 
         plot.title = element_text(size = 30))
-
 
 # Save
 ggsave("figures/vetch_seed_production.png", 

@@ -19,6 +19,8 @@ library(effects)
 library(patchwork)
 library(flextable)
 library(EnvStats) # Add sample size to barplots
+library(ggplotify)
+library(cowplot)
 
 # Set color-blind palette
 cb <- c("#000000", # black
@@ -30,7 +32,32 @@ cb <- c("#000000", # black
         "#D55E00", # red
         "#CC79A7") # pink
 
-# load date 
+# Load common legend for plots 
+common_legend <- readRDS("figures/common_legend.RDS")
+
+# Function to change point shapes in plots created via ggeffects wrapper fun.
+manual_shape_change <- function(x, shape){
+  # x = ggplot to modify
+  temp <- ggplot_build(x)
+  
+  # v = vector of points to change
+  v <- vector()
+  if(nrow(temp$data[[1]]) == 4){
+    v <- c(1,3)
+  } else if(nrow(temp$data[[1]]) == 6) {
+    v <- c(1,3,5)
+  } else if(nrow(temp$data[[1]]) == 8){
+    v <- c(1,3,5,7)
+  }
+  
+  # set shape to triangle (17)
+  temp$data[[1]]$shape[v] <- shape
+  
+  #
+  return(as.ggplot(ggplot_gtable(temp)))
+}
+
+# load data 
 pollinia18 <- read.csv("data/2018_pollinators.csv", 
                        header = T)
 pollinia19 <- read.csv("data/2019_pollinators.csv", 
@@ -47,7 +74,7 @@ mpollinia21 <- pollinia21 %>% filter(plant_species == "milkweed")
 mpollinia19 <- mpollinia19[complete.cases(mpollinia19),]
 mpollinia19$pollinia <- as.integer(mpollinia19$pollinia)
 
-# Make site, treatment, date and poll species factor
+# Site, treatment, date and poll species as factors
 vars <- c("site",
           "treatment", 
           "date", 
@@ -73,12 +100,12 @@ poll18_mod <- glmmTMB(pollinia ~ treatment * site + date,
                                        date = "contr.sum"))
 
 poll18_mod_poi <- glmmTMB(pollinia ~ treatment * site + date,  
-                        data = mpollinia18, 
-                        family = poisson(), 
-                        ziformula = ~ treatment * site, 
-                        contrasts = list(treatment = "contr.sum",
-                                         site = "contr.sum", 
-                                         date = "contr.sum"))
+                          data = mpollinia18, 
+                          family = poisson(), 
+                          ziformula = ~ treatment * site, 
+                          contrasts = list(treatment = "contr.sum",
+                                           site = "contr.sum", 
+                                           date = "contr.sum"))
 
 # Compare
 AIC(poll18_mod, # best
@@ -89,7 +116,7 @@ summary(poll18_mod)
 simulateResiduals(poll18_mod, 
                   plot = T) # perfect
 
-# remove date
+# drop date
 poll18_mod2 <- glmmTMB(pollinia ~ treatment * site,
                        ziformula = ~ treatment * site, 
                        data = mpollinia18, 
@@ -100,18 +127,18 @@ poll18_mod2 <- glmmTMB(pollinia ~ treatment * site,
 AIC(poll18_mod, 
     poll18_mod2) #better
 
-# Diagnostics 
+# Model check 
 summary(poll18_mod2)
 simulateResiduals(poll18_mod2, 
                   plot = T)
 
-# remove interaction 
+# drop interaction 
 poll18_mod3 <- glmmTMB(pollinia ~ treatment + site,
                        ziformula = ~ treatment * site, 
                        data = mpollinia18, 
                        family = nbinom2(), 
                        contrasts = list(treatment = "contr.sum",
-                                         site = "contr.sum"))
+                                        site = "contr.sum"))
 # Compare
 AIC(poll18_mod2, 
     poll18_mod3) # Best
@@ -121,7 +148,7 @@ summary(poll18_mod3)
 simulateResiduals(poll18_mod3, 
                   plot = T)
 
-# remove ziformula interacton
+# drop ziformula interacton
 poll18_mod4 <- glmmTMB(pollinia ~ treatment + site,
                        ziformula = ~ treatment + site, 
                        data = mpollinia18, 
@@ -138,7 +165,7 @@ summary(poll18_mod4)
 simulateResiduals(poll18_mod4, 
                   plot = T)
 
-# remove ziformula treatment
+# drop ziformula treatment
 poll18_mod5 <- glmmTMB(pollinia ~ treatment + site,
                        ziformula = ~ site, 
                        data = mpollinia18, 
@@ -200,8 +227,8 @@ ggpredict(poll18_mod5,
           type = "zero_inflated")
 
 ggeffect(poll18_mod5, 
-          terms = "treatment", 
-          type = "zero_inflated")
+         terms = "treatment", 
+         type = "zero_inflated")
 
 ggemmeans(poll18_mod5, 
           ~ treatment)
@@ -213,6 +240,7 @@ poll18_plot <- plot(ggpredict(poll18_mod5,
                     dot.size = 5, 
                     line.size = 2)
 
+# Customize
 poll18_plot <- poll18_plot +
   ggtitle("2018") + 
   labs(# Turn on/off
@@ -227,20 +255,15 @@ poll18_plot <- poll18_plot +
                      labels = c("Control",
                                 "Herbivory")) + 
   scale_x_discrete(limits=c("A", "C")) +
-  theme(legend.position = "bottom") + 
+  theme(legend.position = "") + 
   annotate(geom = "text", 
            y = 5, 
            x = 1.75, 
            label = "Treatment: P = 0.01", 
            size = 7)
 
-# ggsave("figures/pollinia18_plot.pdf", 
-#        last_plot(), 
-#        device = "pdf",
-#        width = 5, 
-#        height = 4.5, 
-#        units = "in", 
-#        dpi = 300)
+# Change shape by treatment
+poll18_plot <- manual_shape_change(poll18_plot, 17)
 
 ##### 2019 Model Selection ####
 poll19_mod <- glmmTMB(pollinia ~ treatment + site + milk_in + 
@@ -263,12 +286,12 @@ poll19_mod_poi <- glmmTMB(pollinia ~ treatment + site + milk_in +
 AIC(poll19_mod, # better
     poll19_mod_poi)
 
-# Diagnostics
+# Model check
 summary(poll19_mod)
 simulateResiduals(poll19_mod, 
                   plot = T)
 
-# Remove date 
+# drop date 
 poll19_mod2 <- glmmTMB(pollinia ~ treatment + site + milk_in + 
                          treatment:site + treatment:milk_in,  
                        data = mpollinia19, 
@@ -281,12 +304,12 @@ poll19_mod2 <- glmmTMB(pollinia ~ treatment + site + milk_in +
 AIC(poll19_mod, # better
     poll19_mod2)
 
-# Diagnostics
+# Model check
 summary(poll19_mod2)
 simulateResiduals(poll19_mod2, 
                   plot = T)
 
-# Remove interaction in ziformula
+# drop interaction in ziformula
 poll19_mod3 <- glmmTMB(pollinia ~ treatment + site + milk_in + 
                          treatment:site + treatment:milk_in  + (1|date),  
                        data = mpollinia19, 
@@ -299,17 +322,17 @@ poll19_mod3 <- glmmTMB(pollinia ~ treatment + site + milk_in +
 AIC(poll19_mod, 
     poll19_mod3) # better
 
-# Diagnostics
+# Model check
 summary(poll19_mod3)
 simulateResiduals(poll19_mod3, 
                   plot = T)
 
-# Remove treatment:site interaction
+# drop treatment:site interaction
 poll19_mod4 <- glmmTMB(pollinia ~ treatment + site + milk_in +
                          treatment:milk_in  + (1|date),  
                        data = mpollinia19, 
                        family = nbinom2(),
-                       ziformula = ~treatment + site, 
+                       ziformula = ~ treatment + site, 
                        contrasts = list(treatment = "contr.sum",
                                         site = "contr.sum"))
 
@@ -317,12 +340,12 @@ poll19_mod4 <- glmmTMB(pollinia ~ treatment + site + milk_in +
 AIC(poll19_mod3, 
     poll19_mod4) # better
 
-# Diagnostics
+# Model check
 summary(poll19_mod4)
 simulateResiduals(poll19_mod4, 
                   plot = T)
 
-# Remove treatment from ziformula
+# drop treatment from ziformula
 poll19_mod5 <- glmmTMB(pollinia ~ treatment + site + milk_in +
                          treatment:milk_in  + (1|date),  
                        data = mpollinia19, 
@@ -335,12 +358,12 @@ poll19_mod5 <- glmmTMB(pollinia ~ treatment + site + milk_in +
 AIC(poll19_mod4, 
     poll19_mod5) # better
 
-# Diagnostics
+# Model check
 summary(poll19_mod5)
 simulateResiduals(poll19_mod5,
                   plot = T)
 
-# Remove site from ziformula
+# drop site from ziformula
 poll19_mod6 <- glmmTMB(pollinia ~ treatment + site + milk_in +
                          treatment:milk_in  + (1|date),  
                        data = mpollinia19, 
@@ -353,14 +376,14 @@ poll19_mod6 <- glmmTMB(pollinia ~ treatment + site + milk_in +
 AIC(poll19_mod5, # better
     poll19_mod6) 
 
-# Diagnostics
+# Model check
 summary(poll19_mod6)
 simulateResiduals(poll19_mod6, 
                   plot = T) 
 
-# Remove treatment:milk_in interaction
+# drop treatment:milk_in interaction
 poll19_mod7 <- glmmTMB(pollinia ~ treatment + site + milk_in +
-                          (1|date),  
+                         (1|date),  
                        data = mpollinia19, 
                        family = nbinom2(),
                        ziformula = ~ site, 
@@ -372,30 +395,30 @@ poll19_mod7 <- glmmTMB(pollinia ~ treatment + site + milk_in +
 AIC(poll19_mod5, 
     poll19_mod7) # better
 
-# Diagnostics
+# Model check
 summary(poll19_mod7)
 simulateResiduals(poll19_mod7, # residual vs predicted a little off
                   plot = T)
 
 
-# remove site 
+# drop site 
 poll19_mod8 <- glmmTMB(pollinia ~ treatment + milk_in + (1|date),  
-                        data = mpollinia19, 
-                        family = nbinom2(),
-                        ziformula = ~ site, 
-                        contrasts = list(treatment = "contr.sum",
-                                         site = "contr.sum"))
+                       data = mpollinia19, 
+                       family = nbinom2(),
+                       ziformula = ~ site, 
+                       contrasts = list(treatment = "contr.sum",
+                                        site = "contr.sum"))
 
 # Compare
 AIC(poll19_mod7, 
     poll19_mod8) # better
 
-# Diagnostics
+# Model check
 summary(poll19_mod8)
 simulateResiduals(poll19_mod8, # residual vs predicted a little off
                   plot = T)
 
-# remove site from zi formula
+# drop site from zi formula
 poll19_mod9 <- glmmTMB(pollinia ~ treatment + milk_in + (1|date),  
                        data = mpollinia19, 
                        family = nbinom2(),
@@ -407,7 +430,7 @@ poll19_mod9 <- glmmTMB(pollinia ~ treatment + milk_in + (1|date),
 AIC(poll19_mod8, 
     poll19_mod9) # better
 
-# Diagnostics
+# Model check
 summary(poll19_mod9)
 simulateResiduals(poll19_mod9, # residual vs predicted a little off
                   plot = T)
@@ -471,13 +494,14 @@ poll19_plot <- plot(ggpredict(poll19_mod7,
                     dot.size = 5, 
                     line.size = 2)
 
+# Customize
 poll19_plot <- poll19_plot + 
   ggtitle("2019") + 
   labs(# Turn on/off
     x = "Plot Pair",
     # y = "Number of Pollinia", 
     y = "",
-    ) + 
+  ) + 
   ylim(range(0,7)) +
   theme_classic(base_size = 30) +
   scale_color_manual(name = "Treatment", 
@@ -489,20 +513,15 @@ poll19_plot <- poll19_plot +
                               "B",
                               "C", 
                               "D")) +
-  theme(legend.position = "bottom") +
+  theme(legend.position = "") +
   annotate(geom = "text", 
            y = 7, 
            x = 3, 
            label = "Treatment: P = 0.08",
            size = 7)
 
-# ggsave("figures/pollinia19_plot.pdf", 
-#        last_plot(), 
-#        device = "pdf",
-#        width = 5, 
-#        height = 4.5, 
-#        units = "in", 
-#        dpi = 300)
+# Change shape by treatment
+poll19_plot <- manual_shape_change(poll19_plot, 17)
 
 # Check effect of resource
 plot(ggpredict(poll19_mod9, 
@@ -514,7 +533,7 @@ poll21_mod <- glmmTMB(pollinia ~ treatment + site + milk_in +
                         treatment:milk_in  + (1|date),  
                       data = mpollinia21, 
                       family = nbinom2(),
-                      ziformula = ~treatment * site, 
+                      ziformula = ~ treatment * site, 
                       contrasts = list(treatment = "contr.sum",
                                        site = "contr.sum"))
 
@@ -522,7 +541,7 @@ poll21_mod_poi <- glmmTMB(pollinia ~ treatment + site + milk_in +
                             treatment:milk_in  + (1|date),  
                           data = mpollinia21, 
                           family = poisson(),
-                          ziformula = ~treatment * site, 
+                          ziformula = ~ treatment * site, 
                           contrasts = list(treatment = "contr.sum",
                                            site = "contr.sum"))
 
@@ -535,12 +554,12 @@ summary(poll21_mod)
 simulateResiduals(poll21_mod, 
                   plot = T)
 
-# Remove random effects
+# drop random effects
 poll21_mod2 <- glmmTMB(pollinia ~ treatment + site + milk_in +
                          treatment:milk_in,  
                        data = mpollinia21, 
                        family = nbinom2(),
-                       ziformula = ~treatment * site, 
+                       ziformula = ~ treatment * site, 
                        contrasts = list(treatment = "contr.sum",
                                         site = "contr.sum"))
 
@@ -553,12 +572,12 @@ summary(poll21_mod2)
 simulateResiduals(poll21_mod2, 
                   plot = T)
 
-# Remove interaction in zi
+# Drop interaction in zi
 poll21_mod3 <- glmmTMB(pollinia ~ treatment + site + milk_in +
                          treatment:milk_in,  
                        data = mpollinia21, 
                        family = nbinom2(),
-                       ziformula = ~treatment + site, 
+                       ziformula = ~ treatment + site, 
                        contrasts = list(treatment = "contr.sum",
                                         site = "contr.sum"))
 
@@ -566,12 +585,12 @@ poll21_mod3 <- glmmTMB(pollinia ~ treatment + site + milk_in +
 AIC(poll21_mod2, 
     poll21_mod3) # better
 
-# Model Check
+# Model check
 summary(poll21_mod3)
 simulateResiduals(poll21_mod3, 
                   plot = T)
 
-# Remove interaction
+# Drop interaction
 poll21_mod4 <- glmmTMB(pollinia ~ treatment + site + milk_in,  
                        data = mpollinia21, 
                        family = nbinom2(),
@@ -588,7 +607,7 @@ summary(poll21_mod4)
 simulateResiduals(poll21_mod4, 
                   plot = T)
 
-# Remove treatment from zi 
+# Drop treatment from zi 
 poll21_mod5 <- glmmTMB(pollinia ~ treatment + site + milk_in,  
                        data = mpollinia21, 
                        family = nbinom2(),
@@ -605,7 +624,7 @@ summary(poll21_mod5)
 simulateResiduals(poll21_mod5, 
                   plot = T)
 
-# Remove site from zi 
+# Drop site from zi 
 poll21_mod6 <- glmmTMB(pollinia ~ treatment + site + milk_in,  
                        data = mpollinia21, 
                        family = nbinom2(),
@@ -622,7 +641,7 @@ summary(poll21_mod6)
 simulateResiduals(poll21_mod6, 
                   plot = T)
 
-# Remove remove site or resources
+# Drop site or resources
 poll21_mod7a <- glmmTMB(pollinia ~ treatment + site,  
                        data = mpollinia21, 
                        family = nbinom2(),
@@ -675,7 +694,7 @@ simulateResiduals(poll21_mod7b,
 #             Estimate Std. Error z value Pr(>|z|)    
 # (Intercept)  -1.2959     0.3496  -3.706  0.00021 ***
 
-# Note milk_in is significant when we remove the site factor
+# Note milk_in is significant when we drop the site factor
 
 ##### LRT #####
 lrtest(poll21_mod6, 
@@ -701,6 +720,7 @@ poll21_plot <- plot(ggpredict(poll21_mod6,
                     dot.size = 5, 
                     line.size = 2)
 
+# Customize
 poll21_plot <- poll21_plot + 
   ggtitle("2021") + 
   labs(# Turn on/off
@@ -708,7 +728,7 @@ poll21_plot <- poll21_plot +
     x = "",
     # y = "Number of Pollinia", 
     y = "",
-    ) + 
+  ) + 
   ylim(range(0,7)) +
   theme_classic(base_size = 30) +
   scale_color_manual(name = "Treatment", 
@@ -727,21 +747,15 @@ poll21_plot <- poll21_plot +
            label = "Treatment: P = 0.85",
            size = 7)
 
-# ggsave("figures/pollinia21_plot.pdf", 
-#        last_plot(), 
-#        device = "pdf",
-#        width = 5, 
-#        height = 4.5, 
-#        units = "in", 
-#        dpi = 300)
+poll21_plot <- manual_shape_change(poll21_plot, 17)
+
 
 ##### All Plot Together #####
-pollinia_plots <- poll18_plot + 
-  poll19_plot + 
-  poll21_plot +
-  plot_layout(guides = "collect") & 
-  theme(legend.position = "bottom", 
-        plot.title = element_text(size = 30))
+pollinia_plots <- (poll18_plot + poll19_plot + poll21_plot) /
+  common_legend  +
+  plot_layout(guides = "collect", 
+              height = c(8,1)) & 
+  theme(plot.title = element_text(size = 30))
 
 # # Save
 ggsave("figures/pollinia_loads.png",
@@ -755,7 +769,7 @@ ggsave("figures/pollinia_loads.png",
 ###
 #### POLLINIA BY GENUS MODELS #####
 ##### Subset Data for Bombus, Apis and Others ####
-# 2018 
+# Subset 2018 
 keep <- c("Apis", "Bombus", "Other Bees")
 bees_poll18 <- mpollinia18 %>% 
   mutate(poll_simple = case_when(poll_simple == keep[1] ~
@@ -765,56 +779,66 @@ bees_poll18 <- mpollinia18 %>%
                                  poll_simple == keep[3] ~ 
                                    as.character(keep[3]),
                                  TRUE ~ "Other Floral Visitors"))
+
+# `poll_simple` as factor
 bees_poll18$poll_simple <- as.factor(bees_poll18$poll_simple)
 
-# 2019
+# Subset 2019
 bees_poll19 <- mpollinia19 %>% # only apis and bombus due to low No
   mutate(poll_simple = case_when(poll_simple == keep[1] ~
                                    as.character(keep[1]),
                                  poll_simple == keep[2] ~ 
                                    as.character(keep[2]), 
                                  TRUE ~ "Other Floral Visitors"))
+
+# `poll_simple` as factor
 bees_poll19$poll_simple <- as.factor(bees_poll19$poll_simple)
 
-# 2021
+# Subset 2021
 bees_poll21 <- mpollinia21 %>% # only apis and bombus due to low No
   mutate(poll_simple = case_when(poll_simple == keep[1] ~
                                    as.character(keep[1]),
                                  poll_simple == keep[2] ~ 
                                    as.character(keep[2]), 
                                  TRUE ~ "Other Floral Visitors"))
+
+# `poll_simple` as factor
 bees_poll21$poll_simple <- as.factor(bees_poll21$poll_simple)
 
 ##### 2018 Model Selection ####
 # More simple global model due to convergence issues
 apoll18_mod <- glmmTMB(pollinia ~ treatment * poll_simple + date,  
-                      data = bees_poll18,
-                      family = nbinom2(), 
-                      ziformula = ~ treatment + poll_simple,
-                      contrasts = list(treatment = "contr.sum",
-                                       site = "contr.sum", 
-                                       date = "contr.sum"))
-
-simulateResiduals(apoll18_mod, 
-                  plot = T)
-summary(apoll18_mod)
-
-# Remove treatement from zi
-apoll18_mod2 <- glmmTMB(pollinia ~ treatment * poll_simple + date,  
                        data = bees_poll18,
                        family = nbinom2(), 
-                       ziformula = ~ poll_simple,
+                       ziformula = ~ treatment + poll_simple,
                        contrasts = list(treatment = "contr.sum",
                                         site = "contr.sum", 
                                         date = "contr.sum"))
 
+# Model check
+simulateResiduals(apoll18_mod, 
+                  plot = T)
+summary(apoll18_mod)
+
+# Drop treatement from zi
+apoll18_mod2 <- glmmTMB(pollinia ~ treatment * poll_simple + date,  
+                        data = bees_poll18,
+                        family = nbinom2(), 
+                        ziformula = ~ poll_simple,
+                        contrasts = list(treatment = "contr.sum",
+                                         site = "contr.sum", 
+                                         date = "contr.sum"))
+
+# Model check
 simulateResiduals(apoll18_mod2, 
                   plot = T)
 summary(apoll18_mod2)
+
+# Compare
 AICc(apoll18_mod)
 AICc(apoll18_mod2) # Better
 
-# Remove date
+# Drop date
 apoll18_mod3 <- glmmTMB(pollinia ~ treatment * poll_simple,  
                         data = bees_poll18,
                         family = nbinom2(), 
@@ -823,13 +847,16 @@ apoll18_mod3 <- glmmTMB(pollinia ~ treatment * poll_simple,
                                          site = "contr.sum", 
                                          date = "contr.sum"))
 
+# Model check
 simulateResiduals(apoll18_mod3, 
                   plot = T)
 summary(apoll18_mod3)
+
+# Compare
 AICc(apoll18_mod2)
 AICc(apoll18_mod3)
 
-# Remove interaction
+# Drop interaction
 apoll18_mod4 <- glmmTMB(pollinia ~ treatment + poll_simple,  
                         data = bees_poll18,
                         family = nbinom2(), 
@@ -838,10 +865,12 @@ apoll18_mod4 <- glmmTMB(pollinia ~ treatment + poll_simple,
                                          site = "contr.sum", 
                                          date = "contr.sum"))
 
-# Model Checks
+# Model check
 simulateResiduals(apoll18_mod4, 
                   plot = T)
 summary(apoll18_mod4)
+
+# Compare
 AICc(apoll18_mod3)
 AICc(apoll18_mod4) # better, done
 
@@ -879,18 +908,19 @@ apoll18_plot <- plot(ggpredict(apoll18_mod4,
                      dot.size = 5, 
                      line.size = 2)
 
-# get sample size 
+# Get sample size 
 nsizes <- table(bees_poll18$poll_simple)
 labs <- c("Apis", 
           "Bombus", 
           "Other Bees", 
           "OFV's")
+
 for(i in 1:length(nsizes)){
   labs[i] <- paste(labs[i],
                    " \n n =",
                    nsizes[i])}
 
-# Modify Plot
+# Customize
 apoll18_plot <- apoll18_plot + 
   ggtitle("2018") + 
   labs(# Turn on/off
@@ -916,18 +946,13 @@ apoll18_plot <- apoll18_plot +
                                    vjust = 1,
                                    hjust = 1)) + 
   annotate(geom = "text", 
-           y = 7, 
-           x = 3.1, 
-           label = "Treatment: p-value = 0.01",
-           size = 5.5)
+           y = 6.5, 
+           x = 3.2, 
+           label = "Treatment: \n p-value = 0.01",
+           size = 7)
 
-# ggsave("figures/pollinia21_plot.pdf", 
-#        last_plot(), 
-#        device = "pdf",
-#        width = 5, 
-#        height = 4.5, 
-#        units = "in", 
-#        dpi = 300)
+# change point shape by treatment
+apoll18_plot <- manual_shape_change(apoll18_plot)
 
 ##### 2019 Model Selecition ####
 # More simple global model due to convergence issues
@@ -941,28 +966,32 @@ apoll19_mod <- glmmTMB(pollinia ~ treatment * poll_simple + site + milk_in +
                                         date = "contr.sum",
                                         poll_simple = "contr.sum"))
 
+# Model check
 simulateResiduals(apoll19_mod, 
                   plot = T)
 summary(apoll19_mod)
 
-# Remove site
+# drop site
 apoll19_mod2 <- glmmTMB(pollinia ~ treatment * poll_simple + milk_in + 
-                         (1|date),  
-                       data = bees_poll19,
-                       family = nbinom2(), 
-                       ziformula = ~ treatment + poll_simple,
-                       contrasts = list(treatment = "contr.sum",
-                                        site = "contr.sum", 
-                                        date = "contr.sum",
-                                        poll_simple = "contr.sum"))
+                          (1|date),  
+                        data = bees_poll19,
+                        family = nbinom2(), 
+                        ziformula = ~ treatment + poll_simple,
+                        contrasts = list(treatment = "contr.sum",
+                                         site = "contr.sum", 
+                                         date = "contr.sum",
+                                         poll_simple = "contr.sum"))
 
+# Model check
 simulateResiduals(apoll19_mod2, 
                   plot = T)
 summary(apoll19_mod2)
+
+# Compare
 AICc(apoll19_mod)
 AICc(apoll19_mod2)
 
-# Remove random effects
+# Drop random effects
 apoll19_mod3 <- glmmTMB(pollinia ~ treatment * poll_simple + milk_in,  
                         data = bees_poll19,
                         family = nbinom2(), 
@@ -971,13 +1000,16 @@ apoll19_mod3 <- glmmTMB(pollinia ~ treatment * poll_simple + milk_in,
                                          site = "contr.sum", 
                                          date = "contr.sum"))
 
+# Model check
 simulateResiduals(apoll19_mod3, 
                   plot = T)
 summary(apoll19_mod3)
+
+# Compare
 AICc(apoll19_mod2) # better, keep random effects
 AICc(apoll19_mod3)
 
-# Remove interaction
+# Drop interaction
 apoll19_mod4 <- glmmTMB(pollinia ~ treatment + poll_simple + milk_in +
                           (1|date),  
                         data = bees_poll19,
@@ -988,30 +1020,36 @@ apoll19_mod4 <- glmmTMB(pollinia ~ treatment + poll_simple + milk_in +
                                          date = "contr.sum", 
                                          poll_simple = "contr.sum"))
 
+# Model Check
 simulateResiduals(apoll19_mod4, 
                   plot = T)
 summary(apoll19_mod4)
+
+# Compare
 AICc(apoll19_mod2)
 AICc(apoll19_mod4) # better
 
-# Remove poll_simple from zi
+# Drop poll_simple from zi
 apoll19_mod5 <- glmmTMB(pollinia ~ treatment + poll_simple + milk_in +
-                         (1|date),  
-                       data = bees_poll19,
-                       family = nbinom2(), 
-                       ziformula = ~ treatment,
-                       contrasts = list(treatment = "contr.sum",
-                                        site = "contr.sum", 
-                                        date = "contr.sum"))
+                          (1|date),  
+                        data = bees_poll19,
+                        family = nbinom2(), 
+                        ziformula = ~ treatment,
+                        contrasts = list(treatment = "contr.sum",
+                                         site = "contr.sum", 
+                                         date = "contr.sum"))
 
+# Model check
 simulateResiduals(apoll19_mod5, 
                   plot = T)
 summary(apoll19_mod5)
+
+# Compare
 AICc(apoll19_mod2)
 AICc(apoll19_mod4) # best
 AICc(apoll19_mod5)
 
-# Remove interaction
+# Drop interaction
 apoll19_mod6 <- glmmTMB(pollinia ~ treatment + poll_simple +
                           (1|date),  
                         data = bees_poll19,
@@ -1021,12 +1059,15 @@ apoll19_mod6 <- glmmTMB(pollinia ~ treatment + poll_simple +
                                          site = "contr.sum", 
                                          date = "contr.sum"))
 
+# Model check
 simulateResiduals(apoll19_mod6, 
                   plot = T)
 summary(apoll19_mod6)
+
+# Compare
 AICc(apoll19_mod4)
 AICc(apoll19_mod6) # reducing it makes it worse
-xz
+
 ##### Best Fit ####
 # Family: nbinom2  ( log )
 # Formula:          pollinia ~ treatment + poll_simple + milk_in + (1 | date)
@@ -1067,16 +1108,18 @@ apoll19_plot <- plot(ggpredict(apoll19_mod4,
                      dot.size = 5, 
                      line.size = 2)
 
-# get sample size 
+# Get sample size 
 nsizes <- table(bees_poll19$poll_simple)
 labs <- c("Apis", 
           "Bombus", 
           "OFV's")
+
 for(i in 1:length(nsizes)){
   labs[i] <- paste(labs[i],
                    " \n n =",
                    nsizes[i])}
 
+# Customize
 apoll19_plot <- apoll19_plot + 
   ggtitle("2019") + 
   labs(# Turn on/off
@@ -1103,10 +1146,14 @@ apoll19_plot <- apoll19_plot +
                                    vjust = 1,
                                    hjust = 1)) + 
   annotate(geom = "text", 
-           y = 7, 
-           x = 2.6, 
-           label = "Treatment: p-value = 0.44",
-           size = 5.5)
+           y = 6.5, 
+           x = 2.7, 
+           label = "Treatment: \n p-value = 0.44",
+           size = 7)
+
+# change point shape by treatment
+apoll19_plot <- manual_shape_change(apoll19_plot, 17)
+
 
 ##### 2021 Model Selection ####
 apoll21_mod <- glmmTMB(pollinia ~ treatment * poll_simple + site + milk_in + 
@@ -1118,11 +1165,13 @@ apoll21_mod <- glmmTMB(pollinia ~ treatment * poll_simple + site + milk_in +
                                         site = "contr.sum", 
                                         date = "contr.sum", 
                                         poll_simple = "contr.sum"))
+
+# Model check
 simulateResiduals(apoll21_mod, 
                   plot = T)
 summary(apoll21_mod) # fail to converge
 
-# Remove site
+# Drop site
 apoll21_mod2 <- glmmTMB(pollinia ~ treatment * poll_simple + milk_in + 
                           (1|date),  
                         data = bees_poll21,
@@ -1132,11 +1181,13 @@ apoll21_mod2 <- glmmTMB(pollinia ~ treatment * poll_simple + milk_in +
                                          site = "contr.sum", 
                                          date = "contr.sum", 
                                          poll_simple = "contr.sum"))
+
+# Model check
 simulateResiduals(apoll21_mod2, 
                   plot = T)
 summary(apoll21_mod2) # fail to converge
 
-# Remove random effects
+# Drop random effects
 apoll21_mod3 <- glmmTMB(pollinia ~ treatment * poll_simple + milk_in,  
                         data = bees_poll21,
                         family = nbinom2(), 
@@ -1145,13 +1196,17 @@ apoll21_mod3 <- glmmTMB(pollinia ~ treatment * poll_simple + milk_in,
                                          site = "contr.sum", 
                                          date = "contr.sum", 
                                          poll_simple = "contr.sum"))
+
+# Model check
 simulateResiduals(apoll21_mod3, 
                   plot = T)
 summary(apoll21_mod3)
+
+# Compare
 AICc(apoll21_mod2)
 AICc(apoll21_mod3) 
 
-# Instead remove poll_simple from zi
+# Instead drop poll_simple from zi
 apoll21_mod4 <- glmmTMB(pollinia ~ treatment * poll_simple + milk_in,  
                         data = bees_poll21,
                         family = nbinom2(), 
@@ -1160,13 +1215,17 @@ apoll21_mod4 <- glmmTMB(pollinia ~ treatment * poll_simple + milk_in,
                                          site = "contr.sum", 
                                          date = "contr.sum", 
                                          poll_simple = "contr.sum"))
+
+# Model check
 simulateResiduals(apoll21_mod4, 
                   plot = T)
 summary(apoll21_mod4)
+
+# Compare
 AICc(apoll21_mod3) # better
 AICc(apoll21_mod4) 
 
-# Remove interaction instead 
+# Drop interaction instead 
 apoll21_mod5 <- glmmTMB(pollinia ~ treatment + poll_simple + milk_in,  
                         data = bees_poll21,
                         family = nbinom2(), 
@@ -1175,9 +1234,13 @@ apoll21_mod5 <- glmmTMB(pollinia ~ treatment + poll_simple + milk_in,
                                          site = "contr.sum", 
                                          date = "contr.sum", 
                                          poll_simple = "contr.sum"))
+
+# Model check
 simulateResiduals(apoll21_mod5, 
                   plot = T)
 summary(apoll21_mod5)
+
+# Compare
 AICc(apoll21_mod3) # still better
 AICc(apoll21_mod5)
 
@@ -1216,19 +1279,20 @@ apoll21_plot <- plot(ggpredict(apoll21_mod3,
                                ~ poll_simple + treatment, 
                                type = "fe.zi"), 
                      dot.size = 5, 
-                     line.size = 2)
+                     line.size = 2) 
 
 # get sample size 
 nsizes <- table(bees_poll21$poll_simple)
 labs <- c("Apis", 
           "Bombus", 
           "OFV's")
+
 for(i in 1:length(nsizes)){
   labs[i] <- paste(labs[i],
                    " \n n =",
                    nsizes[i])}
 
-
+# Customize
 apoll21_plot <- apoll21_plot + 
   ggtitle("2021") + 
   labs(# Turn on/off
@@ -1239,11 +1303,11 @@ apoll21_plot <- apoll21_plot +
   ) + 
   ylim(range(0, 7)) +
   theme_classic(base_size = 30) +
-  scale_color_manual(name = "Treatment", 
-                     values = c("control" = cb[4], 
-                                "damage" = cb[7]), 
+  scale_color_manual(name = "Treatment",
+                     values = c("control" = cb[4],
+                                "damage" = cb[7]),
                      labels = c("Control",
-                                "Herbivory")) + 
+                                "Herbivory")) +
   scale_x_discrete(limits = c("Apis", 
                               "Bombus", 
                               "Other Floral Visitors"),
@@ -1257,26 +1321,27 @@ apoll21_plot <- apoll21_plot +
   annotate(geom = "text", 
            y = 6.15, 
            x = 2.5, 
-           label = "Treatment: p-value = 0.04 \n Treatment x Taxo. Group: \n p-value = .01",
-           size = 5.5)
+           label = "Treatment: p-value = 0.04 \n Treatment x Taxo. Group: \n p-value = 0.01",
+           size = 7)
+
+# change point shape by treatment
+apoll21_plot <- manual_shape_change(apoll21_plot, 17)
 
 ##### All Plots Together #####
-apoll_plots <- apoll18_plot + 
-  apoll19_plot + 
-  apoll21_plot +
-  plot_layout(guides = "collect") & 
-  theme(legend.position = "bottom", 
-        plot.title = element_text(size = 30))
+apoll_plots <- (apoll18_plot + apoll19_plot + apoll21_plot) / 
+  common_legend +
+  plot_layout(guides = "collect", 
+              height = c(8,1)) & 
+  theme(plot.title = element_text(size = 30))
 
 # Save
 ggsave("figures/pollinia_loads_bees.png",
        last_plot(),
        device = "png",
        width = 18,
-       height = 7,
+       height = 10,
        units = "in",
        dpi = 300)
-
 
 ### CORBICULA MODELS W/ BINOMIAL DISTRIBUTION ####
 ##### 2018 Model Selection #####
@@ -1295,25 +1360,27 @@ summary(corb18_mod)
 simulateResiduals(corb18_mod, 
                   plot = T)
 
-# Remove site
+# Drop site
 corb18_mod2 <- glmmTMB(corbs ~ treatment * poll_simple + date,  
-                      data = filter(bees_poll18, 
-                                    poll_simple == "Apis" | 
-                                      poll_simple == "Bombus"),
-                      family = binomial(),
-                      contrasts = list(treatment = "contr.sum",
-                                       site = "contr.sum", 
-                                       date = "contr.sum",
-                                       poll_simple = "contr.sum"))
+                       data = filter(bees_poll18, 
+                                     poll_simple == "Apis" | 
+                                       poll_simple == "Bombus"),
+                       family = binomial(),
+                       contrasts = list(treatment = "contr.sum",
+                                        site = "contr.sum", 
+                                        date = "contr.sum",
+                                        poll_simple = "contr.sum"))
 
 # Model Check
 summary(corb18_mod2)
 simulateResiduals(corb18_mod2, 
                   plot = T)
+
+# Compare
 AICc(corb18_mod)
 AICc(corb18_mod2) # Best
 
-# Remove interaction
+# drop interaction
 corb18_mod3 <- glmmTMB(corbs ~ treatment + poll_simple + date,  
                        data = filter(bees_poll18, 
                                      poll_simple == "Apis" | 
@@ -1328,10 +1395,12 @@ corb18_mod3 <- glmmTMB(corbs ~ treatment + poll_simple + date,
 summary(corb18_mod3)
 simulateResiduals(corb18_mod3, 
                   plot = T)
+
+# Compare
 AICc(corb18_mod2)
 AICc(corb18_mod3) # Best
 
-# Remove date
+# Drop date
 corb18_mod4 <- glmmTMB(corbs ~ treatment + poll_simple,  
                        data = filter(bees_poll18, 
                                      poll_simple == "Apis" | 
@@ -1346,6 +1415,8 @@ corb18_mod4 <- glmmTMB(corbs ~ treatment + poll_simple,
 summary(corb18_mod4)
 simulateResiduals(corb18_mod4, 
                   plot = T)
+
+# Compare
 AICc(corb18_mod3)
 AICc(corb18_mod4) # Best
 
@@ -1362,11 +1433,12 @@ corb19_mod <- glmmTMB(corbs ~ treatment * poll_simple + site + scale(milk_in) +
                                        date = "contr.sum",
                                        poll_simple = "contr.sum"))
 
+# Model Check
 summary(corb19_mod)
-simulateResiduals(corb19_mod, plot = T)
-AICc(corb19_mod)
+simulateResiduals(corb19_mod, 
+                  plot = T)
 
-#Remove random effect
+#drop random effect
 corb19_mod2 <- glmmTMB(corbs ~ treatment * poll_simple + site + scale(milk_in),  
                       data = filter(bees_poll19, 
                                     poll_simple == "Apis" | 
@@ -1377,12 +1449,16 @@ corb19_mod2 <- glmmTMB(corbs ~ treatment * poll_simple + site + scale(milk_in),
                                        date = "contr.sum",
                                        poll_simple = "contr.sum"))
 
+# Model check
 summary(corb19_mod2)
-simulateResiduals(corb19_mod2, plot = T)
+simulateResiduals(corb19_mod2, 
+                  plot = T)
+
+# Compare
 AICc(corb19_mod)
 AICc(corb19_mod2) # Better
 
-#Remove interaction
+# Drop interaction
 corb19_mod3 <- glmmTMB(corbs ~ treatment + poll_simple + site + scale(milk_in),  
                        data = filter(bees_poll19, 
                                      poll_simple == "Apis" | 
@@ -1393,12 +1469,15 @@ corb19_mod3 <- glmmTMB(corbs ~ treatment + poll_simple + site + scale(milk_in),
                                         date = "contr.sum",
                                         poll_simple = "contr.sum"))
 
+# Model Check
 summary(corb19_mod3)
 simulateResiduals(corb19_mod3, plot = T)
+
+# Compare
 AICc(corb19_mod2)
 AICc(corb19_mod3) # Better
 
-#Remove site
+# Drop site
 corb19_mod4 <- glmmTMB(corbs ~ treatment + poll_simple + scale(milk_in),  
                        data = filter(bees_poll19, 
                                      poll_simple == "Apis" | 
@@ -1409,12 +1488,16 @@ corb19_mod4 <- glmmTMB(corbs ~ treatment + poll_simple + scale(milk_in),
                                         date = "contr.sum",
                                         poll_simple = "contr.sum"))
 
+# Model check
 summary(corb19_mod4)
-simulateResiduals(corb19_mod4, plot = T)
+simulateResiduals(corb19_mod4, 
+                  plot = T)
+
+# Compare
 AICc(corb19_mod3)
 AICc(corb19_mod4) # Better
 
-#Remove milk_in
+# drop milk_in
 corb19_mod5 <- glmmTMB(corbs ~ treatment + poll_simple ,  
                        data = filter(bees_poll19, 
                                      poll_simple == "Apis" | 
@@ -1425,12 +1508,16 @@ corb19_mod5 <- glmmTMB(corbs ~ treatment + poll_simple ,
                                         date = "contr.sum",
                                         poll_simple = "contr.sum"))
 
+# Model check
 summary(corb19_mod5)
-simulateResiduals(corb19_mod5, plot = T)
+simulateResiduals(corb19_mod5, 
+                  plot = T)
+
+# Compare
 AICc(corb19_mod4)
 AICc(corb19_mod5) # Better
 
-#Remove milk_in
+# Drop milk_in
 corb19_mod6 <- glmmTMB(corbs ~ treatment * poll_simple ,  
                        data = filter(bees_poll19, 
                                      poll_simple == "Apis" | 
@@ -1441,10 +1528,15 @@ corb19_mod6 <- glmmTMB(corbs ~ treatment * poll_simple ,
                                         date = "contr.sum",
                                         poll_simple = "contr.sum"))
 
+# Model check
 summary(corb19_mod6)
-simulateResiduals(corb19_mod5, plot = T)
+simulateResiduals(corb19_mod5, 
+                  plot = T)
+
+# Compare
 AICc(corb19_mod5) # Better
 AICc(corb19_mod6) 
+
 ##### 2021 Model Selection ####
 corb21_mod <- glmmTMB(corbs ~ treatment * poll_simple + milk_in + 
                         (1|date),  
@@ -1456,27 +1548,33 @@ corb21_mod <- glmmTMB(corbs ~ treatment * poll_simple + milk_in +
                                        site = "contr.sum", 
                                        date = "contr.sum", 
                                        poll_simple = "contr.sum"))
+
+# Model check
 simulateResiduals(corb21_mod, 
                   plot = T)
 summary(corb21_mod) # fail to converge
 
-# Remove random effect
+# Drop random effect
 corb21_mod2 <- glmmTMB(corbs ~ treatment * poll_simple + milk_in,
-                      data = filter(bees_poll21, 
-                                    poll_simple == "Apis" |
-                                      poll_simple == "Bombus"),
-                      family = binomial(),
-                      contrasts = list(treatment = "contr.sum",
-                                       site = "contr.sum", 
-                                       date = "contr.sum", 
-                                       poll_simple = "contr.sum"))
+                       data = filter(bees_poll21, 
+                                     poll_simple == "Apis" |
+                                       poll_simple == "Bombus"),
+                       family = binomial(),
+                       contrasts = list(treatment = "contr.sum",
+                                        site = "contr.sum", 
+                                        date = "contr.sum", 
+                                        poll_simple = "contr.sum"))
+
+# Model check
 simulateResiduals(corb21_mod2, 
                   plot = T)
 summary(corb21_mod2) # fail to converge
+
+# Compare
 AICc(corb21_mod)
 AICc(corb21_mod2) # Better
 
-# Remove interaction
+# Drop interaction
 corb21_mod3 <- glmmTMB(corbs ~ treatment + poll_simple + milk_in,
                        data = filter(bees_poll21, 
                                      poll_simple == "Apis" |
@@ -1486,13 +1584,17 @@ corb21_mod3 <- glmmTMB(corbs ~ treatment + poll_simple + milk_in,
                                         site = "contr.sum", 
                                         date = "contr.sum", 
                                         poll_simple = "contr.sum"))
+
+# Model
 simulateResiduals(corb21_mod3, 
                   plot = T)
 summary(corb21_mod3)
+
+# Compare
 AICc(corb21_mod2)
 AICc(corb21_mod3) # Better
 
-# Remove milk_in 
+# Drop milk_in 
 corb21_mod4 <- glmmTMB(corbs ~ treatment + poll_simple,
                        data = filter(bees_poll21, 
                                      poll_simple == "Apis" |
@@ -1502,12 +1604,17 @@ corb21_mod4 <- glmmTMB(corbs ~ treatment + poll_simple,
                                         site = "contr.sum", 
                                         date = "contr.sum", 
                                         poll_simple = "contr.sum"))
+
+# Model check
 simulateResiduals(corb21_mod4, 
                   plot = T)
 summary(corb21_mod4)
+
+# Comparison
 AICc(corb21_mod3)
 AICc(corb21_mod4) # Better
 
+# Drop taxonomic group 
 corb21_mod5 <- glmmTMB(corbs ~ treatment,
                        data = filter(bees_poll21, 
                                      poll_simple == "Apis" |
@@ -1517,9 +1624,13 @@ corb21_mod5 <- glmmTMB(corbs ~ treatment,
                                         site = "contr.sum", 
                                         date = "contr.sum", 
                                         poll_simple = "contr.sum"))
+
+# Model check
 simulateResiduals(corb21_mod5, 
                   plot = T)
 summary(corb21_mod5)
+
+# Compare
 AICc(corb21_mod4)
 AICc(corb21_mod5) # Better
 
@@ -1535,32 +1646,28 @@ ftable(bees_poll21[c("treatment",
                      "poll_simple", 
                      "date")])
 
-# rename plot pairs for plotting
-levels(bees_poll18$site) <- c("A", 
-                              "C")
-levels(bees_poll19$site) <- c("A", 
-                              "B",
-                              "C",
-                              "D")
-levels(bees_poll21$site) <- c("A", 
-                              "B", 
-                              "C", 
-                              "D")
+# Rename plot pairs for plotting
+levels(bees_poll18$site) <- c("A", "C")
+levels(bees_poll19$site) <- c("A", "B", "C", "D")
+levels(bees_poll21$site) <- c("A", "B", "C", "D")
 
 ##### 2018 Model by Site ####
 sites18 <- levels(as.factor(bees_poll18$site))
+
 con_tabs18 <- vector(mode = "list",
                      length = length(sites18))
+
 names(con_tabs18) <- sites18
 res18 <- con_tabs18
 
 for(i in 1:length(sites18)){
-  # subset data by date
+  # Subset data by date
   temp <- filter(bees_poll18,
-                        site == sites18[i])
+                 site == sites18[i])
   
-  # make ftable
-  con_tabs18[[i]] <- ftable(temp[c("treatment", "poll_simple")])
+  # Make ftable
+  con_tabs18[[i]] <- ftable(temp[c("treatment", 
+                                   "poll_simple")])
   
   
   # as.matrix and transpose
@@ -1569,7 +1676,7 @@ for(i in 1:length(sites18)){
   # Check
   # print(con_tabs18[[i]])
   
-  # fisher exact test
+  # Fisher exact test
   res18[[i]] <- chisq.test(x = as.data.frame(con_tabs18[[i]])$damage, 
                            p = as.data.frame(con_tabs18[[i]])$control, 
                            rescale.p = T)
@@ -1580,20 +1687,22 @@ for(i in 1:length(sites18)){
 }
 
 ##### 2019 Model by Site ####
-
 sites19 <- levels(as.factor(bees_poll19$site))
+
 con_tabs19 <- vector(mode = "list",
                      length = length(sites19))
+
 names(con_tabs19) <- sites19
 res19 <- con_tabs19
 
 for(i in 1:length(sites19)){
-  # subset data by date
+  # Subset data by date
   temp <- filter(bees_poll19,
                  site == sites19[i])
   
-  # make ftable
-  con_tabs19[[i]] <- ftable(temp[c("treatment", "poll_simple")])
+  # Make ftable
+  con_tabs19[[i]] <- ftable(temp[c("treatment", 
+                                   "poll_simple")])
   
   
   # as.matrix and transpose
@@ -1602,7 +1711,7 @@ for(i in 1:length(sites19)){
   # Check
   # print(con_tabs19[[i]])
   
-  # fisher exact test
+  # Fisher exact test
   res19[[i]] <- chisq.test(x = as.data.frame(con_tabs19[[i]])$damage, 
                            p = as.data.frame(con_tabs19[[i]])$control, 
                            rescale.p = T)
@@ -1612,20 +1721,22 @@ for(i in 1:length(sites19)){
 }
 
 ##### 2021 Model by Site ####
-
 sites21 <- levels(as.factor(bees_poll21$site))
+
 con_tabs21 <- vector(mode = "list",
                      length = length(sites21))
+
 names(con_tabs21) <- sites21
 res21 <- con_tabs21
 
 for(i in 1:length(sites21)){
-  # subset data by date
+  # Subset data by date
   temp <- filter(bees_poll21,
                  site == sites21[i])
   
-  # make ftable
-  con_tabs21[[i]] <- ftable(temp[c("treatment", "poll_simple")])
+  # Make ftable
+  con_tabs21[[i]] <- ftable(temp[c("treatment", 
+                                   "poll_simple")])
   
   
   # as.matrix and transpose
@@ -1634,7 +1745,7 @@ for(i in 1:length(sites21)){
   # Check
   # print(con_tabs21[[i]])
   
-  # fisher exact test
+  # Fisher exact test
   res21[[i]] <- chisq.test(x = as.data.frame(con_tabs21[[i]])$damage, 
                            p = as.data.frame(con_tabs21[[i]])$control,
                            rescale.p = T)
@@ -1656,7 +1767,9 @@ names(chi_tab) <- c("Year",
 
 # join lists
 res_all <- c(res18, res19, res21)
-names(res_all) <- c("1", "3", "1", "2", "3", "4", "1", "2", "3", "4")
+names(res_all) <- c("A", "C", 
+                    "A", "B", "C", "D", 
+                    "A", "B", "C", "D")
 
 # insert year
 chi_tab$Year[1:2] <- "2018"
@@ -1684,7 +1797,7 @@ chi_tab$chi <- round(chi_tab$chi,
                      digits = 3)
 
 chi_tab$P <- round(chi_tab$P, 
-                           digits = 3)
+                   digits = 3)
 
 # create flextable
 chi_ft <- flextable(chi_tab)
@@ -1790,7 +1903,7 @@ comp18 <- ggplot(data = bees_poll18,
     # x = "Treatment"
     x = "", 
     y = "Proportion"
-    ) + 
+  ) + 
   scale_y_continuous(breaks = seq(0.0, 1, 0.25),
                      limits = c(0, 1.15)) +
   theme_classic(base_size = 30) +
@@ -1832,7 +1945,7 @@ comp19 <- ggplot(data = bees_poll19,
     x = "", 
     # y = "Proportion", 
     y = ""
-    ) +
+  ) +
   scale_y_continuous(breaks = seq(0.0, 1, 0.25),
                      limits = c(0, 1.15)) +
   theme_classic(base_size = 30) + 
@@ -1855,7 +1968,7 @@ comp19 <- ggplot(data = bees_poll19,
             aes(y = poll_simple), 
             label = "*", 
             size = 20)
-  
+
 
 ## 2021
 # Create text df for significant
@@ -1867,7 +1980,7 @@ ann_text1 <- tribble(
 
 ann_text2 <- ann_text1
 ann_text2[1] <- "B"
-  
+
 # Plot
 comp21 <- ggplot(data = bees_poll21, 
                  aes(x = treatment)) + 
@@ -1880,7 +1993,7 @@ comp21 <- ggplot(data = bees_poll21,
     x = "", 
     # y = "Proportion", 
     y = "" 
-      ) + 
+  ) + 
   scale_y_continuous(breaks = seq(0.0, 1, 0.25),
                      limits = c(0, 1.15)) +
   theme_classic(base_size = 30) +
@@ -1905,13 +2018,11 @@ comp21 <- ggplot(data = bees_poll21,
             size = 20)
 
 ##### All Plots together ####
-(comp_plots <- comp18 + 
-   comp19 + 
-   comp21 +
+(comp_plots <- comp18 + comp19 + comp21 +
    plot_layout(guides = "collect") &
    theme(legend.position = "bottom", 
          plot.title = element_text(size = 30))
- )
+)
 
 # Save
 ggsave("figures/pollinator_composition.png",
@@ -1924,7 +2035,7 @@ ggsave("figures/pollinator_composition.png",
 
 
 ##### Vetch Floral Visitors #####
-# keep only polls on galium
+# keep only polls on vetch
 vpollinia18 <- pollinia18 %>% 
   filter(plant_species == "vetch")
 vpollinia19 <- pollinia19 %>% 
@@ -1935,20 +2046,32 @@ vpollinia21 <- pollinia21 %>%
 # Format Taxonomic Group Labels
 # '18 Make broader "Other Insect" group
 vpollinia18$poll_genus <- as.factor(vpollinia18$poll_genus)
-levels(vpollinia18$poll_genus)[4:6] <- "Other Insect"
+levels(vpollinia18$poll_genus)[4:6] <- "OFV's"
 
 # '19 Syrphus to "Other Insect" group
 vpollinia19$poll_genus <- as.factor(vpollinia19$poll_genus)
-levels(vpollinia19$poll_genus)[6] <- "Other Insect" 
+levels(vpollinia19$poll_genus)[5:6] <- "OFV's" 
 
 # '21 Syrphidae to "Other Insect"
 vpollinia21$poll_genus <- as.factor(vpollinia21$poll_genus)
-levels(vpollinia21$poll_genus)[7] <- "Other Insect"
+levels(vpollinia21$poll_genus)[c(6:7)] <- "OFV's"
+
+vpollinia <- cbind(vpollinia18, vpollinia19, vpollinia19)
+
+
+vetch_leg <- c("Andrena" = cb[1], 
+               "Bombus" = cb[2], 
+               "OFV's" = cb[3],
+               "Agapostemon" = cb[4],
+               "Apis" = cb[5],
+               "Lepidoptera" = cb[6],
+               "Megachile" = cb[7],
+               "Osmia" = cb[8])
 
 # Plot proportions
 # 2018
 vcomp18 <- ggplot(data = vpollinia18, 
-                 aes(x = site)) + 
+                  aes(x = site)) + 
   geom_bar(aes(fill = poll_genus), 
            position = "fill") + 
   ggtitle("2018") + 
@@ -1962,17 +2085,10 @@ vcomp18 <- ggplot(data = vpollinia18,
   scale_y_continuous(breaks = seq(0.0, 1, 0.25),
                      limits = c(-0.05, 1)) +
   theme_classic(base_size = 30) +
-  scale_x_discrete(labels = c("A", 
-                              "C")) +
-scale_fill_manual(name = "Taxonomic Group", # Include all for single legend
-                  values = c("Andrena" = cb[1], 
-                             "Bombus" = cb[2], 
-                             "Other Insect" = cb[3],
-                             "Agapostemon" = cb[4],
-                             "Apis" = cb[5],
-                             "Lepidoptera" = cb[6],
-                             "Megachile" = cb[7],
-                             "Osmia" = cb[8])) +
+  scale_x_discrete(labels = c("A", "C")) +
+  scale_fill_manual(name = "Taxonomic Group", # Include all for single legend
+                    values = vetch_leg,
+                    limits = names(vetch_leg)) + # includes nonpresent vars.
   annotate(geom = "text", 
            label = paste("n =", 
                          as.character(table(vpollinia18$site))), 
@@ -1980,7 +2096,7 @@ scale_fill_manual(name = "Taxonomic Group", # Include all for single legend
            x = c(1:2), 
            size = 6)
 
-  
+
 # 2019
 vcomp19 <- ggplot(data = vpollinia19, 
                   aes(x = site)) + 
@@ -1999,23 +2115,17 @@ vcomp19 <- ggplot(data = vpollinia19,
   theme_classic(base_size = 30) +
   scale_x_discrete(labels = "C") +
   scale_fill_manual(name = "Taxonomic Group", # Include all for single legend
-                    values = c("Andrena" = cb[1], 
-                               "Bombus" = cb[2], 
-                               "Other Insect" = cb[3],
-                               "Agapostemon" = cb[4],
-                               "Apis" = cb[5],
-                               "Lepidoptera" = cb[6],
-                               "Megachile" = cb[7],
-                               "Osmia" = cb[8])) +
-  annotate(geom = "text", 
-           label = paste("n =", 
-                         as.character(table(vpollinia19$site))), 
-           y = -0.05, 
-           x = 1, 
-           size = 6)
+                    values = vetch_leg,
+                    limits = names(vetch_leg)) +
+  annotate(geom = "text",
+           label = paste("n =",
+                         as.character(table(vpollinia19$site))),
+           y = -0.05,
+           x = 1,
+           size = 6) 
 
 
-# 2019
+# 2021
 vcomp21 <- ggplot(data = vpollinia21, 
                   aes(x = site)) + 
   geom_bar(aes(fill = poll_genus), 
@@ -2036,22 +2146,17 @@ vcomp21 <- ggplot(data = vpollinia21,
                               "C", 
                               "D")) +
   scale_fill_manual(name = "Taxonomic Group", # Include all for single legend
-                    values = c("Andrena" = cb[1], 
-                               "Bombus" = cb[2], 
-                               "Other Insect" = cb[3],
-                               "Agapostemon" = cb[4],
-                               "Apis" = cb[5],
-                               "Lepidoptera" = cb[6],
-                               "Megachile" = cb[7],
-                               "Osmia" = cb[8])) +
+                    values = vetch_leg,
+                    limits = names(vetch_leg)) +
   annotate(geom = "text", 
            label = paste("n =", 
                          as.character(table(vpollinia21$site))), 
            y = -0.05, 
            x = c(1:4), 
-           size = 6)
+           size = 6) 
 
-vetch_comps <- vcomp18 + 
+# Collect plots
+vetch_comps <- vcomp18 +
   vcomp19 + 
   vcomp21 +
   plot_layout(guides = "collect") & 
@@ -2077,7 +2182,7 @@ gpollinia19 <- pollinia19 %>%
 gpollinia21 <- pollinia21 %>% 
   filter(plant_species == "galium")
 
-# Format Taxonomic Group Labels
+# Change taxonomic group labels
 for(i in 1:nrow(gpollinia18)){
   if(gpollinia18$poll_simple[i] == "Bombus" ||
      gpollinia18$poll_simple[i] == "Wasp"){
@@ -2087,28 +2192,28 @@ for(i in 1:nrow(gpollinia18)){
     gpollinia18$poll_simple[i] <- "Diptera"
   }
   if(gpollinia18$poll_simple[i] == "Other"){
-    gpollinia18$poll_simple[i] <- "Other Insect"
+    gpollinia18$poll_simple[i] <- "OFV's"
   }
 }
 
 for(i in 1:nrow(gpollinia19)){
-  print(gpollinia19$poll_simple[i])
-  if(gpollinia19$poll_simple[i] == "Lepidoptera"){
-    gpollinia19$poll_simple[i] == "Other Insect"
+  if(gpollinia19$poll_simple[i] == "Lepidoptera" | 
+     gpollinia19$poll_simple[i] == "Other Insect"){
+    gpollinia19$poll_simple[i] <- "OFV's"
   }
   if(!(gpollinia19$poll_simple[i] == "Diptera" ||
-       gpollinia19$poll_simple[i] == "Other Insect")){
+       gpollinia19$poll_simple[i] == "OFV's")){
     gpollinia19$poll_simple[i] <- as.character("Hymenoptera")
   }
 }
 
 for(i in 1:nrow(gpollinia21)){
-  print(gpollinia21$poll_simple[i])
-  if(gpollinia21$poll_simple[i] == "Lepidoptera"){
-    gpollinia21$poll_simple[i] == "Other Insect"
+  if(gpollinia21$poll_simple[i] == "Lepidoptera" |
+     gpollinia21$poll_simple[i] == "Other Insect"){
+    gpollinia21$poll_simple[i] <- "OFV's"
   }
   if(!(gpollinia21$poll_simple[i] == "Diptera" ||
-       gpollinia21$poll_simple[i] == "Other Insect")){
+       gpollinia21$poll_simple[i] == "OFV's")){
     gpollinia21$poll_simple[i] <- as.character("Hymenoptera")
   }
 }
@@ -2131,9 +2236,9 @@ gcomp18 <- ggplot(data = gpollinia18,
                      limits = c(-0.05, 1)) +
   theme_classic(base_size = 30) +
   scale_fill_manual(name = "Taxonomic Group", 
-                       values = c("Diptera" = cb[1], 
-                                  "Hymenoptera" = cb[2], 
-                                  "Other Insect" = cb[3])) +
+                    values = c("Diptera" = cb[1], 
+                               "Hymenoptera" = cb[2], 
+                               "OFV's" = cb[3])) +
   scale_x_discrete(labels = c("A", 
                               "C")) +
   annotate(geom = "text", 
@@ -2167,7 +2272,7 @@ gcomp19 <- ggplot(data = gpollinia19,
   scale_fill_manual(name = "Taxonomic Group", 
                     values = c("Diptera" = cb[1], 
                                "Hymenoptera" = cb[2], 
-                               "Other Insect" = cb[3])) +
+                               "OFV's" = cb[3])) +
   annotate(geom = "text", 
            label = paste("n =", 
                          as.character(table(gpollinia19$site))), 
@@ -2198,7 +2303,7 @@ gcomp21 <- ggplot(data = gpollinia21,
   scale_fill_manual(name = "Taxonomic Group", 
                     values = c("Diptera" = cb[1], 
                                "Hymenoptera" = cb[2], 
-                               "Other Insect" = cb[3])) +
+                               "OFV's" = cb[3])) +
   annotate(geom = "text", 
            label = paste("n =", 
                          as.character(table(gpollinia21$site))), 
