@@ -1716,8 +1716,7 @@ bas18_plot <- manual_shape_change(bas18_plot, 17)
 ## NOTE: not starting w/ interactions because model won't converge
 
 # Global Model with vetch as resource
-loo19_modv <- glmmTMB(proportion_het ~ treatment + date + vetch + 
-                        treatment:vetch,
+loo19_modv <- glmmTMB(proportion_het ~ treatment + date + vetch,
                       data = loose19,
                       family = beta_family(),
                       ziformula = ~ treatment + date,
@@ -1747,12 +1746,14 @@ AIC(loo19_modv,
     loo19_modm) # Not sure why these are the same
 
 # Without zero inflation formula
-loo19_mod2 <- glmmTMB(proportion_het ~ treatment + date + vetch + treatment:vetch,
+loo19_mod2 <- glmmTMB(proportion_het ~ treatment + date + vetch,
                       data = loose19,
                       family = beta_family(),
                       ziformula = ~ 1,
                       contrasts = list(treatment = "contr.sum", 
                                        date = "contr.sum"))
+
+
 
 # Model check
 summary(loo19_mod2)
