@@ -416,10 +416,10 @@ app_summs[[1]] <- vet18_mod2
 # Dispersion parameter for beta family (): 8.53 
 # 
 # Conditional model:
-#                   Estimate Std. Error z value Pr(>|z|)    
-# (Intercept)      -1.732445   0.082940 -20.888  < 2e-16 ***
-# treatment1       -0.006775   0.074029  -0.092 0.927083    
-# plotpair1         -0.020404   0.074032  -0.276 0.782850    
+#                      Estimate Std. Error z value Pr(>|z|)    
+# (Intercept)          -1.732445   0.082940 -20.888  < 2e-16 ***
+# treatment1           -0.006775   0.074029  -0.092 0.927083    
+# plotpair1            -0.020404   0.074032  -0.276 0.782850    
 # treatment1:plotpair1 -0.246177   0.074447  -3.307 0.000944 ***
 # 
 # Zero-inflation model:
@@ -495,7 +495,7 @@ vet18_plot <- vet18_plot +
            x = 1.6,
            y = .27,
            label = paste("Treatment: P = 0.93\n",
-                         "Treatment x Plot Pair: \n P = 0.02"), 
+                         "Treatment x Plot Pair: \n P = 0.01"), 
            size = 8) 
 
 # change shape for treatment
@@ -891,7 +891,7 @@ vet21_plot <- vet21_plot +
   annotate(geom = "text", 
            y = .1, 
            x = 3,
-           label = "Treatment: P = 0.07", 
+           label = "Treatment: P = 0.04", 
            size = 8) 
 
 # change shape for treatment
@@ -1504,7 +1504,6 @@ emmeans(gal21_mod3,
 # 
 # Confidence level used: 0.95 
 # Intervals are back-transformed from the logit scale 
-
 
 ###### Plot ####
 gal21_plot <- plot(ggpredict(gal21_mod3, 

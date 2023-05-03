@@ -246,7 +246,7 @@ poll18_plot <- poll18_plot +
   labs(# Turn on/off
     # x = "Plot Pair",
     x = "", 
-    y = "Number of Pollinia") + 
+    y = "Number of Pollinia \n per Floral Visitor") + 
   ylim(range(0,5)) +
   theme_classic(base_size = 30) +
   scale_color_manual(name = "Treatment", 
@@ -499,7 +499,7 @@ poll19_plot <- poll19_plot +
   ggtitle("2019") + 
   labs(# Turn on/off
     x = "Plot Pair",
-    # y = "Number of Pollinia", 
+    # y = "Number of Pollinia \n per Floral Visitor", 
     y = "",
   ) + 
   ylim(range(0,7)) +
@@ -726,7 +726,7 @@ poll21_plot <- poll21_plot +
   labs(# Turn on/off
     # x = "Plot Pair",
     x = "",
-    # y = "Number of Pollinia", 
+    # y = "Number of Pollinia \n per Floral Visitor", 
     y = "",
   ) + 
   ylim(range(0,7)) +
@@ -744,7 +744,7 @@ poll21_plot <- poll21_plot +
   annotate(geom = "text", 
            y = 7, 
            x = 3, 
-           label = "Treatment: P = 0.85",
+           label = "Treatment: P = 0.86",
            size = 7)
 
 poll21_plot <- manual_shape_change(poll21_plot, 17)
@@ -757,7 +757,7 @@ pollinia_plots <- (poll18_plot + poll19_plot + poll21_plot) /
               height = c(8,1)) & 
   theme(plot.title = element_text(size = 30))
 
-# # Save
+# Save
 ggsave("figures/pollinia_loads.png",
        last_plot(),
        device = "png",
@@ -766,7 +766,7 @@ ggsave("figures/pollinia_loads.png",
        units = "in",
        dpi = 300)
 
-###
+
 #### POLLINIA BY GENUS MODELS #####
 ##### Subset Data for Bombus, Apis and Others ####
 # Subset 2018 
@@ -926,7 +926,7 @@ apoll18_plot <- apoll18_plot +
   labs(# Turn on/off
     # x = "Species",
     x = "",
-    y = "Number of Pollinia",
+    y = "Number of Pollinia \n per Floral Visitor",
     # y = "",
   ) + 
   ylim(range(0,7)) +
@@ -952,7 +952,7 @@ apoll18_plot <- apoll18_plot +
            size = 7)
 
 # change point shape by treatment
-apoll18_plot <- manual_shape_change(apoll18_plot)
+apoll18_plot <- manual_shape_change(apoll18_plot, 17)
 
 ##### 2019 Model Selecition ####
 # More simple global model due to convergence issues
@@ -1125,7 +1125,7 @@ apoll19_plot <- apoll19_plot +
   labs(# Turn on/off
     # x = "Species",
     x = "",
-    # y = "Number of Pollinia", 
+    # y = "Number of Pollinia \n per Floral Visitor", 
     y = "",
   ) + 
   ylim(range(0,7)) +
@@ -1298,7 +1298,7 @@ apoll21_plot <- apoll21_plot +
   labs(# Turn on/off
     # x = "Species",
     x = "",
-    # y = "Number of Pollinia", 
+    # y = "Number of Pollinia \n per Floral Visitor", 
     y = "",
   ) + 
   ylim(range(0, 7)) +
@@ -1323,6 +1323,7 @@ apoll21_plot <- apoll21_plot +
            x = 2.5, 
            label = "Treatment: p-value = 0.04 \n Treatment x Taxo. Group: \n p-value = 0.01",
            size = 7)
+
 
 # change point shape by treatment
 apoll21_plot <- manual_shape_change(apoll21_plot, 17)
@@ -2327,3 +2328,86 @@ ggsave("figures/gallium_composition.png",
        height = 7,
        units = "in",
        dpi = 300)
+
+
+#### Resources ####
+resources <- read.csv("data/resources.csv", 
+                      header = T)
+
+# Add total milkweed columns
+resources$milk_total <- resources$milk_in + resources$milk_out
+
+# Milkweed
+# Subset and contingency table
+milk_resources <- resources %>% 
+  group_by(date, treatment) %>%
+  summarise(milk_total) %>%
+  spread(treatment, milk_total) 
+
+
+# Test for differences
+t.test(milk_resources$control, # fail to reject null
+       milk_resources$damage, 
+       mu = 0,
+       alternative = "two.sided", 
+       paired = T)
+
+wilcox.test(milk_resources$control, # fail to reject null
+            milk_resources$damage,
+            paired = T,
+            alternative = "two.sided")
+
+symmetry_test(milk_total ~ as.factor(treatment) | as.factor(date), 
+              data = resources)
+
+# visualize
+ggplot(data = resources, 
+       aes(x = treatment, 
+           y = milk_total)) +
+  geom_boxplot() + 
+  geom_point(aes(color = date), 
+             size = 2) + 
+  geom_line(aes(group = date, 
+                color = date), 
+            size = 2) + 
+  theme_classic()
+
+
+# Milkweed within plots
+# Subset and contingency table
+milk_in_resources <- resources %>% 
+  group_by(date, treatment) %>%
+  summarise(milk_in) %>%
+  spread(treatment, milk_in) 
+
+
+# Test for differences
+t.test(milk_in_resources$control, # fail to reject null
+       milk_in_resources$damage, 
+       mu = 0,
+       alternative = "two.sided", 
+       paired = T)
+
+wilcox.test(milk_in_resources$control, # fail to reject null
+            milk_in_resources$damage,
+            paired = T, 
+            alternative = "two.sided")
+
+symmetry_test(milk_in ~ as.factor(treatment) | as.factor(date), 
+              data = resources)
+
+# visualize
+ggplot(data = resources, 
+       aes(x = treatment, 
+           y = milk_in)) +
+  geom_boxplot() + 
+  geom_point(aes(color = date), 
+             size = 2) + 
+  geom_line(aes(group = date, 
+                color = date), 
+            size = 2) + 
+  theme_classic()
+
+# Test for vetch and galium
+symmetry_test(vetch ~ as.factor(treatment) | as.factor(date), data = resources)
+symmetry_test(galium ~ as.factor(treatment) | as.factor(date), data = resources)
