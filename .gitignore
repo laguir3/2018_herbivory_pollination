@@ -37,3 +37,10 @@ vignettes/*.pdf
 
 # R Environment Variables
 .Renviron
+
+# .DS_Store
+.DS_Store
+
+figures/clin_lysi_deposition.png
+figures/loo19_spill_plot.png
+figures/vet19_in_plot.png
