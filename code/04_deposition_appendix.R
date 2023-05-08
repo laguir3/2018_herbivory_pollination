@@ -816,7 +816,16 @@ ggsave("figures/loo19_spill_plot.png",
        dpi = 300)
 
 
-####### Appendix Table ####
+####### Appendix Tables ####
+# load summaries from pollen dep. models
+app_summs <- readRDS("data/appendix_summaries.RDS")
+
+# load likelihood ratio tests from... 
+depo_lrts <- readRDS("data/appendix_depo_lrts.RDS") # pollen dep. glmm's
+seed_lrts <- readRDS("data/appendix_seed_lrts.RDS") # seed prod. glmm's
+poll_lrts <- readRDS("data/appendix_poll_lrts.RDS") # pollinia glmm's 
+
+##### Deposition Output Tables ####
 # For loop for making and saving tables
 tabs <- vector(mode = "list", 
                length = 8)
@@ -848,11 +857,12 @@ for(i in 1:length(app_summs)){
   # Check Plots
   plot(tabs[[i]])
   
+  # add name
   title = paste0("table_", i)
   
   # Save
-  save_as_docx(title = tabs[[i]],
-               path = paste0(getwd(), "/tables/table_", i, ".docx"))
+  # save_as_docx(title = tabs[[i]],
+  #              path = paste0(getwd(), "/tables/table_", i, ".docx"))
 }
 
 # Join table for species
@@ -870,7 +880,103 @@ read_docx() %>%
   body_add_flextable(value = tabs[[6]]) %>%
   print(target = "tables/appendix_galium_deposition.docx")
 
+# Basil and Lysimachia
 read_docx() %>% 
   body_add_flextable(value = tabs[[7]]) %>% 
   body_add_flextable(value = tabs[[8]]) %>% 
   print(target = "tables/appendix_other_deposition.docx")
+
+##### LRT Tables ####
+# names for colums
+lrts_cols <- c("Model", "Df", "Chisq", "Pr(>Chisq)")
+
+# create data frames to hold table contents
+depo_table <- data.frame(matrix(ncol = 4, # pollen dep. glmm's
+                                nrow = length(depo_lrts)))
+
+seed_table <- data.frame(matrix(ncol = 4, # seed prod. glmm's
+                                nrow = length(seed_lrts)))
+
+poll_table <- data.frame(matrix(ncol = 4, # pollinia glmm's 
+                                nrow = length(poll_lrts)))
+
+# define column names
+colnames(depo_table) <- lrts_cols
+colnames(seed_table) <- lrts_cols
+colnames(poll_table) <- lrts_cols
+
+# define models 
+depo_table$Model <- names(depo_lrts)
+seed_table$Model <- names(seed_lrts)
+poll_table$Model <- names(poll_lrts)
+
+# depo table - get table values 
+for(i in 1:nrow(depo_table)){
+  
+  # get degrees of freedom
+  depo_table$Df[i] <- abs(depo_lrts[[i]]$Df[2])
+  
+  # get chi-square 
+  depo_table$Chisq[i] <- round(depo_lrts[[i]]$Chisq[2], 
+                               digits = 3)
+  
+  # get p-value
+  depo_table$`Pr(>Chisq)`[i] <- round(depo_lrts[[i]]$`Pr(>Chisq)`[2], 
+                                      digits = 3)
+}
+
+# seed table - get table values
+for(i in 1:nrow(seed_table)){
+  
+  # get degrees for freedom
+  seed_table$Df[i] <- abs(seed_lrts[[i]]$Df[2])
+  
+  # get chi-square
+  seed_table$Chisq[i] <- round(seed_lrts[[i]]$Chisq[2], 
+                               digits = 3)
+  
+  # get p-value
+  seed_table$`Pr(>Chisq)`[i] <- round(seed_lrts[[i]]$`Pr(>Chisq)`[2], 
+                                      digits = 3)
+}
+
+# pollinia table - get table values
+for(i in 1:nrow(poll_table)){
+  
+  # get degrees of freedom 
+  poll_table$Df[i] <- abs(poll_lrts[[i]]$Df[2])
+  
+  # get chi-square
+  poll_table$Chisq[i] <- round(poll_lrts[[i]]$Chisq[2], 
+                               digits = 3)
+  
+  # get p-value
+  poll_table$`Pr(>Chisq)`[i] <- round(poll_lrts[[i]]$`Pr(>Chisq)`[2],
+                                      digits = 3)
+  
+}
+
+# Create flextable
+# bind tables into flextable
+lrts_ft <- flextable(rbind(depo_table, seed_table, poll_table))
+
+# format
+lrts_ft <- lrts_ft %>% 
+  theme_booktabs() %>% 
+  hline(part = "body", i = c(8, 10), 
+        border = fp_border(width = 1.5)) %>% # add lines to separate models
+  bold(part = "header") %>% # bold header 
+  bold(~ `Pr(>Chisq)` < 0.05) %>% # bold if significant
+  italic(~ `Pr(>Chisq)` <  0.1 &  `Pr(>Chisq)` > 0.05) %>% # italicize if marginally significant
+  compose(i = 1, j = "Pr(>Chisq)", part = "header", # change header name
+          as_paragraph("P-value")) %>%
+  compose(i = 1, j = "Chisq", part = "header",  # change header name
+          as_paragraph(paste("\u03C7", 
+                             "-statistic"))) %>%
+  width(j = 1, width = 2.25) %>% # widen first column
+  width(j = 3, width = .9) # widen x stat column to fit
+
+# save flextable
+save_as_docx(lrts_ft, 
+             path = "tables/lrts.docx")
+

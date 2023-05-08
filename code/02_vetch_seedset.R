@@ -92,6 +92,13 @@ seed18$treatment <- as.factor(seed18$treatment)
 seed21$treatment <- as.factor(seed21$treatment)
 
 
+# Create list for Likelihood Ratio Test
+seed_lrts <- vector("list", 
+                    length = 2)
+
+names(seed_lrts) <- c("2018 Vetch Seed Production", 
+                      "2021 Vetch Seed Production")
+
 #### QUICK VIZ ####
 # Histograms
 # 2018
@@ -195,9 +202,9 @@ AIC(seed18_mod,
 # treatment1   -0.7109     0.2864  -2.482   0.0131 *  
 
 ###### LRT #####
-lrtest(seed18_mod, 
-       update(seed18_mod, 
-              .~. -treatment:site))
+seed_lrts[[1]] <- lrtest(seed18_mod, 
+                         update(seed18_mod, 
+                                .~. -treatment:site))
 # Likelihood ratio test
 # 
 # Model 1: seeds ~ treatment * site
@@ -295,9 +302,9 @@ AIC(seed21_mod2,
 # pods        -0.71965    0.06649  -10.82   <2e-16 ***
 
 ###### LRT #####
-lrtest(seed21_mod2, 
-       update(seed21_mod2, 
-              .~. -treatment))
+seed_lrts[[2]] <- lrtest(seed21_mod2, 
+                         update(seed21_mod2, 
+                                .~. -treatment))
 
 ###### Plot ####
 seed21_plot <- plot(ggpredict(seed21_mod2, 
@@ -350,3 +357,6 @@ ggsave("figures/vetch_seed_production.png",
        units = "in",
        dpi = 300)
 
+#### Save Objects for Appendix ####
+saveRDS(object = seed_lrts, 
+        file = "data/appendix_seed_lrts.RDS")

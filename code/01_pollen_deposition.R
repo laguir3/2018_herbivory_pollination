@@ -330,7 +330,11 @@ ggplot(data = loose19,
 ## MODELS W/ BETA DISTRIBUTION ####
 ## Create list for table summaries
 app_summs <- vector(mode = "list", 
-                    length = 8)
+                    length = 8) # number of pollen dep. models
+
+## Create list for Likelihood Ratio Test (LRT's)
+depo_lrts <- vector(mode = "list", 
+               length = 8) # number of pollen dep. models
 
 # name list objects
 names(app_summs) <- c("2018 Vetch Deposition", 
@@ -341,6 +345,8 @@ names(app_summs) <- c("2018 Vetch Deposition",
                       "2021 Galium Deposition", 
                       "2018 Wild Basil Deposition", 
                       "2019 Whorled Loosestrife Deposition")
+
+names(depo_lrts) <- names(app_summs)
 
 
 ### Vetch ####
@@ -430,9 +436,9 @@ app_summs[[1]] <- vet18_mod2
 # treatment1:plotpair1   0.7300     0.3011   2.425  0.01532 *  
 
 ###### LRT ####
-lrtest(vet18_mod2, 
-       update(vet18_mod2, 
-              .~. -treatment:plotpair)) # Good model
+depo_lrts[[1]] <- lrtest(vet18_mod2, 
+                    update(vet18_mod2, 
+                           .~. -treatment:plotpair)) # Good model
 # Likelihood ratio test
 # 
 # Model 1: proportion_het ~ treatment * plotpair
@@ -600,9 +606,9 @@ app_summs[[2]] <- refit_vet19_mod3
 
 
 ###### LRT ####
-lrtest(vet19_mod3, 
-       update(vet19_mod3, 
-              .~. -treatment))
+depo_lrts[[2]] <- lrtest(vet19_mod3, 
+                    update(vet19_mod3, 
+                           .~. -treatment))
 # Likelihood ratio test
 # 
 # Model 1: proportion_het ~ treatment + plotpair
@@ -820,9 +826,9 @@ app_summs[[3]] <- vet21_mod5b
 #   plotpair3        -0.1305     0.3248  -0.402   0.6878  
 
 ###### LRT #####
-lrtest(vet21_mod5b, 
-       update(vet21_mod5b,
-              .~. -treatment))
+depo_lrts[[3]] <- lrtest(vet21_mod5b, 
+                    update(vet21_mod5b,
+                           .~. -treatment))
 
 # Likelihood ratio test
 # 
@@ -1015,9 +1021,9 @@ app_summs[[4]] <- gal18_mod3
 # treatment1:plotpair1    0.609      0.180    3.38  0.00071 ***
 
 ###### LRT ####
-lrtest(gal18_mod3, 
-       update(gal18_mod2, 
-              .~. -treatment)) # without interaction
+depo_lrts[[4]] <- lrtest(gal18_mod3, 
+                    update(gal18_mod2, 
+                           .~. -treatment)) # without interaction
 
 # Likelihood ratio test
 # 
@@ -1257,9 +1263,9 @@ app_summs[[5]] <- refit_gal19_mod4
 # (Intercept)  -1.1688     0.1544  -7.571  3.7e-14 ***
 
 ###### LRT ####
-lrtest(gal19_mod5, 
-       update(gal19_mod5, 
-              .~. -treatment))
+depo_lrts[[5]] <- lrtest(gal19_mod5, 
+                    update(gal19_mod5, 
+                           .~. -treatment))
 
 # Likelihood ratio test
 # 
@@ -1467,9 +1473,9 @@ app_summs[[6]] <- gal21_mod3
 # plotpair3        -0.0851     0.4139   -0.21  0.83711    
 
 ###### LRT ####
-lrtest(gal21_mod3, 
-       update(gal21_mod3, 
-              .~. -treatment))
+depo_lrts[[6]] <- lrtest(gal21_mod3, 
+                    update(gal21_mod3, 
+                           .~. -treatment))
 
 # Likelihood ratio test
 # 
@@ -1641,9 +1647,9 @@ app_summs[[7]] <- bas18_mod3
 # date1           1.123      0.481   2.334   0.0196 *
 
 ###### LRT ####
-lrtest(bas18_mod2, 
-       update(bas18_mod2, 
-              .~. -treatment))
+depo_lrts[[7]] <- lrtest(bas18_mod2, 
+                    update(bas18_mod2, 
+                           .~. -treatment))
 # Likelihood ratio test
 # 
 # Model 1: proportion_het ~ treatment + date
@@ -1809,9 +1815,9 @@ app_summs[[8]] <- loo19_mod2
 
 ###### LRT #####
 # Without resources
-lrtest(loo19_mod2, 
-       update(loo19_mod2, 
-              .~. -vetch))
+depo_lrts[[8]] <- lrtest(loo19_mod2, 
+                    update(loo19_mod2, 
+                           .~. -vetch))
 # Likelihood ratio test
 # 
 # Model 1: proportion_het ~ treatment + date + vetch
@@ -1914,6 +1920,13 @@ ggsave("figures/all_deposition.png",
        units = "in",
        dpi = 300)
 
+
+#### Save Objects for Appendix ####
+saveRDS(object = app_summs, 
+        file = "data/appendix_summaries.RDS")
+
+saveRDS(object = depo_lrts, 
+        file = "data/appendix_depo_lrts.RDS")
 
 # ###### editing legends for ggeffect::plot()
 # guides(linetype = guide_legend(override.aes = list(linetype = c(1,1),

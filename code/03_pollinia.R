@@ -89,6 +89,14 @@ mpollinia19[, vars] <- lapply(mpollinia19[, vars],
 mpollinia21[, vars] <- lapply(mpollinia21[, vars], 
                               as.factor)
 
+# Create list for likelihood ratio test 
+poll_lrts <- vector("list",
+                    length = 3)
+
+names(poll_lrts) <- c("2018 Pollinia Loads",
+                      "2019 Pollinia Loads",
+                      "2021 Pollinia Loads")
+
 #### POLLINIA MODELS W/ NEGATIVE BINOMIAL DISTRIBUTION #####
 ###### 2018 Model Selection #####
 poll18_mod <- glmmTMB(pollinia ~ treatment * site + date,  
@@ -206,9 +214,9 @@ simulateResiduals(poll18_mod5,
 # site1        -0.2650     0.1193  -2.220 0.026404 *  
 
 ##### LRT ####
-lrtest(poll18_mod5, 
-       update(poll18_mod5, 
-              .~. -treatment))
+poll_lrts[[1]] <- lrtest(poll18_mod5, 
+                         update(poll18_mod5, 
+                                .~. -treatment))
 # Likelihood ratio test
 # 
 # Model 1: pollinia ~ treatment + site
@@ -471,9 +479,9 @@ simulateResiduals(poll19_mod9, # residual vs predicted a little off
 # site3         0.4837     0.3453   1.401   0.1613    
 
 ##### LRT #####
-lrtest(poll19_mod7, 
-       update(poll19_mod7, 
-              .~. -treatment))
+poll_lrts[[2]] <- lrtest(poll19_mod7, 
+                         update(poll19_mod7, 
+                                .~. -treatment))
 # Likelihood ratio test
 # 
 # Model 1: pollinia ~ treatment + site + milk_in + (1 | date)
@@ -697,9 +705,9 @@ simulateResiduals(poll21_mod7b,
 # Note milk_in is significant when we drop the site factor
 
 ##### LRT #####
-lrtest(poll21_mod6, 
-       update(poll21_mod6, 
-              .~. -treatment))
+poll_lrts[[3]] <- lrtest(poll21_mod6, 
+                         update(poll21_mod6, 
+                                .~. -treatment))
 # Likelihood ratio test
 # 
 # Model 1: pollinia ~ treatment + site + milk_in
@@ -2411,3 +2419,8 @@ ggplot(data = resources,
 # Test for vetch and galium
 symmetry_test(vetch ~ as.factor(treatment) | as.factor(date), data = resources)
 symmetry_test(galium ~ as.factor(treatment) | as.factor(date), data = resources)
+
+
+#### Save Objects for Appendix Tables ####
+saveRDS(object = poll_lrts,
+        file = "data/appendix_poll_lrts.RDS")
