@@ -1947,6 +1947,9 @@ ann_text2[1] <- "B"
 
 # same levels as 2018 plot for common legend
 levels(bees_poll19$poll_simple) <- c(levels(bees_poll19$poll_simple), "Other Bees")
+bees_poll19$poll_simple <- factor(bees_poll19$poll_simple, 
+                                  levels = c("Apis", "Bombus", "Other Bees", 
+                                             "Other Floral Visitors"))
 
 # Plot
 comp19 <- ggplot(data = bees_poll19, 
@@ -1999,8 +2002,9 @@ ann_text2[1] <- "B"
 
 # same levels as 2018 plot for common legend
 levels(bees_poll21$poll_simple) <- c(levels(bees_poll21$poll_simple), "Other Bees")
-levels(bees_poll21$poll_simple <- factor(bees_poll21$poll_simple, 
-                                         levels = levels(bees_poll18$poll_simple))
+bees_poll21$poll_simple <- factor(bees_poll21$poll_simple, 
+                                  levels = c("Apis", "Bombus", "Other Bees", 
+                                             "Other Floral Visitors"))
 
 
 # Plot
