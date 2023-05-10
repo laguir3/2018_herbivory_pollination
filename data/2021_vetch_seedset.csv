@@ -1,4 +1,4 @@
-﻿VID,treatment,site,pods,seeds,start,notes
+﻿vid,treatment,site,pods,seeds,start,notes
 1,damage,gf1,1,3,3,
 2,control,gf3,5,2.6,,
 3,damage,gf1,0,,5,

@@ -766,7 +766,7 @@ pollinia_plots <- (poll18_plot + poll19_plot + poll21_plot) /
   theme(plot.title = element_text(size = 30))
 
 # Save
-ggsave("figures/pollinia_loads.png",
+ggsave("figures/Figure_S1.png",
        last_plot(),
        device = "png",
        width = 18,
@@ -1344,7 +1344,7 @@ apoll_plots <- (apoll18_plot + apoll19_plot + apoll21_plot) /
   theme(plot.title = element_text(size = 30))
 
 # Save
-ggsave("figures/pollinia_loads_bees.png",
+ggsave("figures/Figure_S2.png",
        last_plot(),
        device = "png",
        width = 18,
@@ -1901,6 +1901,9 @@ ann_text1 <- tribble(
   "C", 1.5, 1.05 
 ) 
 
+# get levels
+levs <- levels(bees_poll18$poll_simple)
+
 # Plot
 comp18 <- ggplot(data = bees_poll18, 
                  aes(x = treatment)) + 
@@ -1942,6 +1945,9 @@ ann_text1 <- tribble(
 ann_text2 <- ann_text1
 ann_text2[1] <- "B"
 
+# same levels as 2018 plot for common legend
+levels(bees_poll19$poll_simple) <- levs
+
 # Plot
 comp19 <- ggplot(data = bees_poll19, 
                  aes(x = treatment)) + 
@@ -1951,7 +1957,7 @@ comp19 <- ggplot(data = bees_poll19,
   ggtitle("2019") + 
   labs(#turn on/off
     x = "Treatment",
-    x = "", 
+    # x = "", 
     # y = "Proportion", 
     y = ""
   ) +
@@ -1966,7 +1972,8 @@ comp19 <- ggplot(data = bees_poll19,
                     values = c("Apis" = cb[6], 
                                "Bombus" = cb[2], 
                                "Other Bees" = cb[1], 
-                               "Other Floral Visitors" = cb[8])) + 
+                               "Other Floral Visitors" = cb[8]),
+                    drop = FALSE) + 
   scale_x_discrete(labels = c("CON", 
                               "HERB")) +
   geom_text(data = ann_text1, 
@@ -1989,6 +1996,9 @@ ann_text1 <- tribble(
 
 ann_text2 <- ann_text1
 ann_text2[1] <- "B"
+
+# same levels as 2018 plot for common legend
+levels(bees_poll21$poll_simple) <- levs
 
 # Plot
 comp21 <- ggplot(data = bees_poll21, 
@@ -2014,7 +2024,8 @@ comp21 <- ggplot(data = bees_poll21,
                     values = c("Apis" = cb[6], 
                                "Bombus" = cb[2], 
                                "Other Bees" = cb[1], 
-                               "Other Floral Visitors" = cb[8])) + 
+                               "Other Floral Visitors" = cb[8]), 
+                    drop = FALSE) + 
   scale_x_discrete(labels = c("CON", 
                               "HERB")) + 
   geom_text(data = ann_text1, 
@@ -2034,14 +2045,13 @@ comp21 <- ggplot(data = bees_poll21,
 )
 
 # Save
-ggsave("figures/pollinator_composition.png",
+ggsave("figures/Figure_1.png",
        last_plot(),
        device = "png",
        width = 18,
        height = 7,
        units = "in",
        dpi = 300)
-
 
 ##### Vetch Floral Visitors #####
 # keep only polls on vetch
@@ -2174,7 +2184,7 @@ vetch_comps <- vcomp18 +
 
 
 # Save
-ggsave("figures/vetch_composition.png",
+ggsave("figures/Figure_S3.png",
        last_plot(),
        device = "png",
        width = 18,
@@ -2329,96 +2339,13 @@ galium_comps <- gcomp18 +
         plot.title = element_text(size = 30))
 
 # Save
-ggsave("figures/gallium_composition.png",
+ggsave("figures/Figure_S4.png",
        last_plot(),
        device = "png",
        width = 18,
        height = 7,
        units = "in",
        dpi = 300)
-
-
-#### Resources ####
-resources <- read.csv("data/resources.csv", 
-                      header = T)
-
-# Add total milkweed columns
-resources$milk_total <- resources$milk_in + resources$milk_out
-
-# Milkweed
-# Subset and contingency table
-milk_resources <- resources %>% 
-  group_by(date, treatment) %>%
-  summarise(milk_total) %>%
-  spread(treatment, milk_total) 
-
-
-# Test for differences
-t.test(milk_resources$control, # fail to reject null
-       milk_resources$damage, 
-       mu = 0,
-       alternative = "two.sided", 
-       paired = T)
-
-wilcox.test(milk_resources$control, # fail to reject null
-            milk_resources$damage,
-            paired = T,
-            alternative = "two.sided")
-
-symmetry_test(milk_total ~ as.factor(treatment) | as.factor(date), 
-              data = resources)
-
-# visualize
-ggplot(data = resources, 
-       aes(x = treatment, 
-           y = milk_total)) +
-  geom_boxplot() + 
-  geom_point(aes(color = date), 
-             size = 2) + 
-  geom_line(aes(group = date, 
-                color = date), 
-            size = 2) + 
-  theme_classic()
-
-
-# Milkweed within plots
-# Subset and contingency table
-milk_in_resources <- resources %>% 
-  group_by(date, treatment) %>%
-  summarise(milk_in) %>%
-  spread(treatment, milk_in) 
-
-
-# Test for differences
-t.test(milk_in_resources$control, # fail to reject null
-       milk_in_resources$damage, 
-       mu = 0,
-       alternative = "two.sided", 
-       paired = T)
-
-wilcox.test(milk_in_resources$control, # fail to reject null
-            milk_in_resources$damage,
-            paired = T, 
-            alternative = "two.sided")
-
-symmetry_test(milk_in ~ as.factor(treatment) | as.factor(date), 
-              data = resources)
-
-# visualize
-ggplot(data = resources, 
-       aes(x = treatment, 
-           y = milk_in)) +
-  geom_boxplot() + 
-  geom_point(aes(color = date), 
-             size = 2) + 
-  geom_line(aes(group = date, 
-                color = date), 
-            size = 2) + 
-  theme_classic()
-
-# Test for vetch and galium
-symmetry_test(vetch ~ as.factor(treatment) | as.factor(date), data = resources)
-symmetry_test(galium ~ as.factor(treatment) | as.factor(date), data = resources)
 
 
 #### Save Objects for Appendix Tables ####

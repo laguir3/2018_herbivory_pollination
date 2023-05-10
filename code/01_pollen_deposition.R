@@ -1912,7 +1912,7 @@ all_specs_plots <-
   theme(plot.title = element_text(size = 30))
 
 # Save
-ggsave("figures/all_deposition.png", 
+ggsave("figures/Figure_2.png", 
        last_plot(), 
        device = "png",
        width = 21, 

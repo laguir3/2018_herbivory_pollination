@@ -634,7 +634,7 @@ vet19_in_plot <- vet19_in_plot / common_legend +
   plot_layout(heights = c(8,1))
 
 # save
-ggsave("figures/vet19_in_plot.png",
+ggsave("figures/Figure_S5.png",
        last_plot(),
        device = "png",
        width = 7,
@@ -806,15 +806,88 @@ loo19_spill_plot <- loo19_spill_plot +
            label = "Location: P = 0.85 \n Resources: P = 0.11", 
            size = 5.5)
 
-# Save
-ggsave("figures/loo19_spill_plot.png",
-       last_plot(),
-       device = "png",
-       width = 10,
-       height = 7,
-       units = "in",
-       dpi = 300)
+####### Test Resource #####
+# Load
+resources <- read.csv("data/resources.csv", 
+                      header = T)
 
+# Add total milkweed columns
+resources$milk_total <- resources$milk_in + resources$milk_out
+
+# Milkweed
+# Subset and contingency table
+milk_resources <- resources %>% 
+  group_by(date, treatment) %>%
+  summarise(milk_total) %>%
+  spread(treatment, milk_total) 
+
+
+# Test for differences
+t.test(milk_resources$control, # fail to reject null
+       milk_resources$damage, 
+       mu = 0,
+       alternative = "two.sided", 
+       paired = T)
+
+wilcox.test(milk_resources$control, # fail to reject null
+            milk_resources$damage,
+            paired = T,
+            alternative = "two.sided")
+
+symmetry_test(milk_total ~ as.factor(treatment) | as.factor(date), 
+              data = resources)
+
+# visualize
+ggplot(data = resources, 
+       aes(x = treatment, 
+           y = milk_total)) +
+  geom_boxplot() + 
+  geom_point(aes(color = date), 
+             size = 2) + 
+  geom_line(aes(group = date, 
+                color = date), 
+            size = 2) + 
+  theme_classic()
+
+
+# Milkweed within plots
+# Subset and contingency table
+milk_in_resources <- resources %>% 
+  group_by(date, treatment) %>%
+  summarise(milk_in) %>%
+  spread(treatment, milk_in) 
+
+
+# Test for differences
+t.test(milk_in_resources$control, # fail to reject null
+       milk_in_resources$damage, 
+       mu = 0,
+       alternative = "two.sided", 
+       paired = T)
+
+wilcox.test(milk_in_resources$control, # fail to reject null
+            milk_in_resources$damage,
+            paired = T, 
+            alternative = "two.sided")
+
+symmetry_test(milk_in ~ as.factor(treatment) | as.factor(date), 
+              data = resources)
+
+# visualize
+ggplot(data = resources, 
+       aes(x = treatment, 
+           y = milk_in)) +
+  geom_boxplot() + 
+  geom_point(aes(color = date), 
+             size = 2) + 
+  geom_line(aes(group = date, 
+                color = date), 
+            size = 2) + 
+  theme_classic()
+
+# Test for vetch and galium
+symmetry_test(vetch ~ as.factor(treatment) | as.factor(date), data = resources)
+symmetry_test(galium ~ as.factor(treatment) | as.factor(date), data = resources)
 
 ####### Appendix Tables ####
 # load summaries from pollen dep. models

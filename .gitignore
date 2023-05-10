@@ -41,6 +41,17 @@ vignettes/*.pdf
 # .DS_Store
 .DS_Store
 
+# extra data
+data/vetch_poll_loads.csv 
+
+# unused plots
+figures/vetch_deposition.png
+figures/galium_deposition.png
 figures/clin_lysi_deposition.png
 figures/loo19_spill_plot.png
 figures/vet19_in_plot.png
+
+
+# temporary markdown renderings of README.md file
+data/*.pdf
+data/*.html

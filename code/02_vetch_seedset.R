@@ -349,7 +349,7 @@ seed_plots <- (seed18_plot + seed21_plot) /
         plot.title = element_text(size = 30))
 
 # Save
-ggsave("figures/vetch_seed_production.png", 
+ggsave("figures/Figure_3.png", 
        last_plot(), 
        device = "png",
        width = 18, 
