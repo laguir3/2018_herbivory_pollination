@@ -53,5 +53,7 @@ figures/vet19_in_plot.png
 
 
 # temporary markdown renderings of README.md file
+code/*.pdf
+code/*.html
 data/*.pdf
 data/*.html

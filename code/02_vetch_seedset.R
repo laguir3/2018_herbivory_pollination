@@ -99,56 +99,6 @@ seed_lrts <- vector("list",
 names(seed_lrts) <- c("2018 Vetch Seed Production", 
                       "2021 Vetch Seed Production")
 
-#### QUICK VIZ ####
-# Histograms
-# 2018
-ggplot(data = seed18, 
-       aes(x = seeds)) + 
-  geom_histogram(data = subset(seed18,
-                               treatment == "control"),
-                 fill = cb[4], 
-                 alpha = 0.5, 
-                 binwidth = 0.5) + 
-  geom_histogram(data = subset(seed18, 
-                               treatment == "damage"), 
-                 fill = cb[7], 
-                 alpha = 0.5, 
-                 binwidth = 0.5) +
-  theme_classic()
-
-# 2021
-ggplot(data = seed21, 
-       aes(x = seeds)) + 
-  geom_histogram(data = subset(seed21,
-                               treatment == "control"),
-                 fill = cb[4], 
-                 alpha = 0.5, 
-                 binwidth = 0.5) +
-  geom_histogram(data = subset(seed21, 
-                               treatment == "damage"), 
-                 fill = cb[7], 
-                 alpha = 0.5, 
-                 binwidth = 0.5) +
-  theme_classic()
-
-# Boxplots
-# 2018
-ggplot(data = seed18, 
-       aes(y = seeds,
-           x = treatment, 
-           fill = treatment)) + 
-  geom_violin() + 
-  theme_classic() # It looks plausible that this
-
-# 2021
-ggplot(data = seed21, 
-       aes(y = seeds, 
-           x = treatment, 
-           fill = treatment)) +
-  geom_violin() + 
-  theme_classic()
-
-
 #### MODELS W/ TWEEDIE GAMMA DISTRIBUTION ####
 ##### 2018 Model Selection ####
 # Global Model

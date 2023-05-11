@@ -19,6 +19,7 @@ library(patchwork)
 library(flextable)
 library(broom)
 library(officer)
+library(coin)
 
 # Set color-blind palette
 cb <- c("#000000", # black
@@ -660,7 +661,7 @@ ggsave("figures/Figure_S5.png",
 #        units = "in",
 #        dpi = 300)
 
-#### 2019 Whorled Loosestrife ####
+##### 2019 Whorled Loosestrife ####
 # Global_model 
 spill_loo_mod <- glmmTMB(proportion_het ~ in_out * vetch + 
                            (1|date), # will not converge with date as fe 
@@ -806,7 +807,7 @@ loo19_spill_plot <- loo19_spill_plot +
            label = "Location: P = 0.85 \n Resources: P = 0.11", 
            size = 5.5)
 
-####### Test Resource #####
+#### Test Resource #####
 # Load
 resources <- read.csv("data/resources.csv", 
                       header = T)
@@ -889,7 +890,7 @@ ggplot(data = resources,
 symmetry_test(vetch ~ as.factor(treatment) | as.factor(date), data = resources)
 symmetry_test(galium ~ as.factor(treatment) | as.factor(date), data = resources)
 
-####### Appendix Tables ####
+#### Appendix Tables ####
 # load summaries from pollen dep. models
 app_summs <- readRDS("data/appendix_summaries.RDS")
 
@@ -897,6 +898,9 @@ app_summs <- readRDS("data/appendix_summaries.RDS")
 depo_lrts <- readRDS("data/appendix_depo_lrts.RDS") # pollen dep. glmm's
 seed_lrts <- readRDS("data/appendix_seed_lrts.RDS") # seed prod. glmm's
 poll_lrts <- readRDS("data/appendix_poll_lrts.RDS") # pollinia glmm's 
+
+# load goodness-of-fit table
+chi_tab <- readRDS("data/chi_table.RDS")
 
 ##### Deposition Output Tables ####
 # For loop for making and saving tables
@@ -1052,4 +1056,350 @@ lrts_ft <- lrts_ft %>%
 # save flextable
 save_as_docx(lrts_ft, 
              path = "tables/lrts.docx")
+
+##### Goodness-of-Fit Table ####
+
+# Create flextable
+chi_ft <- flextable(chi_tab)
+
+# Bold column names
+chi_ft <- bold(chi_ft,
+               part = "header")
+
+# Bold statistically significant plot pairs
+chi_ft <- bold(chi_ft, 
+               ~ P < 0.05)
+
+# Italicize statistically significant plot
+chi_ft <- italic(chi_ft, 
+                 ~ P < 0.10 & P > 0.05)
+
+# Change P to P-value
+chi_ft <- compose(chi_ft,
+                  part = "header",
+                  j = "P", 
+                  i = 1,
+                  as_paragraph("P-value"))
+
+# Change chi to chi-statistic
+chi_ft <- compose(chi_ft, 
+                  part = "header", 
+                  j = "chi", 
+                  i = 1, 
+                  as_paragraph(paste("\u03C7", 
+                                     "-statistic")))
+
+# Widen x-stat column to fit
+chi_ft <- width(chi_ft, j = 3, width = .9)
+
+# Dinal format
+chi_ft <- theme_booktabs(chi_ft)
+
+# Save
+save_as_docx(title = chi_ft,
+             path = paste0(getwd(), 
+                           "/tables/table_chi_statistic.docx"))
+
+#### Composition Plots ####
+# load files
+pollinia18 <- read.csv("data/2018_pollinators.csv", 
+                       header = T)
+pollinia19 <- read.csv("data/2019_pollinators.csv", 
+                       header = T)
+pollinia21 <- read.csv("data/2021_pollinators.csv", 
+                       header = T)
+
+##### Vetch Floral Visitors #####
+# keep only polls on vetch
+vpollinia18 <- pollinia18 %>% 
+  filter(plant_species == "vetch")
+vpollinia19 <- pollinia19 %>% 
+  filter(plant_species == "vetch")
+vpollinia21 <- pollinia21 %>% 
+  filter(plant_species == "vetch")
+
+# Format Taxonomic Group Labels
+# '18 Make broader "Other Insect" group
+vpollinia18$poll_genus <- as.factor(vpollinia18$poll_genus)
+levels(vpollinia18$poll_genus)[4:6] <- "OFV's"
+
+# '19 Syrphus to "Other Insect" group
+vpollinia19$poll_genus <- as.factor(vpollinia19$poll_genus)
+levels(vpollinia19$poll_genus)[5:6] <- "OFV's" 
+
+# '21 Syrphidae to "Other Insect"
+vpollinia21$poll_genus <- as.factor(vpollinia21$poll_genus)
+levels(vpollinia21$poll_genus)[c(6:7)] <- "OFV's"
+
+vpollinia <- cbind(vpollinia18, vpollinia19, vpollinia19)
+
+
+vetch_leg <- c("Andrena" = cb[1], 
+               "Bombus" = cb[2], 
+               "OFV's" = cb[3],
+               "Agapostemon" = cb[4],
+               "Apis" = cb[5],
+               "Lepidoptera" = cb[6],
+               "Megachile" = cb[7],
+               "Osmia" = cb[8])
+
+# Plot proportions
+# 2018
+vcomp18 <- ggplot(data = vpollinia18, 
+                  aes(x = site)) + 
+  geom_bar(aes(fill = poll_genus), 
+           position = "fill") + 
+  ggtitle("2018") + 
+  labs(#turn on/off
+    x = "Plot Pair",
+    # x = "", 
+    y = "Proportion",
+    # y = ""
+    tag = "A"
+  ) + 
+  scale_y_continuous(breaks = seq(0.0, 1, 0.25),
+                     limits = c(-0.05, 1)) +
+  theme_classic(base_size = 30) +
+  scale_x_discrete(labels = c("A", "C")) +
+  scale_fill_manual(name = "Taxonomic Group", # Include all for single legend
+                    values = vetch_leg,
+                    limits = names(vetch_leg)) + # includes nonpresent vars.
+  annotate(geom = "text", 
+           label = paste("n =", 
+                         as.character(table(vpollinia18$site))), 
+           y = -0.05, 
+           x = c(1:2), 
+           size = 6)
+
+
+# 2019
+vcomp19 <- ggplot(data = vpollinia19, 
+                  aes(x = site)) + 
+  geom_bar(aes(fill = poll_genus), 
+           position = "fill") +
+  ggtitle("2019") + 
+  labs(#turn on/off
+    x = "Plot Pair",
+    # x = "", 
+    y = "Proportion",
+    # y = "" 
+    tag = "B"
+  ) + 
+  scale_y_continuous(breaks = seq(0.0, 1, 0.25),
+                     limits = c(-0.05, 1)) +
+  theme_classic(base_size = 30) +
+  scale_x_discrete(labels = "C") +
+  scale_fill_manual(name = "Taxonomic Group", # Include all for single legend
+                    values = vetch_leg,
+                    limits = names(vetch_leg)) +
+  annotate(geom = "text",
+           label = paste("n =",
+                         as.character(table(vpollinia19$site))),
+           y = -0.05,
+           x = 1,
+           size = 6) 
+
+
+# 2021
+vcomp21 <- ggplot(data = vpollinia21, 
+                  aes(x = site)) + 
+  geom_bar(aes(fill = poll_genus), 
+           position = "fill")   + 
+  ggtitle("2021") + 
+  labs(#turn on/off
+    x = "Plot Pair",
+    # x = "", 
+    y = "Proportion",
+    # y = "" 
+    tag = "C"
+  ) + 
+  scale_y_continuous(breaks = seq(0.0, 1, 0.25),
+                     limits = c(-0.05, 1)) +
+  theme_classic(base_size = 30)  +
+  scale_x_discrete(labels = c("A", 
+                              "B", 
+                              "C", 
+                              "D")) +
+  scale_fill_manual(name = "Taxonomic Group", # Include all for single legend
+                    values = vetch_leg,
+                    limits = names(vetch_leg)) +
+  annotate(geom = "text", 
+           label = paste("n =", 
+                         as.character(table(vpollinia21$site))), 
+           y = -0.05, 
+           x = c(1:4), 
+           size = 6) 
+
+# Collect plots
+vetch_comps <- vcomp18 +
+  vcomp19 + 
+  vcomp21 +
+  plot_layout(guides = "collect") & 
+  theme(legend.position = "bottom", 
+        plot.title = element_text(size = 30))
+
+
+# Save
+ggsave("figures/Figure_S3.png",
+       last_plot(),
+       device = "png",
+       width = 18,
+       height = 7,
+       units = "in",
+       dpi = 300)
+
+##### Galium Floral Visitors #####
+# keep only polls on galium
+gpollinia18 <- pollinia18 %>% 
+  filter(plant_species == "galium")
+gpollinia19 <- pollinia19 %>% 
+  filter(plant_species == "galium")
+gpollinia21 <- pollinia21 %>% 
+  filter(plant_species == "galium")
+
+# Change taxonomic group labels
+for(i in 1:nrow(gpollinia18)){
+  if(gpollinia18$poll_simple[i] == "Bombus" ||
+     gpollinia18$poll_simple[i] == "Wasp"){
+    gpollinia18$poll_simple[i] <- as.character("Hymenoptera")
+  }
+  if(gpollinia18$poll_simple[i] == "Syrphus"){
+    gpollinia18$poll_simple[i] <- "Diptera"
+  }
+  if(gpollinia18$poll_simple[i] == "Other"){
+    gpollinia18$poll_simple[i] <- "OFV's"
+  }
+}
+
+for(i in 1:nrow(gpollinia19)){
+  if(gpollinia19$poll_simple[i] == "Lepidoptera" | 
+     gpollinia19$poll_simple[i] == "Other Insect"){
+    gpollinia19$poll_simple[i] <- "OFV's"
+  }
+  if(!(gpollinia19$poll_simple[i] == "Diptera" ||
+       gpollinia19$poll_simple[i] == "OFV's")){
+    gpollinia19$poll_simple[i] <- as.character("Hymenoptera")
+  }
+}
+
+for(i in 1:nrow(gpollinia21)){
+  if(gpollinia21$poll_simple[i] == "Lepidoptera" |
+     gpollinia21$poll_simple[i] == "Other Insect"){
+    gpollinia21$poll_simple[i] <- "OFV's"
+  }
+  if(!(gpollinia21$poll_simple[i] == "Diptera" ||
+       gpollinia21$poll_simple[i] == "OFV's")){
+    gpollinia21$poll_simple[i] <- as.character("Hymenoptera")
+  }
+}
+
+# Plot proportions
+# 2018
+gcomp18 <- ggplot(data = gpollinia18, 
+                  aes(x = site)) + 
+  geom_bar(aes(fill = poll_simple), 
+           position = "fill") +
+  ggtitle("2018 ") + 
+  labs(#turn on/off
+    x = "Plot Pair",
+    # x = "", 
+    y = "Proportion",
+    # y = "",
+    tag = "A"
+  ) + 
+  scale_y_continuous(breaks = seq(0.0, 1, 0.25),
+                     limits = c(-0.05, 1)) +
+  theme_classic(base_size = 30) +
+  scale_fill_manual(name = "Taxonomic Group", 
+                    values = c("Diptera" = cb[1], 
+                               "Hymenoptera" = cb[2], 
+                               "OFV's" = cb[3])) +
+  scale_x_discrete(labels = c("A", 
+                              "C")) +
+  annotate(geom = "text", 
+           label = paste("n =", 
+                         as.character(table(gpollinia18$site))), 
+           y = -0.05, 
+           x = c(1:2), 
+           size = 6)
+
+
+# 2019
+gcomp19 <- ggplot(data = gpollinia19, 
+                  aes(x = site)) + 
+  geom_bar(aes(fill = poll_simple), 
+           position = "fill") +
+  ggtitle("2019") + 
+  labs(#turn on/off
+    x = "Plot Pair",
+    # x = "", 
+    y = "Proportion",
+    # y = "",
+    tag = "B" 
+  ) + 
+  scale_y_continuous(breaks = seq(0.0, 1, 0.25),
+                     limits = c(-0.05, 1)) +
+  theme_classic(base_size = 30) +
+  scale_x_discrete(labels = c("A", 
+                              "B", 
+                              "C", 
+                              "D")) +
+  scale_fill_manual(name = "Taxonomic Group", 
+                    values = c("Diptera" = cb[1], 
+                               "Hymenoptera" = cb[2], 
+                               "OFV's" = cb[3])) +
+  annotate(geom = "text", 
+           label = paste("n =", 
+                         as.character(table(gpollinia19$site))), 
+           y = -0.05, 
+           x = c(1:4), 
+           size = 6)
+
+# 2021
+gcomp21 <- ggplot(data = gpollinia21, 
+                  aes(x = site)) + 
+  geom_bar(aes(fill = poll_simple), 
+           position = "fill")   + 
+  ggtitle("2021") + 
+  labs(#turn on/off
+    x = "Plot Pair",
+    # x = "", 
+    y = "Proportion",
+    # y = "",
+    tag = "C" 
+  ) + 
+  scale_y_continuous(breaks = seq(0.0, 1, 0.25),
+                     limits = c(-0.05, 1)) +
+  theme_classic(base_size = 30) +
+  scale_x_discrete(labels = c("A", 
+                              "B", 
+                              "C", 
+                              "D")) +
+  scale_fill_manual(name = "Taxonomic Group", 
+                    values = c("Diptera" = cb[1], 
+                               "Hymenoptera" = cb[2], 
+                               "OFV's" = cb[3])) +
+  annotate(geom = "text", 
+           label = paste("n =", 
+                         as.character(table(gpollinia21$site))), 
+           y = -0.05, 
+           x = c(1:4), 
+           size = 6)
+
+
+galium_comps <- gcomp18 + 
+  gcomp19 + 
+  gcomp21 +
+  plot_layout(guides = "collect") & 
+  theme(legend.position = "bottom", 
+        plot.title = element_text(size = 30))
+
+# Save
+ggsave("figures/Figure_S4.png",
+       last_plot(),
+       device = "png",
+       width = 18,
+       height = 7,
+       units = "in",
+       dpi = 300)
 

@@ -7,6 +7,7 @@ output:
 Data files associated with Aguirre and Adler (2023). Herbivory-Induced Effects on Community-Wide Pollination Services. In Prep. 
 
 Data collected, processed and analyzed by Luis A. Aguirre.
+Updated: 2023-05-10
 
 ---
 # METADATA
